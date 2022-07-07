@@ -4,11 +4,7 @@
 #include "parametersNew.h"
 #include "TSystem.h"
 
-int syst=0;
-
-
-// TESTING
-
+int syst=1;
 
 TTree* makeTTree(TTree* intree, TString treeTitle) 
 {
@@ -281,7 +277,7 @@ cout << endl << endl;
 	//    TString ptbinning;
 
 	std::vector<std::string> background = {"1st", "2nd","mass_range"};
-	std::vector<std::string> signal = {"3gauss", "fixed", "gauss_cb"};
+	std::vector<std::string> signal = {"3gauss", "fixed", "gauss_cb","2cb"};
 	
 	std::vector<std::vector<double>> background_syst;
 	std::vector<std::vector<double>> signal_syst;
@@ -719,7 +715,7 @@ cout << endl << endl;
 	if(tree=="ntphi"&&varExp=="Bpt") col_name_back= {"Background Model","7$<p_T<$10", "10$<p_T<$15", "15$<p_T<$20", "20$<p_T<$50"};
 	if(tree=="ntKp" && varExp=="Bpt") col_name_back= {"Background Model","5$<p_T<$7","7$<p_T<$10", "10$<p_T<$15", "15$<p_T<$20", "20$<p_T<$30", "30$<p_T<$50","50$<p_T<$60"};
 
-	std::vector<std::string> labels_signal = {"Triple Gaussian", "Fixed Mean", "CB+Gaussian"};
+	std::vector<std::string> labels_signal = {"Triple Gaussian", "Fixed Mean", "CB+Gaussian","Double CBs"};
 	//		std::vector<std::string> labels_signal = {"Triple Gaussian", "Fixed Mean","Double Gaussian + $\\sigma$ scaling factor" , "Increased $\\sigma$ scaling factor", "Decreased $\\sigma$ scaling factor"};
 	std::vector<std::string> col_name_signal;
 	if(tree=="ntphi"&&varExp=="Bpt") col_name_signal= {"Signal Model","7$<p_T<$10", "10$<p_T<$15", "15$<p_T<$20", "20$<p_T<$50"};
