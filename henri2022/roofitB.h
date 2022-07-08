@@ -313,7 +313,7 @@ RooFitResult *fit(TString variation, TString pdf,TString tree, TCanvas* c, TCanv
 		alpha.setConstant();
 	}
 	if(variation=="signal" && pdf=="fixed") mean.setConstant();
-	if(variation=="signal" && pdf=="2cb"){
+/*	if(variation=="signal" && pdf=="2cb"){
 		sigma5cb.setConstant();
 		n1.setConstant();
 		alpha1.setConstant();
@@ -322,7 +322,7 @@ RooFitResult *fit(TString variation, TString pdf,TString tree, TCanvas* c, TCanv
 		alpha.setConstant();
 
 	}
-
+*/
 ////// ROOFIT ROOFIT ROOFIT ROOFIT ROOFIT
 
   mass->setRange("m_range", 5.1 , 5.6 );    //set a range to be used if pdf = mass_range
