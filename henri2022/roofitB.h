@@ -290,7 +290,7 @@ RooFitResult *fit(TString variation, TString pdf,TString tree, TCanvas* c, TCanv
 /////////////////BP BP BP BP BP BP BP BP
 
         if(npfit != "1" && variation=="" && pdf=="") model = new RooAddPdf(Form("model%d",_count),"",RooArgList(bkg,*sig,peakbg),RooArgList(nbkg,nsig,npeakbg));
-	if(npfit != "1" && pdf=="mass_range"){ model = new RooAddPdf(Form("model%d",_count),"",RooArgList(*sig,bkg,peakbg),RooArgList(nsig,nbkg,npeakbg));}
+	if(npfit != "1" && pdf=="mass_range"){ model = new RooAddPdf(Form("model%d",_count),"",RooArgList(*sig,bkg),RooArgList(nsig,nbkg));}
         if(npfit != "1" && variation=="background" && pdf=="1st") model = new RooAddPdf(Form("model%d",_count),"",RooArgList(bkg_1st,*sig,peakbg),RooArgList(nbkg,nsig,npeakbg));
 	if(npfit != "1" && variation=="background" && pdf=="2nd") model = new RooAddPdf(Form("model%d",_count),"",RooArgList(bkg_2nd,*sig,peakbg),RooArgList(nbkg,nsig,npeakbg));
 	if(npfit != "1" && variation=="background" && pdf=="3rd") model = new RooAddPdf(Form("model%d",_count),"",RooArgList(bkg_3rd,*sig,peakbg),RooArgList(nbkg,nsig,npeakbg));
@@ -325,13 +325,16 @@ RooFitResult *fit(TString variation, TString pdf,TString tree, TCanvas* c, TCanv
 */
 ////// ROOFIT ROOFIT ROOFIT ROOFIT ROOFIT
 
-  mass->setRange("m_range", 5.1 , 5.6 );    //set a range to be used if pdf = mass_range
-  mass->setRange("all", minhisto, maxhisto);    //set a range to be used if pdf = mass_range
-  TString fitRange = (pdf == "mass_range")? "m_range" : "all";
-	RooFitResult* fitResult = model->fitTo(*ds,Save(), Minos(),
-                                         Extended(kTRUE), Range(fitRange));
+RooFitResult* fitResult;
+        if(pdf =="mass_range"){
+                mass->setRange("m_range", 5.19 , 6 );    //set a range to be used if pdf = mass_range
+                fitResult = model->fitTo(*ds,Save(), Minos() , Extended(kTRUE),Range("m_range"));}
+        else{
+                mass->setRange("m_range", minhisto , maxhisto );
+                fitResult = model->fitTo(*ds,Save(), Minos(),  RooFit::PrintLevel(0) , Extended(kTRUE));}
 
-////// ROOFIT ROOFIT ROOFIT ROOFIT ROOFIT
+
+///// ROOFIT ROOFIT ROOFIT ROOFIT ROOFIT
 
 	w_val->import(*model);
 	w_val->import(nsig);
@@ -341,45 +344,22 @@ RooFitResult *fit(TString variation, TString pdf,TString tree, TCanvas* c, TCanv
 
 	RooAbsReal* nll = model->createNLL(*ds);
 	double log_likelihood= nll->getVal();
-	//  a0.setVal(0.);
-	// a0.setConstant();
 
-/*	
-}
-	model->plotOn(frame,Name(Form("model%d",_count)),Precision(1e-6),RooFit:: NormRange("m_range"),DrawOption("L"),LineColor(2),LineWidth(3));
-*/
+ds->plotOn(frame,Name(Form("ds_cut%d",_count)),Binning(nbinsmasshisto),MarkerSize(1),MarkerStyle(20),MarkerColor(1),LineColor(1),LineWidth(2),LineColor(1));
+        if(npfit != "1"){
+                model->plotOn(frame, Name(Form("peakbg%d",_count)) , Components(peakbg), RooFit::NormRange("m_range"), Precision(1e-6),DrawOption("L"),FillStyle(3005),FillColor(kGreen+4),LineStyle(1),LineColor(kGreen+4),LineWidth(3));
+                model->plotOn(frame, Name(Form("peakbgF%d",_count)),Components(peakbg), RooFit::NormRange("m_range"), Precision(1e-6),DrawOption("F"),FillStyle(3002),FillColor(kGreen+4),LineStyle(7),LineColor(kGreen+4),LineWidth(3));
+                        }
+        model->plotOn(frame,Name(Form("bkg%d",_count)) , Components(bkg), RooFit::NormRange("m_range"),Precision(1e-6),DrawOption("L"),LineStyle(7),LineColor(4),LineWidth(3));
+        model->plotOn(frame,Name(Form("model%d",_count)), RooFit:: NormRange("m_range"), Precision(1e-6),DrawOption("L"),LineColor(2),LineWidth(3));
 
-  ds->plotOn(frame, Name(Form("ds_cut%d", _count)), Binning(nbinsmasshisto),
-             MarkerSize(1), MarkerStyle(20), MarkerColor(1),
-             LineColor(1), LineWidth(2));//draw an transparent hist
-  if(npfit != "1") {
-    TString option = (pdf == "mass_range")? "L" : "LF";
-    RooCmdArg drawRange = (pdf == "mass_range")? Range(fitRange) : RooCmdArg();
-    model->plotOn(frame,  Name(Form("peakbg%d", _count)) , Components(peakbg),
-                  drawRange, Precision(1e-6), DrawOption(option), FillStyle(3005),
-                  FillColor(kGreen+4), LineStyle(1), LineColor(kGreen+4), LineWidth(3));
-  }
-
-	model->plotOn(frame, Name(Form("bkg%d", _count)) ,  Components(bkg),
-                Range(fitRange), Precision(1e-6), DrawOption("L"),
-                LineStyle(7), LineColor(4), LineWidth(3));
-	model->plotOn(frame, Name(Form("model%d", _count)),
-                Range(fitRange),  Precision(1e-6), DrawOption("L"),
-                LineColor(2), LineWidth(3));
-
-	if(pdf!="1gauss") {
-		model->plotOn(frame, Name(Form("sig%d", _count)),  Components(*sig),
-                  Range(fitRange), Precision(1e-6), DrawOption("LF"),
-                  FillStyle(3002), FillColor(kOrange-3),
-                  LineStyle(7), LineColor(kOrange-3), LineWidth(3));
-	} else {
-		model->plotOn(frame, Name(Form("sig%d", _count)),  Components(sig1),
-                  NormRange(fitRange), Precision(1e-6), DrawOption("L"), FillStyle(3002),
-                  FillColor(kOrange-3), LineStyle(7), LineColor(kOrange-3), LineWidth(3));
-		model->plotOn(frame, Name(Form("sigF%d", _count)), Components(sig1),
-                  NormRange(fitRange), Precision(1e-6), DrawOption("F"), FillStyle(3002),
-                  FillColor(kOrange-3), LineStyle(7), LineColor(kOrange-3), LineWidth(3));
-	}
+        if(pdf!="1gauss"){
+                model->plotOn(frame,Name(Form("sig%d",_count)), Components(*sig),RooFit::NormRange("m_range"), Precision(1e-6),DrawOption("L"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(3));
+                model->plotOn(frame,Name(Form("sigF%d",_count)),Components(*sig),RooFit::NormRange("m_range"), Precision(1e-6),DrawOption("F"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(3));
+        } else {
+                model->plotOn(frame,Name(Form("sig%d",_count)), Components(sig1),NormRange("m_range"),Precision(1e-6),DrawOption("L"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(3));
+                model->plotOn(frame,Name(Form("sigF%d",_count)),Components(sig1),NormRange("m_range"),Precision(1e-6),DrawOption("F"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(3));
+        }
 
   if(drawLegend){model->paramOn(frame,Layout(1, 1, 1), Format("NEU",AutoPrecision(3)));}   //this one does not print parameters
   else{model->paramOn(frame,Layout(0.6, x_2, y_1), Format("NEU",AutoPrecision(3)));}
