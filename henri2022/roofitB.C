@@ -308,7 +308,7 @@ cout << endl << endl;
 	//    TString ptbinning;
 
 	std::vector<std::string> background = {"1st", "2nd","mass_range"};
-	std::vector<std::string> signal = {"3gauss", "fixed", "gauss_cb"};
+	std::vector<std::string> signal = {"3gauss", "fixed", "gauss_cb", "2cb"};
 	
 	std::vector<std::vector<double>> background_syst;
 	std::vector<std::vector<double>> signal_syst;
@@ -321,6 +321,10 @@ cout << endl << endl;
 	double yield_vec[_nBins];
 	double yield_vec_err_low[_nBins];
 	double yield_vec_err_high[_nBins];
+	double scale_vec[_nBins];
+	double scale_vec_err_low[_nBins];
+	double scale_vec_err_high[_nBins];
+
 	std::vector<std::vector<double>> stat_error;
 	double var_mean[_nBins];
 	double hori_low[_nBins];
@@ -454,6 +458,13 @@ if(doubly==0) {if(varExp == "Bpt"){
 
 		RooRealVar* BackGround = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("nbkg%d",_count))));
 		MyBackground = BackGround->getVal();
+
+		RooRealVar* width_scale = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index("scale")));
+		double Myscale = width_scale->getVal();
+		double Myscale_err = width_scale->getError();
+		scale_vec[i] = Myscale;
+		scale_vec_err_low[i] = Myscale_err;
+		scale_vec_err_high[i] = Myscale_err;
 
 		nominal_yields.push_back(yield);
 		double yieldErr = fitYield->getError();
@@ -839,7 +850,7 @@ if(varExp=="nMult"){
 
 	std::vector<std::string> labels_back = {"Linear", "2nd Poly", "mass range" };
 	std::vector<std::string> col_name_back;
-	std::vector<std::string> labels_signal = {"Triple Gaussian", "Fixed Mean", "CB+Gaussian"};
+	std::vector<std::string> labels_signal = {"Triple Gaussian", "Fixed Mean", "CB+Gaussian", "Double CB"};
 	std::vector<std::string> labels_general = {"Background", "Signal", "Total"};
 	std::vector<std::string> labels_general_stat = {"Statistical error"};
 	std::vector<std::string> col_name_general;
@@ -893,11 +904,12 @@ if(varExp=="nMult"){
 
 	cout << "Final Yield = " << yieldRec << endl;
 
+// Differential plot part starts
 	 	 TCanvas c_diff;
 	 TMultiGraph* mg = new TMultiGraph();
 
-	 TGraphAsymmErrors* gr = new TGraphAsymmErrors(_nBins,var_mean,yield_vec,hori_low,hori_high,yield_vec_err_low,yield_vec_err_high);
-	 gr->SetLineColor(1); 
+	 TGraphAsymmErrors* gr_staterr = new TGraphAsymmErrors(_nBins,var_mean,yield_vec,hori_low,hori_high,yield_vec_err_low,yield_vec_err_high);
+	 gr_staterr->SetLineColor(1); 
 	
 	 if(varExp == "By"){
 		 mg->GetXaxis()->SetTitle("Rapidity (y)");
@@ -912,14 +924,16 @@ if(varExp=="nMult"){
 	 }
 	 if(varExp == "nMult"){
 		 mg->GetXaxis()->SetTitle("Multiplicity (Mult)");
-		 mg->GetYaxis()->SetTitle("dN_{S}/dMult");}
+		 mg->GetYaxis()->SetTitle("dN_{S}/dMult");
+		 mg->GetXaxis()->SetLimits(0, 110);
+	 }
 
-	 mg->Add(gr);
+	 mg->Add(gr_staterr);
 	 mg->Draw("ap");
 	 //mg->SetTitle("Differential Signal Yield");  
 	 
          TLegend *leg_d = new TLegend(0.7,0.7,0.9,0.9);
-	 leg_d->AddEntry(gr, "Statistical Uncertainty", "e");
+	 leg_d->AddEntry(gr_staterr, "Statistical Uncertainty", "e");
 	 //leg_d->AddEntry(grs, "Systematic Uncertainty", "e");
 	 leg_d->SetBorderSize(0);
 	 leg_d->SetFillStyle(0);
@@ -928,4 +942,49 @@ if(varExp=="nMult"){
 
 	 const char* pathc =Form("raw_yield_%s_%s.png",tree.Data(),varExp.Data()); 
 	 c_diff.SaveAs(pathc);
+// Differential plot part ends
+
+// Parameters vs variables part starts
+	 	 TCanvas c_par;
+	 TMultiGraph* mg_par = new TMultiGraph();
+
+	 TGraphAsymmErrors* gr_scale = new TGraphAsymmErrors(_nBins,var_mean,scale_vec,hori_low,hori_high,scale_vec_err_low,scale_vec_err_high);
+	 gr_scale->SetLineColor(1); 
+	
+	 if(varExp == "By"){
+		 mg_par->GetXaxis()->SetTitle("Rapidity (y)");
+		 mg_par->GetYaxis()->SetTitle("Mass resolution scale factor");
+		 mg_par->GetXaxis()->SetLimits(-2.4 ,2.4);
+		 mg_par->GetYaxis()->SetLimits(0, 2.0);
+
+	 }
+	 if(varExp == "Bpt"){
+		 mg_par->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
+		 mg_par->GetYaxis()->SetTitle("Mass resolution scale factor");
+		 if (tree == "ntKp"){ mg->GetXaxis()->SetLimits(0 ,80); }
+		 if (tree == "ntphi"){ mg->GetXaxis()->SetLimits(0 ,60); }
+		 mg_par->GetYaxis()->SetLimits(0, 2.0);
+	 }
+	 if(varExp == "nMult"){
+		 mg_par->GetXaxis()->SetTitle("Multiplicity (Mult)");
+		 mg_par->GetYaxis()->SetTitle("Mass resolution scale factor");
+		 mg_par->GetXaxis()->SetLimits(0, 110);
+		 mg_par->GetYaxis()->SetLimits(0, 2.0);
+	 }
+
+	 mg_par->Add(gr_scale);
+	 mg_par->Draw("ap");
+	 //mg->SetTitle("Differential Signal Yield");  
+/*	 
+         TLegend *leg_par = new TLegend(0.7,0.7,0.9,0.9);
+	 leg_par->AddEntry(gr_scale, "Scale", "e");
+	 //leg_d->AddEntry(grs, "Systematic Uncertainty", "e");
+	 leg_par->SetBorderSize(0);
+	 leg_par->SetFillStyle(0);
+	 leg_par->SetTextSize(0);
+	 leg_par->Draw();
+*/
+	 const char* pathc_par =Form("parameters_variation_%s_%s.png",tree.Data(),varExp.Data()); 
+	 c_par.SaveAs(pathc_par);
+//Parameters vs variables part ends
 }
