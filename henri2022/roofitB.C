@@ -429,7 +429,6 @@ if(doubly==0) {if(varExp == "Bpt"){
 		
 		RooFitResult* f = fit("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
 
-
 	//	std::cout << "Now Finall We Validate Our Fits" << std::endl;
 	//	validate_fit(w_val, tree, varExp, full,centmin, centmax, _ptBins[i], _ptBins[i+1]);
 		//std::cout << "Now Finall We Scan Our Significance" << std::endl;
@@ -481,12 +480,56 @@ if(doubly==0) {if(varExp == "Bpt"){
 		var_mean[i] = (_ptBins[i+1]+_ptBins[i]) / 2;
 		hori_low[i] = var_mean[i]-_ptBins[i];
 		hori_high[i] = _ptBins[i+1]-var_mean[i];
-	
+
+//Resolution MC
+/*		double sig1MC_vec[_nBins];
+		double sig2MC_vec[_nBins];
+		double weightMC_vec[_nBins];
+		double sig1MC_vec_err[_nBins];
+		double sig2MC_vec_err[_nBins];
+		double weightMC_vec_err[_nBins];*/
+		double resol_vec[_nBins];
+		double resol_vec_err_low[_nBins];
+		double resol_vec_err_high[_nBins];
+		//TString nominal = "";
+		std::cout << "sec1sec1sec1" << endl;
+	//	RooRealVar* sig1MC = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("sigma1MC%d", _count))));
+		// RooRealVar sigma1MC(Form("sigma1MC%d_%s",_count,pdf.Data()),"",0.02,0.01,0.1) ;
+/*		RooRealVar* sigma1MC = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("sigma1MC%d",_count))));
+		
+	//	RooRealVar* test_var = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index("nbkg1")));
+	//	std::cout <<"sigma1MC is " << sigma1MC->getVal() << std::endl;
+		std::cout << "sec2sec2sec2" << endl;	
+		double Mysigma1MC = sigma1MC->getVal();
+		std::cout << "sec3sec3sec3" << endl;	
+		double Mysig1MC_err = sigma1MC->getError();
+		std::cout << "sec4sec4sec4" << endl;	
+
+		RooRealVar* sig2MC = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("sigma2MC%d",_count))));
+		double Mysig2MC = sig2MC->getVal();
+		double Mysig2MC_err = sig2MC->getError();
+
+		RooRealVar* weightMC = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("nsigMC%d",_count))));
+		double MyweightMC  = weightMC->getVal();
+		double MyweightMC_err = weightMC->getError();*/
+/*		
+		double resol = sqrt(MyweightMC * pow(Mysig1MC, 2) + (1 - MyweightMC) * pow(Mysig2MC, 2));
+		double resol_err = (MyweightMC * Mysig1MC * Mysig2MC_err + (1-MyweightMC) * Mysig2MC * Mysig2MC_err) / resol;
+
+		resol_vec[i] = resol;
+		resol_vec_err_low[i] = resol_err;
+		resol_vec_err_high[i] = resol_err;
+	sig1MC_vec[i] = Mysig1MC;
+		sig2MC_vec[i] = Mysig2MC;
+		weightMC_vec[i] = MyweightMC;
+		sig1MC_vec_err[i] = Mysig1MC_err;
+		sig2MC_vec_err[i] = Mysig2MC_err;
+		weightMC_vec_err[i] = MyweightMC_err; */
+//Resolution MC 
 		std::vector<double> aa;
 		double a=yield_vec_err_low[i]/yield_vec[i]*100;
 		aa.push_back(a);
 		
-
 
 
 
@@ -556,16 +599,18 @@ if(doubly==0) {if(varExp == "Bpt"){
 if(varExp=="By"){
       //for the paper run these
       if (drawLegend) {
-        tex_pt = new TLatex(0.55,0.4,"0 < p_{T} < 100 GeV/c");
-        tex_y = new TLatex(0.55,0.34,Form("%d < y < %d ",(int)_ptBins[i],(int)_ptBins[i+1]));
+        if(tree = "ntphi"){tex_pt = new TLatex(0.55,0.4,"7 < p_{T} < 50 GeV/c");}
+        if(tree = "ntKp"){tex_pt = new TLatex(0.55,0.4,"5 < p_{T} < 60 GeV/c");}
+        tex_y = new TLatex(0.55,0.34,Form("%2.1f < y < %2.1f ",_ptBins[i],_ptBins[i+1]));
         //tex_y2 = new TLatex(0.55,0.28,Form("%d < /nu < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
         //tex_y1 = new TLatex(0.55,0.34,Form("%d < /nu < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
         //tex_y11 =new TLatex(0.55,0.34,Form("%d < /nu < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
         tex_nMult = new TLatex(0.21,0.62,"0 < nTrks < 100");
       } else {
         //fr the AN run these
-        tex_pt = new TLatex(0.55,0.8,"0 < p_{T} < 100 GeV/c");
-        tex_y = new TLatex(0.55,0.74,Form("%d < y < %d ",(int)_ptBins[i],(int)_ptBins[i+1]));
+        if(tree = "ntphi"){tex_pt = new TLatex(0.55,0.4,"7 < p_{T} < 50 GeV/c");}
+        if(tree = "ntKp"){tex_pt = new TLatex(0.55,0.4,"5 < p_{T} < 60 GeV/c");}
+        tex_y = new TLatex(0.55,0.74,Form("%2.1f < y < %2.1f ",_ptBins[i],_ptBins[i+1]));
         //tex_y2 = new TLatex(0.55,0.68,Form("%d < /nu < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
         //tex_y1 = new TLatex(0.55,0.74,Form("%d < /nu < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
         //tex_y11 =new TLatex(0.55,0.74,Form("%d < /nu < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
@@ -576,7 +621,8 @@ if(varExp=="nMult"){
 	//for the paper run these
       if (drawLegend) {
       	tex_nMult = new TLatex(0.21,0.62,Form("%d < nTrks < %d",(int)_ptBins[i],(int)_ptBins[i+1]));
-        tex_pt = new TLatex(0.55,0.4,"0 < p_{T} < 100 GeV/c");
+        if(tree = "ntphi"){tex_pt = new TLatex(0.55,0.4,"7 < p_{T} < 50 GeV/c");}
+        if(tree = "ntKp"){tex_pt = new TLatex(0.55,0.4,"5 < p_{T} < 60 GeV/c");}
         tex_y = new TLatex(0.55,0.34,"|y| < 2.4");
         //tex_y2 = new TLatex(0.55,0.28,"0 < p_{T} < 100 GeV/c");
         //tex_y1 = new TLatex(0.55,0.34,"0 < p_{T} < 100 GeV/c");
@@ -584,7 +630,8 @@ if(varExp=="nMult"){
       } else {
         //fr the AN run these
         tex_nMult = new TLatex(0.21,0.62,Form("%d < nTrks < %d",(int)_ptBins[i],(int)_ptBins[i+1]));
-        tex_pt = new TLatex(0.55,0.8,"0 < p_{T} < 100 GeV/c");
+        if(tree = "ntphi"){tex_pt = new TLatex(0.55,0.4,"7 < p_{T} < 50 GeV/c");}
+        if(tree = "ntKp"){tex_pt = new TLatex(0.55,0.4,"5 < p_{T} < 60 GeV/c");}
         tex_y = new TLatex(0.55,0.74,"|y| < 2.4");
         //tex_y2 = new TLatex(0.55,0.68,"0 < p_{T} < 100 GeV/c");
         //tex_y1 = new TLatex(0.55,0.74,"0 < p_{T} < 100 GeV/c");
@@ -668,9 +715,9 @@ if(varExp=="nMult"){
 		gSystem->mkdir("filesbs",true); 
 		gSystem->mkdir(Form("%s", outplotf.Data()),true); 
 		//c->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1], doubly)+tree+".pdf");
-		c->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1], doubly)+tree+".png");
+		c->SaveAs(Form("%s%s/%s_%s_%s_%2.1f_%2.1f_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),_ptBins[i],_ptBins[i+1], doubly)+tree+".png");
 		//c->SaveAs(Form("%s%s/%s_%s_%d%s_%s_%d%d_cutY%d",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),_postfix.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1], doubly)+tree+".C");
-		cMC->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_cutY%d_",outplotf.Data(),_prefix.Data(),"mc",_isPbPb.Data(),varExp.Data(), (int)_ptBins[i], (int)_ptBins[i+1], doubly)+tree+".pdf");
+		cMC->SaveAs(Form("%s%s/%s_%s_%s_%2.1f_%2.1f_cutY%d_",outplotf.Data(),_prefix.Data(),"mc",_isPbPb.Data(),varExp.Data(), _ptBins[i], _ptBins[i+1], doubly)+tree+".pdf");
 		// cMC->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_cutY%d_",outplotf.Data(),_prefix.Data(),"mc",_isPbPb.Data(),varExp.Data(), (int)_ptBins[i], (int)_ptBins[i+1], doubly)+tree+".png");
 
 
@@ -961,8 +1008,8 @@ if(varExp=="nMult"){
 	 if(varExp == "Bpt"){
 		 mg_par->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
 		 mg_par->GetYaxis()->SetTitle("Mass resolution scale factor");
-		 if (tree == "ntKp"){ mg->GetXaxis()->SetLimits(0 ,80); }
-		 if (tree == "ntphi"){ mg->GetXaxis()->SetLimits(0 ,60); }
+		 if (tree == "ntKp"){ mg_par->GetXaxis()->SetLimits(0 ,80); }
+		 if (tree == "ntphi"){ mg_par->GetXaxis()->SetLimits(0 ,60); }
 		 mg_par->GetYaxis()->SetLimits(0, 2.0);
 	 }
 	 if(varExp == "nMult"){
@@ -987,4 +1034,38 @@ if(varExp=="nMult"){
 	 const char* pathc_par =Form("parameters_variation_%s_%s.png",tree.Data(),varExp.Data()); 
 	 c_par.SaveAs(pathc_par);
 //Parameters vs variables part ends
+
+//Resolution plot part starts
+/*	 	 TCanvas c_resol;
+	 TMultiGraph* mg_resol = new TMultiGraph();
+
+	 TGraphAsymmErrors* gr_resol = new TGraphAsymmErrors(_nBins,var_mean,scale_vec,hori_low,hori_high,scale_vec_err_low,scale_vec_err_high);
+	 gr_resol->SetLineColor(1); 
+	
+	 if(varExp == "By"){
+		 mg_resol->GetXaxis()->SetTitle("Rapidity (y)");
+		 mg_resol->GetYaxis()->SetTitle("Resolution(MC)");
+		 mg_resol->GetXaxis()->SetLimits(-2.4 ,2.4);
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+
+	 }
+	 if(varExp == "Bpt"){
+		 mg_resol->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
+		 mg_resol->GetYaxis()->SetTitle("Resolution(MC)");
+		 if (tree == "ntKp"){ mg_resol->GetXaxis()->SetLimits(0 ,80); }
+		 if (tree == "ntphi"){ mg_resol->GetXaxis()->SetLimits(0 ,60); }
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+	 }
+	 if(varExp == "nMult"){
+		 mg_resol->GetXaxis()->SetTitle("Multiplicity (Mult)");
+		 mg_resol->GetYaxis()->SetTitle("Resolution(MC)");
+		 mg_resol->GetXaxis()->SetLimits(0, 110);
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+	 }
+
+	 mg_resol->Add(gr_resol);
+	 mg_resol->Draw("ap");
+*/	
+//Resolution plot part ends
+
 }
