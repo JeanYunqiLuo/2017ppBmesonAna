@@ -33,7 +33,7 @@ TTree* makeTTree(TTree* intree, TString treeTitle)
 
 //void roofitB(int usePbPb = 0, int fitOnSaved = 0, TString inputmc = "", TString varExp = "", TString trgselection = "",  TString cut = "", TString cutmcgen = "", int isMC = 0, Double_t luminosity = 1., int doweight = 1, TString collsyst = "", TString outputfile = "", TString outplotf = "", TString npfit = "", int doDataCor = 0, Float_t centmin = 0., Float_t centmax = 100.)
 
-void roofitB(int doubly = 0, TString tree = "ntphi", int full = 1, int usePbPb = 0, int fitOnSaved = 0, TString inputdata = "", TString inputmc = "", TString varExp = "", TString trgselection = "",  TString cut = "", TString cutmcgen = "", int isMC = 0, Double_t luminosity = 1., int doweight = 1, TString outputfile = "", TString outplotf = "", TString npfit = "", int doDataCor = 0){ 
+void roofitB(int doubly = 0, TString tree = "ntphi", int full = 0, int usePbPb = 0, int fitOnSaved = 0, TString inputdata = "", TString inputmc = "", TString varExp = "", TString trgselection = "",  TString cut = "", TString cutmcgen = "", int isMC = 0, Double_t luminosity = 1., int doweight = 1, TString outputfile = "", TString outplotf = "", TString npfit = "", int doDataCor = 0){ 
 
 	double MyBackground;
 	double	yieldRec;
@@ -328,11 +328,17 @@ cout << endl << endl;
 	double resol_vec[_nBins];
 	double resol_vec_err_low[_nBins];
 	double resol_vec_err_high[_nBins];
-	
+	double yield_vec_systerr_low[_nBins];
+	double yield_vec_systerr_high[_nBins];
+	double var_mean_av[_nBins];
+
 	std::vector<std::vector<double>> stat_error;
 	double var_mean[_nBins];
 	double hori_low[_nBins];
 	double hori_high[_nBins];
+	double hori_av_low[_nBins];
+	double hori_av_high[_nBins];
+	
 	for(int i=0;i<_nBins;i++)
 	{
 		_count++;
@@ -360,19 +366,28 @@ if(doubly==0) {if(varExp == "Bpt"){
 							      ds_cut =
 							        new RooDataSet(Form("ds_cut%d",_count),"",ds,
 							                       RooArgSet(*mass, *pt, *y, *trackSelection),
-							                       Form("(Bpt>%f && Bpt < %f)&&((Bpt < 10 &&  abs(By) > 1.5 ) || (Bpt > 10))",_ptBins[i] , _ptBins[i+1]));}
+							                       Form("(Bpt>%f && Bpt < %f)&&((Bpt < 10 &&  abs(By) > 1.5 ) || (Bpt > 10))",_ptBins[i] , _ptBins[i+1]));
+var_mean_av[i] = ds_cut->mean(*pt);
+}
 						        else if(varExp == "By"){
-											       ds_cut = new RooDataSet(Form("ds_cut%d", _count),"", ds, RooArgSet(*mass, *pt, *y, *trackSelection), Form("By>%f && By< %f", _ptBins[i], _ptBins[i+1]));}
+											       ds_cut = new RooDataSet(Form("ds_cut%d", _count),"", ds, RooArgSet(*mass, *pt, *y, *trackSelection), Form("By>%f && By< %f", _ptBins[i], _ptBins[i+1]));
+var_mean_av[i] = ds_cut->mean(*y);
+}
 										else if(varExp == "nMult"){
-											       ds_cut = new RooDataSet(Form("ds_cut%d", _count),"", ds, RooArgSet(*mass, *pt, *y, *trackSelection), Form("nMult>%f && nMult< %f", _ptBins[i], _ptBins[i+1]));}
+											       ds_cut = new RooDataSet(Form("ds_cut%d", _count),"", ds, RooArgSet(*mass, *pt, *y, *trackSelection), Form("nMult>%f && nMult< %f", _ptBins[i], _ptBins[i+1]));
+var_mean_av[i] = ds_cut->mean(*nMult);
+}
   }
-		if(doubly==1)ds_cut = new RooDataSet(Form("ds_cut%d",_count),"",ds, RooArgSet(*mass, *pt, *y, *nMult), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto)); 
+		if(doubly==1){ds_cut = new RooDataSet(Form("ds_cut%d",_count),"",ds, RooArgSet(*mass, *pt, *y, *nMult), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));
+var_mean_av[i] = ds_cut->mean(*nMult);
+ }
+
 		if(doubly==2)ds_cut = new RooDataSet(Form("ds_cut%d",_count),"",ds, RooArgSet(*mass, *pt, *y), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto)); 
 
 
 
 
-
+std::cout << "var_mean_av is " << var_mean_av[i] << std::endl;
 		//  RooRealVar* w = (RooRealVar*) data->addColumn(wFunc) ;
 		//      RooDataSet wdata(data->GetName(),data->GetTitle(),data,*data->get(),0,w->GetName()) ;
 		//dsMC = new RooDataSet(Form("dsMC%d",_count),"",skimtreeMC_new,RooArgSet(*mass, *pt));
@@ -485,6 +500,9 @@ if(doubly==0) {if(varExp == "Bpt"){
 		var_mean[i] = (_ptBins[i+1]+_ptBins[i]) / 2;
 		hori_low[i] = var_mean[i]-_ptBins[i];
 		hori_high[i] = _ptBins[i+1]-var_mean[i];
+
+		hori_av_low[i] = var_mean_av[i]-_ptBins[i];
+		hori_av_high[i] = _ptBins[i+1]-var_mean_av[i];
 
 //Resolution MC
 		//TString nominal = "";
@@ -805,8 +823,11 @@ if (varExp=="Bpt"){
 			general_syst.push_back(general_err);
 
 		}
-	
-std::cout << "The size of general_err is " << general_err.size() << std::endl;		
+	if(syst==1){
+		yield_vec_systerr_low[i] = general_err[2] / 100 * yield_vec[i];
+		yield_vec_systerr_high[i] = general_err[2] / 100 * yield_vec[i];
+	}	
+
 
 	//validate_fit(outputw,1,Form("model%d",_count),Form("nsig%d",_count));
 	}
@@ -1011,9 +1032,18 @@ std::cout << "The size of general_err is " << general_err.size() << std::endl;
 	 gSystem->mkdir("Graphs",true); 
 	 TCanvas c_diff;
 	 TMultiGraph* mg = new TMultiGraph();
+	 TLegend *leg_d = new TLegend(0.7,0.7,0.9,0.9);
 
-	 TGraphAsymmErrors* gr_staterr = new TGraphAsymmErrors(_nBins,var_mean,yield_vec,hori_low,hori_high,yield_vec_err_low,yield_vec_err_high);
+	 TGraphAsymmErrors* gr_staterr = new TGraphAsymmErrors(_nBins,var_mean_av,yield_vec,hori_av_low,hori_av_high,yield_vec_err_low,yield_vec_err_high);
 	 gr_staterr->SetLineColor(1); 
+	 mg->Add(gr_staterr);
+
+        if(syst==1){
+		TGraphAsymmErrors* gr_systerr = new TGraphAsymmErrors(_nBins,var_mean_av,yield_vec,nullptr,nullptr,yield_vec_systerr_low,yield_vec_systerr_high);
+		gr_systerr->SetLineColor(2);
+		mg->Add(gr_systerr);
+		leg_d->AddEntry(gr_systerr, "Systematic Uncertainty", "e");
+	 }
 	
 	 if(varExp == "By"){
 		 mg->GetXaxis()->SetTitle("Rapidity (y)");
@@ -1032,11 +1062,11 @@ std::cout << "The size of general_err is " << general_err.size() << std::endl;
 		 mg->GetXaxis()->SetLimits(0, 110);
 	 }
 
-	 mg->Add(gr_staterr);
+//	 mg->Add(gr_staterr);
 	 mg->Draw("ap");
 	 //mg->SetTitle("Differential Signal Yield");  
 	 
-         TLegend *leg_d = new TLegend(0.7,0.7,0.9,0.9);
+        // TLegend *leg_d = new TLegend(0.7,0.7,0.9,0.9);
 	 leg_d->AddEntry(gr_staterr, "Statistical Uncertainty", "e");
 	 //leg_d->AddEntry(grs, "Systematic Uncertainty", "e");
 	 leg_d->SetBorderSize(0);
