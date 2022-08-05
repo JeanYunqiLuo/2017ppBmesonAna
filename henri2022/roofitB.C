@@ -9,7 +9,7 @@
 #include "TMultiGraph.h"
 #include "TGraphErrors.h"
 
-int syst=1;
+int syst=0;
 
 TTree* makeTTree(TTree* intree, TString treeTitle) 
 {
@@ -339,6 +339,8 @@ cout << endl << endl;
 	double hori_av_low[_nBins];
 	double hori_av_high[_nBins];
 	
+	double chi2_vec[_nBins];	
+
 	for(int i=0;i<_nBins;i++)
 	{
 		_count++;
@@ -448,7 +450,7 @@ if(doubly==0) {if(varExp == "Bpt"){
 
 		
 		RooFitResult* f = fit("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
-		RooFitResult* f_MC = fitMC("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
+//		RooFitResult* f_MC = fitMC("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
 
 
 	//	std::cout << "Now Finall We Validate Our Fits" << std::endl;
@@ -506,7 +508,7 @@ if(doubly==0) {if(varExp == "Bpt"){
 		hori_av_high[i] = _ptBins[i+1]-var_mean_av[i];
 
 //Resolution MC
-		//TString nominal = "";
+/*		//TString nominal = "";
 		std::cout << "sec1sec1sec1" << endl;
 		RooRealVar* sigma1MC = static_cast<RooRealVar*>(f_MC->floatParsFinal().at(f_MC->floatParsFinal().index(Form("sigma1MC%d", _count))));
 		//RooRealVar* sigma1 = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index("sigma1")));
@@ -532,24 +534,54 @@ if(doubly==0) {if(varExp == "Bpt"){
 
 		resol_vec[i] = resol;
 		resol_vec_err_low[i] = resol_err;
-		resol_vec_err_high[i] = resol_err;
+		resol_vec_err_high[i] = resol_err;*/
 //Resolution MC
- 
+
+//Resolution 
+		//TString nominal = "";
+		std::cout << "sec1sec1sec1" << endl;
+		RooRealVar* sigma1 = static_cast<RooRealVar*>(f->constPars().at(f->constPars().index(Form("sigma1%d", _count))));
+		std::cout << "sec2sec2sec2" << endl;	
+		double Mysigma1 = sigma1->getVal();
+		std::cout << "sec3sec3sec3" << endl;	
+		double Mysigma1_err = sigma1->getError();
+		std::cout << "sec4sec4sec4" << endl;	
+
+		RooRealVar* sigma2 = static_cast<RooRealVar*>(f->constPars().at(f->constPars().index(Form("sigma2%d", _count))));
+		double Mysigma2 = sigma2->getVal();
+		double Mysigma2_err = sigma2->getError();
+
+		RooRealVar* weight = static_cast<RooRealVar*>(f->constPars().at(f->constPars().index(Form("sig1frac%d", _count))));
+		double Myweight  = weight->getVal();
+		double Myweight_err = weight->getError();
+		
+		double resol = sqrt(Myweight * pow(Mysigma1, 2) + (1 - Myweight) * pow(Mysigma2, 2));
+		double resol_err = (Myweight * Mysigma1 * Mysigma2_err + (1 - Myweight) * Mysigma2 * Mysigma2_err) / resol;
+
+		resol_vec[i] = resol;
+		resol_vec_err_low[i] = resol_err;
+		resol_vec_err_high[i] = resol_err;
+//Resolution 
+
+//chi2 test
+		RooRealVar* mean = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("mean%d",_count))));
+
+		RooProduct scaled_sigma1("scaled_sigma1","scaled_sigma1", RooArgList(*width_scale,*sigma1));
+		RooProduct scaled_sigma2("scaled_sigma2","scaled_sigma2", RooArgList(*width_scale,*sigma2));
+		RooGaussian sig1(Form("sig1%d",_count),"",*mass,*mean,scaled_sigma1);  
+		RooGaussian sig2(Form("sig2%d",_count),"",*mass,*mean,scaled_sigma2); 
+
+		RooAddPdf* sig = new RooAddPdf(Form("sig%d",_count),"",RooArgList(sig1,sig2),*weight);
+
+		RooChi2Var chi2("chi2","chi2",*sig,*dh);
+		double Mychi2 = chi2.getVal();
+		std::cout << "chi square value is " << Mychi2 << endl;
+		chi2_vec[i] = Mychi2;
+//chi2 test 
 		std::vector<double> aa;
 		double a=yield_vec_err_low[i]/yield_vec[i]*100;
 		aa.push_back(a);
 		
-
-
-
-
-
-
-
-
-
-
-
 
 		
 		if(fitOnSaved == 0){
@@ -1029,8 +1061,17 @@ if (varExp=="Bpt"){
 
 	cout << "Final Yield = " << yieldRec << endl;
 
+
 // Differential plot part starts
 double yield_max = 0;
+
+
+//cout << "max_pass" << endl;
+//double dn_max = &h->GetMaximum();
+//Double bin_max = *h->GetBinContent(*h->GetMaximumBin());
+//Int_t* bin_max = *h->GetMaximumBin();
+//Double_t* dn_max = *h->GetBinContent(bin_max);
+//cout << "max_pass" << endl;
 
 for(int i = 0; i < _nBins; i++){
 	if(yield_vec[i] > yield_max){
@@ -1059,7 +1100,7 @@ for(int i = 0; i < _nBins; i++){
 		 mg->GetXaxis()->SetTitle("Rapidity (y)");
 		 mg->GetYaxis()->SetTitle("dN_{S}/dy");
 		 mg->GetXaxis()->SetLimits(-2.4 ,2.4);
-		 mg->GetYaxis()->SetLimits(0, yield_max * 1.5);
+		 mg->GetYaxis()->SetRangeUser(0, yield_max * 1.5);
 	 }
 	 if(varExp == "Bpt"){
 		 mg->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
@@ -1089,8 +1130,14 @@ for(int i = 0; i < _nBins; i++){
 	 c_diff.SaveAs(pathc);
 // Differential plot part ends
 
+//chi2 test starts
+//RooChi2Var chi2_lowstat("chi2_lowstat","chi2",model,*h) ;
+
+//cout << chi2_lowstat.getVal() << endl ;
+//chi2 test ends
+
 // Parameters vs variables part starts
-	 	 TCanvas c_par;
+	 TCanvas c_par;
 	 TMultiGraph* mg_par = new TMultiGraph();
 
 	 TGraphAsymmErrors* gr_scale = new TGraphAsymmErrors(_nBins,var_mean_av,scale_vec,hori_av_low,hori_av_high,scale_vec_err_low,scale_vec_err_high);
@@ -1134,7 +1181,7 @@ for(int i = 0; i < _nBins; i++){
 //Parameters vs variables part ends
 
 //Resolution plot part starts
-	 	 TCanvas c_resol;
+	 TCanvas c_resol;
 	 TMultiGraph* mg_resol = new TMultiGraph();
 
 	 TGraphAsymmErrors* gr_resol = new TGraphAsymmErrors(_nBins,var_mean_av,resol_vec,hori_av_low,hori_av_high,resol_vec_err_low,resol_vec_err_high);
@@ -1142,23 +1189,22 @@ for(int i = 0; i < _nBins; i++){
 	
 	 if(varExp == "By"){
 		 mg_resol->GetXaxis()->SetTitle("Rapidity (y)");
-		 mg_resol->GetYaxis()->SetTitle("Resolution(MC)");
+		 mg_resol->GetYaxis()->SetTitle("Resolution");
 		 mg_resol->GetXaxis()->SetLimits(-2.4 ,2.4);
-		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
-
+		 mg_resol->GetYaxis()->SetRangeUser(0, 0.1);
 	 }
 	 if(varExp == "Bpt"){
 		 mg_resol->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
-		 mg_resol->GetYaxis()->SetTitle("Resolution(MC)");
+		 mg_resol->GetYaxis()->SetTitle("Resolution");
 		 if (tree == "ntKp"){ mg_resol->GetXaxis()->SetLimits(0 ,80); }
 		 if (tree == "ntphi"){ mg_resol->GetXaxis()->SetLimits(0 ,60); }
-		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+		 mg_resol->GetYaxis()->SetRangeUser(0, 0.1);
 	 }
 	 if(varExp == "nMult"){
 		 mg_resol->GetXaxis()->SetTitle("Multiplicity (Mult)");
-		 mg_resol->GetYaxis()->SetTitle("Resolution(MC)");
+		 mg_resol->GetYaxis()->SetTitle("Resolution");
 		 mg_resol->GetXaxis()->SetLimits(0, 110);
-		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+		 mg_resol->GetYaxis()->SetRangeUser(0, 0.1);
 	 }
 
 	 mg_resol->Add(gr_resol);
@@ -1169,4 +1215,39 @@ for(int i = 0; i < _nBins; i++){
 
 //Resolution plot part ends
 
+//chi2 plot part starts
+	 TCanvas c_chi2;
+	 TMultiGraph* mg_chi2 = new TMultiGraph();
+
+	 TGraphAsymmErrors* gr_chi2 = new TGraphAsymmErrors(_nBins,var_mean_av,chi2_vec,hori_av_low,hori_av_high,nullptr,nullptr);
+	 gr_chi2->SetLineColor(1); 
+	
+	 if(varExp == "By"){
+		 mg_chi2->GetXaxis()->SetTitle("Rapidity (y)");
+		 mg_chi2->GetYaxis()->SetTitle("chi square");
+		 mg_chi2->GetXaxis()->SetLimits(-2.4 ,2.4);
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+
+	 }
+	 if(varExp == "Bpt"){
+		 mg_chi2->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
+		 mg_chi2->GetYaxis()->SetTitle("chi square");
+		 if (tree == "ntKp"){ mg_chi2->GetXaxis()->SetLimits(0 ,80); }
+		 if (tree == "ntphi"){ mg_chi2->GetXaxis()->SetLimits(0 ,60); }
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+	 }
+	 if(varExp == "nMult"){
+		 mg_chi2->GetXaxis()->SetTitle("Multiplicity (Mult)");
+		 mg_chi2->GetYaxis()->SetTitle("chi_square");
+		 mg_chi2->GetXaxis()->SetLimits(0, 110);
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+	 }
+
+	 mg_chi2->Add(gr_chi2);
+	 mg_chi2->Draw("ap");
+
+	 const char* pathc_chi2 =Form("./Graphs/chi2_%s_%s.png",tree.Data(),varExp.Data()); 
+	 c_chi2.SaveAs(pathc_chi2);
+
+//chi2 plot part ends
 }
