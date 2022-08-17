@@ -9,6 +9,7 @@
 #include "TMultiGraph.h"
 #include "TGraphErrors.h"
 
+
 int syst=0;
 
 TTree* makeTTree(TTree* intree, TString treeTitle) 
@@ -33,7 +34,7 @@ TTree* makeTTree(TTree* intree, TString treeTitle)
 
 //void roofitB(int usePbPb = 0, int fitOnSaved = 0, TString inputmc = "", TString varExp = "", TString trgselection = "",  TString cut = "", TString cutmcgen = "", int isMC = 0, Double_t luminosity = 1., int doweight = 1, TString collsyst = "", TString outputfile = "", TString outplotf = "", TString npfit = "", int doDataCor = 0, Float_t centmin = 0., Float_t centmax = 100.)
 
-void roofitB(int doubly = 0, TString tree = "ntphi", int full = 0, int usePbPb = 0, int fitOnSaved = 0, TString inputdata = "", TString inputmc = "", TString varExp = "", TString trgselection = "",  TString cut = "", TString cutmcgen = "", int isMC = 0, Double_t luminosity = 1., int doweight = 1, TString outputfile = "", TString outplotf = "", TString npfit = "", int doDataCor = 0){ 
+void roofitB(int doubly = 0, TString tree = "ntphi", int full = 1, int usePbPb = 0, int fitOnSaved = 0, TString inputdata = "", TString inputmc = "", TString varExp = "", TString trgselection = "",  TString cut = "", TString cutmcgen = "", int isMC = 0, Double_t luminosity = 1., int doweight = 1, TString outputfile = "", TString outplotf = "", TString npfit = "", int doDataCor = 0){ 
 
 	double MyBackground;
 	double	yieldRec;
@@ -303,13 +304,15 @@ cout << endl << endl;
 
 	ds = new RooDataSet(Form("ds%d",_count),"",skimtree_new,
                       RooArgSet(*mass, *pt, *y, *nMult, *trackSelection));
+
 	dsMC = new RooDataSet(Form("dsMC%d",_count),"",skimtreeMC_new,
                         RooArgSet(*mass, *pt, *y, *nMult, *trackSelection));
+	
 
 	//    TString ptbinning;
 
 	std::vector<std::string> background = {"1st", "2nd","mass_range"};
-	std::vector<std::string> signal = {"3gauss", "fixed", "gauss_cb"};
+	std::vector<std::string> signal = {"3gauss", "fixed", "gauss_cb", "2cb"};
 	
 	std::vector<std::vector<double>> background_syst;
 	std::vector<std::vector<double>> signal_syst;
@@ -331,15 +334,16 @@ cout << endl << endl;
 	double yield_vec_systerr_low[_nBins];
 	double yield_vec_systerr_high[_nBins];
 	double var_mean_av[_nBins];
-
+	
 	std::vector<std::vector<double>> stat_error;
+	
 	double var_mean[_nBins];
 	double hori_low[_nBins];
 	double hori_high[_nBins];
 	double hori_av_low[_nBins];
 	double hori_av_high[_nBins];
-	
-	double chi2_vec[_nBins];	
+
+	double chi2_vec[_nBins];
 
 	for(int i=0;i<_nBins;i++)
 	{
@@ -365,32 +369,39 @@ cout << endl << endl;
 		//SIMAO 
 		RooDataSet* ds_cut;
 if(doubly==0) {if(varExp == "Bpt"){
+										
 							      ds_cut =
 							        new RooDataSet(Form("ds_cut%d",_count),"",ds,
 							                       RooArgSet(*mass, *pt, *y, *trackSelection),
 							                       Form("(Bpt>%f && Bpt < %f)&&((Bpt < 10 &&  abs(By) > 1.5 ) || (Bpt > 10))",_ptBins[i] , _ptBins[i+1]));
-var_mean_av[i] = ds_cut->mean(*pt);
-}
+							      
+							      var_mean_av[i] = ds_cut->mean(*pt);
+
+							    }
+						        
 						        else if(varExp == "By"){
 											       ds_cut = new RooDataSet(Form("ds_cut%d", _count),"", ds, RooArgSet(*mass, *pt, *y, *trackSelection), Form("By>%f && By< %f", _ptBins[i], _ptBins[i+1]));
-var_mean_av[i] = ds_cut->mean(*y);
-}
+											       var_mean_av[i] = ds_cut->mean(*y);
+											     }
 										else if(varExp == "nMult"){
-											       ds_cut = new RooDataSet(Form("ds_cut%d", _count),"", ds, RooArgSet(*mass, *pt, *y, *trackSelection), Form("nMult>%f && nMult< %f", _ptBins[i], _ptBins[i+1]));
-var_mean_av[i] = ds_cut->mean(*nMult);
-}
+														 cout<<"passed if 0"<<endl;
+											       ds_cut = new RooDataSet(Form("ds_cut%d", _count),"", ds, RooArgSet(*mass, *pt, *y, *trackSelection,*nMult), Form("nMult>%f && nMult< %f", _ptBins[i], _ptBins[i+1]));
+											       cout<<"passed "<<endl;
+											       var_mean_av[i] = ds_cut->mean(*nMult);
+											     }
   }
-		if(doubly==1){ds_cut = new RooDataSet(Form("ds_cut%d",_count),"",ds, RooArgSet(*mass, *pt, *y, *nMult), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));
-if(varExp == "nMult"){var_mean_av[i] = ds_cut->mean(*nMult);}
-if(varExp == "By"){var_mean_av[i] = ds_cut->mean(*y);}
- }
+		if(doubly==1){
+			cout<<"passed if 1"<<endl;
+			ds_cut = new RooDataSet(Form("ds_cut%d",_count),"",ds, RooArgSet(*mass, *pt, *y, *nMult), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));
+			if(varExp == "nMult"){var_mean_av[i] = ds_cut->mean(*nMult);}
+			if(varExp == "By"){var_mean_av[i] = ds_cut->mean(*y);}
+	}
+		if(doubly==2)ds_cut = new RooDataSet(Form("ds_cut%d",_count),"",ds, RooArgSet(*mass, *pt, *y), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));
 
-		if(doubly==2)ds_cut = new RooDataSet(Form("ds_cut%d",_count),"",ds, RooArgSet(*mass, *pt, *y), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto)); 
 
 
 
 
-std::cout << "var_mean_av is " << var_mean_av[i] << std::endl;
 		//  RooRealVar* w = (RooRealVar*) data->addColumn(wFunc) ;
 		//      RooDataSet wdata(data->GetName(),data->GetTitle(),data,*data->get(),0,w->GetName()) ;
 		//dsMC = new RooDataSet(Form("dsMC%d",_count),"",skimtreeMC_new,RooArgSet(*mass, *pt));
@@ -402,7 +413,7 @@ if(doubly==0) {if(varExp == "Bpt"){
         new RooDataSet(Form("dsMC_cut%d",_count), "", dsMC,
                        RooArgSet(*mass, *pt, *y, *trackSelection), Form("(%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f)&&((Bpt < 10 &&  abs(By) > 1.5 ) || (Bpt > 10))",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));}
         						else if(varExp=="By" || varExp=="nMult"){
-        								       dsMC_cut = new RooDataSet(Form("dsMC_cut%d", _count),"", dsMC,  RooArgSet(*mass, *pt, *y, *trackSelection), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));}
+        								       dsMC_cut = new RooDataSet(Form("dsMC_cut%d", _count),"", dsMC,  RooArgSet(*mass, *pt, *y, *nMult,*trackSelection), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));}
         					/*	else if(varExp=="nMult"){
         								       dsMC_cut = new RooDataSet(Form("dsMC_cut%d", _count),"", dsMC,  RooArgSet(*mass, *pt, *y, *trackSelection), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));}	*/       
     }
@@ -449,8 +460,8 @@ if(doubly==0) {if(varExp == "Bpt"){
 
 
 		
-		RooFitResult* f = fit("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
-//		RooFitResult* f_MC = fitMC("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
+		RooFitResult* f = fit("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit,varExp);
+		//RooFitResult* f_MC = fitMC("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
 
 
 	//	std::cout << "Now Finall We Validate Our Fits" << std::endl;
@@ -503,12 +514,11 @@ if(doubly==0) {if(varExp == "Bpt"){
 		var_mean[i] = (_ptBins[i+1]+_ptBins[i]) / 2;
 		hori_low[i] = var_mean[i]-_ptBins[i];
 		hori_high[i] = _ptBins[i+1]-var_mean[i];
-
 		hori_av_low[i] = var_mean_av[i]-_ptBins[i];
 		hori_av_high[i] = _ptBins[i+1]-var_mean_av[i];
 
 //Resolution MC
-/*		//TString nominal = "";
+	/*	//TString nominal = "";
 		std::cout << "sec1sec1sec1" << endl;
 		RooRealVar* sigma1MC = static_cast<RooRealVar*>(f_MC->floatParsFinal().at(f_MC->floatParsFinal().index(Form("sigma1MC%d", _count))));
 		//RooRealVar* sigma1 = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index("sigma1")));
@@ -554,10 +564,12 @@ if(doubly==0) {if(varExp == "Bpt"){
 		RooRealVar* weight = static_cast<RooRealVar*>(f->constPars().at(f->constPars().index(Form("sig1frac%d", _count))));
 		double Myweight  = weight->getVal();
 		double Myweight_err = weight->getError();
-		
-		double resol = sqrt(Myweight * pow(Mysigma1, 2) + (1 - Myweight) * pow(Mysigma2, 2));
-		double resol_err = (Myweight * Mysigma1 * Mysigma2_err + (1 - Myweight) * Mysigma2 * Mysigma2_err) / resol;
 
+		double scale_err_rel = Myscale_err / Myscale;
+		double resol = sqrt(Myweight * pow(Mysigma1, 2) + (1 - Myweight) * pow(Mysigma2, 2)) * Myscale ;
+		double resol_err = scale_err_rel * resol;
+		//double resol_err = (Myweight * Mysigma1 * Mysigma2_err + (1 - Myweight) * Mysigma2 * Mysigma2_err) / resol;
+		
 		resol_vec[i] = resol;
 		resol_vec_err_low[i] = resol_err;
 		resol_vec_err_high[i] = resol_err;
@@ -565,23 +577,36 @@ if(doubly==0) {if(varExp == "Bpt"){
 
 //chi2 test
 		RooRealVar* mean = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("mean%d",_count))));
+		RooRealVar* lambda = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("lambda%d",_count))));
 
 		RooProduct scaled_sigma1("scaled_sigma1","scaled_sigma1", RooArgList(*width_scale,*sigma1));
 		RooProduct scaled_sigma2("scaled_sigma2","scaled_sigma2", RooArgList(*width_scale,*sigma2));
 		RooGaussian sig1(Form("sig1%d",_count),"",*mass,*mean,scaled_sigma1);  
 		RooGaussian sig2(Form("sig2%d",_count),"",*mass,*mean,scaled_sigma2); 
-
+		RooExponential bkg(Form("bkg%d",_count), "", *mass, *lambda);
 		RooAddPdf* sig = new RooAddPdf(Form("sig%d",_count),"",RooArgList(sig1,sig2),*weight);
-
-		RooChi2Var chi2("chi2","chi2",*sig,*dh);
-		double Mychi2 = chi2.getVal();
+		RooAddPdf* model = new RooAddPdf(Form("model%d",_count),"",RooArgList(*sig,bkg), RooArgList(*fitYield,*BackGround));
+		RooChi2Var chi2("chi2","chi2",*model,*dh);
+		double Mychi2 = chi2.getVal()/(nbinsmasshisto-5); //normalised chi square
 		std::cout << "chi square value is " << Mychi2 << endl;
 		chi2_vec[i] = Mychi2;
 //chi2 test 
+ 
 		std::vector<double> aa;
 		double a=yield_vec_err_low[i]/yield_vec[i]*100;
 		aa.push_back(a);
 		
+
+
+
+
+
+
+
+
+
+
+
 
 		
 		if(fitOnSaved == 0){
@@ -615,7 +640,7 @@ if(doubly==0) {if(varExp == "Bpt"){
 		TLatex* tex_y1;
 		TLatex* tex_y11;
 		TLatex* tex_y2;
-		
+		TLatex* chi_square;	
 
 	if(varExp=="Bpt"){
       //for the paper run these
@@ -665,6 +690,7 @@ if (varExp=="Bpt"){
 		tex_pt->SetTextFont(42);
 		tex_pt->SetTextSize(0.045);
 		tex_pt->SetLineWidth(2);
+		
 		tex_pt->Draw();
 
 		tex_y->SetNDC();
@@ -732,9 +758,9 @@ if (varExp=="Bpt"){
 		gSystem->mkdir("filesbs",true); 
 		gSystem->mkdir(Form("%s", outplotf.Data()),true); 
 		//c->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1], doubly)+tree+".pdf");
-		c->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1], doubly)+tree+".png");
+		c->SaveAs(Form("%s%s/%s_%s_%s_%.1f_%.1f_Nominal_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),_ptBins[i],_ptBins[i+1], doubly)+tree+".png");
 		//c->SaveAs(Form("%s%s/%s_%s_%d%s_%s_%d%d_cutY%d",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),_postfix.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1], doubly)+tree+".C");
-		cMC->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_cutY%d_",outplotf.Data(),_prefix.Data(),"mc",_isPbPb.Data(),varExp.Data(), (int)_ptBins[i], (int)_ptBins[i+1], doubly)+tree+".pdf");
+		cMC->SaveAs(Form("%s%s/%s_%s_%s_%.1f_%.1f_Nominal_cutY%d_",outplotf.Data(),_prefix.Data(),"mc",_isPbPb.Data(),varExp.Data(), _ptBins[i], _ptBins[i+1], doubly)+tree+".pdf");
 		// cMC->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_cutY%d_",outplotf.Data(),_prefix.Data(),"mc",_isPbPb.Data(),varExp.Data(), (int)_ptBins[i], (int)_ptBins[i+1], doubly)+tree+".png");
 
 
@@ -783,7 +809,7 @@ if (varExp=="Bpt"){
 		if(syst==1){
 
 				for(int j=0; j<background.size(); j++){
-				RooFitResult* f_back = fit("background", background[j], tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
+				RooFitResult* f_back = fit("background", background[j], tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit,varExp);
 				
 				texB->Draw();
 				
@@ -799,7 +825,7 @@ if (varExp=="Bpt"){
 				CMS_lumi(c,19011,0);
 				c->Update();
 				
-				c->SaveAs(Form("%s/%s_%s_%s_%d_%d_%s_cutY%d_", outplotf.Data(), _isMC.Data(), _isPbPb.Data(), varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1],background[j].c_str(), doubly)+tree+".png");
+				c->SaveAs(Form("%s/%s_%s_%s_%.1f_%.1f_%s_cutY%d_", outplotf.Data(), _isMC.Data(), _isPbPb.Data(), varExp.Data(),_ptBins[i],_ptBins[i+1],background[j].c_str(), doubly)+tree+".png");
 				//c->SaveAs(Form("%s/%s_%s_%s_%d_%d_%s_cutY%d_", outplotf.Data(), _isMC.Data(), _isPbPb.Data(), varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1],background[j].c_str(), doubly)+tree+".pdf");
 			
 				modelcurve_back = frame->getCurve(Form("model%d",_count));
@@ -812,7 +838,7 @@ if (varExp=="Bpt"){
 			general_err.push_back(max_back);
 
 			for(int j=0; j<signal.size(); j++){
-				RooFitResult* f_signal = fit("signal", signal[j], tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
+				RooFitResult* f_signal = fit("signal", signal[j], tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit,varExp);
 				texB->Draw();
 
 				if (varExp=="Bpt"){
@@ -830,8 +856,8 @@ if (varExp=="Bpt"){
 
 				//tex_y->Draw();
 			//	c->SaveAs(Form("%s%s/%s_%s_%d%s_%s_%d_%d_%s_cutY%d",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),_count,_postfix.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1],signal[j].c_str(), doubly)+tree+".pdf");
-				cMC->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_%s_cutY%d_",outplotf.Data(),_prefix.Data(),"mc",_isPbPb.Data(),varExp.Data(), (int)_ptBins[i], (int)_ptBins[i+1],signal[j].c_str(), doubly)+tree+".pdf");
-				c->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_%s_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1],signal[j].c_str(), doubly)+tree+".png");
+				cMC->SaveAs(Form("%s%s/%s_%s_%s_%.1f_%.1f_%s_cutY%d_",outplotf.Data(),_prefix.Data(),"mc",_isPbPb.Data(),varExp.Data(), _ptBins[i], _ptBins[i+1],signal[j].c_str(), doubly)+tree+".pdf");
+				c->SaveAs(Form("%s%s/%s_%s_%s_%.1f_%.1f_%s_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),_ptBins[i],_ptBins[i+1],signal[j].c_str(), doubly)+tree+".png");
 				//c->SaveAs(Form("%s%s/%s_%s_%s_%d_%d_%s_cutY%d_",outplotf.Data(),_prefix.Data(),_isMC.Data(),_isPbPb.Data(),varExp.Data(),(int)_ptBins[i],(int)_ptBins[i+1],signal[j].c_str(), doubly)+tree+".pdf");
 				modelcurve_signal = frame->getCurve(Form("model%d",_count));
 				RooRealVar* fitYield_signal = static_cast<RooRealVar*>(f_signal->floatParsFinal().at(f_signal->floatParsFinal().index(Form("nsig%d",_count))));
@@ -856,11 +882,11 @@ if (varExp=="Bpt"){
 			general_syst.push_back(general_err);
 
 		}
-	if(syst==1){
+	
+if(syst==1){
 		yield_vec_systerr_low[i] = general_err[2] / 100 * yield_vec[i];
 		yield_vec_systerr_high[i] = general_err[2] / 100 * yield_vec[i];
 	}	
-
 
 	//validate_fit(outputw,1,Form("model%d",_count),Form("nsig%d",_count));
 	}
@@ -921,7 +947,7 @@ if (varExp=="Bpt"){
 
 	std::vector<std::string> labels_back = {"Linear", "2nd Poly", "mass range" };
 	std::vector<std::string> col_name_back;
-	std::vector<std::string> labels_signal = {"Triple Gaussian", "Fixed Mean", "CB+Gaussian"};
+	std::vector<std::string> labels_signal = {"Triple Gaussian", "Fixed Mean", "CB+Gaussian","Double CB"};
 	std::vector<std::string> labels_general = {"Background", "Signal", "Total"};
 	std::vector<std::string> labels_general_stat = {"Statistical error"};
 	std::vector<std::string> col_name_general;
@@ -962,7 +988,7 @@ if (varExp=="Bpt"){
 //	cout<<stat_error.size()<<general_syst.size()<<endl;
 	//stat_error.push_back(aa);
 	if(syst==1 && full==0){
-		gSystem->mkdir("tabels",true); 
+		gSystem->mkdir("./results/tabels",true); 
 		latex_table(Path + "background_systematics_table_"+std::string (varExp.Data())+"_"+std::string (tree.Data()), _nBins+1,  (int)(1+background.size()),  col_name_back,labels_back,back_syst_rel_values, "Background PDF Systematic Errors");
 		latex_table(Path + "signal_systematics_table_"+std::string (varExp.Data())+"_"+std::string (tree.Data()), _nBins+1, (int)(1+signal.size()),    col_name_signal, labels_signal,sig_syst_rel_values, "Signal PDF Systematic Errors");
 		latex_table(Path + "general_systematics_table_"+std::string (varExp.Data())+"_"+std::string (tree.Data()),  _nBins+1, 4 , col_name_general, labels_general, general_syst, "Overall PDF Variation Systematic Errors");	
@@ -992,12 +1018,12 @@ if (varExp=="Bpt"){
 		m_back->GetYaxis()->SetTitle("Systematic Uncertainty(%)");
 		m_back->Draw("A*");
 		legback->Draw();
-		c_back->SaveAs(Form("./tabels/background_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
+		c_back->SaveAs(Form("./results/tabels/background_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
 
 	TCanvas* c_sig= new TCanvas();
 	TLegend* legsig=new TLegend(0.7,0.7,0.9,0.9);
 	TMultiGraph* m_sig= new TMultiGraph();
-	const char* siglabel[4]={"Triple Gaussian", "Fixed Mean", "CB+Gaussian"};
+	const char* siglabel[4]={"Triple Gaussian", "Fixed Mean", "CB+Gaussian","2 CB"};
 	for (int j=0;j<(int)(signal.size());j++){
 		Double_t x[_nBins],y[_nBins];
 		for (int i=0;i<_nBins;i++){
@@ -1014,7 +1040,7 @@ if (varExp=="Bpt"){
 	m_sig->GetYaxis()->SetTitle("Systematic Uncertainty(%)");
 	m_sig->Draw("A*");
 	legsig->Draw();
-	c_sig->SaveAs(Form("./tabels/signal_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
+	c_sig->SaveAs(Form("./results/tabels/signal_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
 
 	
 
@@ -1051,7 +1077,7 @@ if (varExp=="Bpt"){
 	m_gen->GetYaxis()->SetTitle("Total Uncertainty(%)");
 	m_gen->Draw("A*");
 	legen->Draw();
-	c_gen->SaveAs(Form("./tabels/general_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
+	c_gen->SaveAs(Form("./results/tabels/general_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
 
 	}
 
@@ -1061,26 +1087,21 @@ if (varExp=="Bpt"){
 
 	cout << "Final Yield = " << yieldRec << endl;
 
-
 // Differential plot part starts
-double yield_max = 0;
-
-
-//cout << "max_pass" << endl;
+	double yield_max = 0;
+	//cout << "max_pass" << endl;
 //double dn_max = &h->GetMaximum();
 //Double bin_max = *h->GetBinContent(*h->GetMaximumBin());
 //Int_t* bin_max = *h->GetMaximumBin();
 //Double_t* dn_max = *h->GetBinContent(bin_max);
 //cout << "max_pass" << endl;
 
-for(int i = 0; i < _nBins; i++){
-	if(yield_vec[i] > yield_max){
+	for(int i = 0; i < _nBins; i++){
+		if(yield_vec[i] > yield_max){
 		yield_max = yield_vec[i];
-		std::cout << "The yield maximum is " << yield_max << std::endl;
 	}
 }
-
-	 gSystem->mkdir("Graphs",true); 
+	 gSystem->mkdir("./results/Graphs",true); 
 	 TCanvas c_diff;
 	 TMultiGraph* mg = new TMultiGraph();
 	 TLegend *leg_d = new TLegend(0.7,0.7,0.9,0.9);
@@ -1089,13 +1110,12 @@ for(int i = 0; i < _nBins; i++){
 	 gr_staterr->SetLineColor(1); 
 	 mg->Add(gr_staterr);
 
-        if(syst==1){
+   if(syst==1){
 		TGraphAsymmErrors* gr_systerr = new TGraphAsymmErrors(_nBins,var_mean_av,yield_vec,nullptr,nullptr,yield_vec_systerr_low,yield_vec_systerr_high);
 		gr_systerr->SetLineColor(2);
 		mg->Add(gr_systerr);
 		leg_d->AddEntry(gr_systerr, "Systematic Uncertainty", "e");
-	 }
-	
+	}
 	 if(varExp == "By"){
 		 mg->GetXaxis()->SetTitle("Rapidity (y)");
 		 mg->GetYaxis()->SetTitle("dN_{S}/dy");
@@ -1114,11 +1134,11 @@ for(int i = 0; i < _nBins; i++){
 		 mg->GetXaxis()->SetLimits(0, 110);
 	 }
 
-//	 mg->Add(gr_staterr);
+	 //mg->Add(gr_staterr);
 	 mg->Draw("ap");
 	 //mg->SetTitle("Differential Signal Yield");  
 	 
-        // TLegend *leg_d = new TLegend(0.7,0.7,0.9,0.9);
+         //TLegend *leg_d = new TLegend(0.7,0.7,0.9,0.9);
 	 leg_d->AddEntry(gr_staterr, "Statistical Uncertainty", "e");
 	 //leg_d->AddEntry(grs, "Systematic Uncertainty", "e");
 	 leg_d->SetBorderSize(0);
@@ -1126,7 +1146,7 @@ for(int i = 0; i < _nBins; i++){
 	 leg_d->SetTextSize(0);
 	 leg_d->Draw();
 
-	 const char* pathc =Form("./Graphs/raw_yield_%s_%s.png",tree.Data(),varExp.Data()); 
+	 const char* pathc =Form("./results/Graphs/raw_yield_%s_%s.png",tree.Data(),varExp.Data()); 
 	 c_diff.SaveAs(pathc);
 // Differential plot part ends
 
@@ -1137,6 +1157,12 @@ for(int i = 0; i < _nBins; i++){
 //chi2 test ends
 
 // Parameters vs variables part starts
+	 double scale_max = 0;
+	for(int i = 0; i < _nBins; i++){
+		if(scale_vec[i] > scale_max){
+		scale_max = scale_vec[i];
+	}
+}
 	 TCanvas c_par;
 	 TMultiGraph* mg_par = new TMultiGraph();
 
@@ -1147,7 +1173,7 @@ for(int i = 0; i < _nBins; i++){
 		 mg_par->GetXaxis()->SetTitle("Rapidity (y)");
 		 mg_par->GetYaxis()->SetTitle("Mass resolution scale factor");
 		 mg_par->GetXaxis()->SetLimits(-2.4 ,2.4);
-		 mg_par->GetYaxis()->SetLimits(0, 2.0);
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
 
 	 }
 	 if(varExp == "Bpt"){
@@ -1155,16 +1181,17 @@ for(int i = 0; i < _nBins; i++){
 		 mg_par->GetYaxis()->SetTitle("Mass resolution scale factor");
 		 if (tree == "ntKp"){ mg_par->GetXaxis()->SetLimits(0 ,80); }
 		 if (tree == "ntphi"){ mg_par->GetXaxis()->SetLimits(0 ,60); }
-		 mg_par->GetYaxis()->SetLimits(0, 2.0);
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
 	 }
 	 if(varExp == "nMult"){
 		 mg_par->GetXaxis()->SetTitle("Multiplicity (Mult)");
 		 mg_par->GetYaxis()->SetTitle("Mass resolution scale factor");
 		 mg_par->GetXaxis()->SetLimits(0, 110);
-		 mg_par->GetYaxis()->SetLimits(0, 2.0);
+		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
 	 }
 
 	 mg_par->Add(gr_scale);
+	 mg_par->GetYaxis()->SetRangeUser(0,scale_max*1.4);
 	 mg_par->Draw("ap");
 	 //mg->SetTitle("Differential Signal Yield");  
 /*	 
@@ -1176,78 +1203,98 @@ for(int i = 0; i < _nBins; i++){
 	 leg_par->SetTextSize(0);
 	 leg_par->Draw();
 */
-	 const char* pathc_par =Form("./Graphs/parameters_variation_%s_%s.png",tree.Data(),varExp.Data()); 
+	 const char* pathc_par =Form("./results/Graphs/parameters_variation_%s_%s.png",tree.Data(),varExp.Data()); 
 	 c_par.SaveAs(pathc_par);
 //Parameters vs variables part ends
 
 //Resolution plot part starts
+	 double resol_max = 0;
+	 double resol_min = 100000;
+	for(int i = 0; i < _nBins; i++){
+		if(resol_vec[i] > resol_max){
+		resol_max = resol_vec[i];
+	}
+	if(resol_vec[i] < resol_min){
+		resol_min = resol_vec[i];
+	}
+}
 	 TCanvas c_resol;
 	 TMultiGraph* mg_resol = new TMultiGraph();
 
-	 TGraphAsymmErrors* gr_resol = new TGraphAsymmErrors(_nBins,var_mean_av,resol_vec,hori_av_low,hori_av_high,resol_vec_err_low,resol_vec_err_high);
+	TGraphAsymmErrors* gr_resol = new TGraphAsymmErrors(_nBins,var_mean_av,resol_vec,hori_av_low,hori_av_high,resol_vec_err_low,resol_vec_err_high);
 	 gr_resol->SetLineColor(1); 
 	
 	 if(varExp == "By"){
 		 mg_resol->GetXaxis()->SetTitle("Rapidity (y)");
-		 mg_resol->GetYaxis()->SetTitle("Resolution");
+		 mg_resol->GetYaxis()->SetTitle("Resolution (in GeV/c^{2})");
 		 mg_resol->GetXaxis()->SetLimits(-2.4 ,2.4);
-		 mg_resol->GetYaxis()->SetRangeUser(0, 0.1);
+
 	 }
 	 if(varExp == "Bpt"){
 		 mg_resol->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
-		 mg_resol->GetYaxis()->SetTitle("Resolution");
+		 mg_resol->GetYaxis()->SetTitle("Resolution (in GeV/c^{2})");
 		 if (tree == "ntKp"){ mg_resol->GetXaxis()->SetLimits(0 ,80); }
 		 if (tree == "ntphi"){ mg_resol->GetXaxis()->SetLimits(0 ,60); }
-		 mg_resol->GetYaxis()->SetRangeUser(0, 0.1);
 	 }
 	 if(varExp == "nMult"){
 		 mg_resol->GetXaxis()->SetTitle("Multiplicity (Mult)");
-		 mg_resol->GetYaxis()->SetTitle("Resolution");
+		 mg_resol->GetYaxis()->SetTitle("Resolution (in GeV/c^{2})");
 		 mg_resol->GetXaxis()->SetLimits(0, 110);
-		 mg_resol->GetYaxis()->SetRangeUser(0, 0.1);
+		 
 	 }
-
+	 mg_resol->GetYaxis()->SetRangeUser(resol_min*0.6, resol_max*1.4);
 	 mg_resol->Add(gr_resol);
 	 mg_resol->Draw("ap");
 
-	 const char* pathc_resol =Form("./Graphs/resolution_%s_%s.png",tree.Data(),varExp.Data()); 
+	 const char* pathc_resol =Form("./results/Graphs/resolution_%s_%s.png",tree.Data(),varExp.Data()); 
 	 c_resol.SaveAs(pathc_resol);
 
 //Resolution plot part ends
 
 //chi2 plot part starts
-	 TCanvas c_chi2;
-	 TMultiGraph* mg_chi2 = new TMultiGraph();
+	 double chi2_max = 0;
+	 double chi2_min = 100000;
+	for(int i = 0; i < _nBins; i++){
+		if(chi2_vec[i] > chi2_max){
+		chi2_max = chi2_vec[i];
+	}
+	if(chi2_vec[i] < chi2_min){
+		chi2_min = chi2_vec[i];
+	}
+}
+TCanvas c_chi2;
+TMultiGraph* mg_chi2 = new TMultiGraph();
 
-	 TGraphAsymmErrors* gr_chi2 = new TGraphAsymmErrors(_nBins,var_mean_av,chi2_vec,hori_av_low,hori_av_high,nullptr,nullptr);
-	 gr_chi2->SetLineColor(1); 
-	
-	 if(varExp == "By"){
-		 mg_chi2->GetXaxis()->SetTitle("Rapidity (y)");
-		 mg_chi2->GetYaxis()->SetTitle("chi square");
-		 mg_chi2->GetXaxis()->SetLimits(-2.4 ,2.4);
-		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
+TGraphAsymmErrors* gr_chi2 = new TGraphAsymmErrors(_nBins,var_mean_av,chi2_vec,hori_av_low,hori_av_high,nullptr,nullptr);
+gr_chi2->SetLineColor(1); 
 
-	 }
-	 if(varExp == "Bpt"){
-		 mg_chi2->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
-		 mg_chi2->GetYaxis()->SetTitle("chi square");
-		 if (tree == "ntKp"){ mg_chi2->GetXaxis()->SetLimits(0 ,80); }
-		 if (tree == "ntphi"){ mg_chi2->GetXaxis()->SetLimits(0 ,60); }
-		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
-	 }
-	 if(varExp == "nMult"){
-		 mg_chi2->GetXaxis()->SetTitle("Multiplicity (Mult)");
-		 mg_chi2->GetYaxis()->SetTitle("chi_square");
-		 mg_chi2->GetXaxis()->SetLimits(0, 110);
-		 //mg_par->GetYaxis()->SetLimits(0, 2.0);
-	 }
+if(varExp == "By"){
+ mg_chi2->GetXaxis()->SetTitle("Rapidity (y)");
+ mg_chi2->GetYaxis()->SetTitle("#chi^{2}/NDF");
+ mg_chi2->GetXaxis()->SetLimits(-2.4 ,2.4);
+ //mg_par->GetYaxis()->SetLimits(0, 2.0);
 
-	 mg_chi2->Add(gr_chi2);
-	 mg_chi2->Draw("ap");
+}
+if(varExp == "Bpt"){
+ mg_chi2->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
+ mg_chi2->GetYaxis()->SetTitle("#chi^{2}/NDF");
+ if (tree == "ntKp"){ mg_chi2->GetXaxis()->SetLimits(0 ,80); }
+ if (tree == "ntphi"){ mg_chi2->GetXaxis()->SetLimits(0 ,60); }
+ //mg_par->GetYaxis()->SetLimits(0, 2.0);
+}
+if(varExp == "nMult"){
+ mg_chi2->GetXaxis()->SetTitle("Multiplicity (Mult)");
+ mg_chi2->GetYaxis()->SetTitle("#chi^{2}/NDF");
+ mg_chi2->GetXaxis()->SetLimits(0, 110);
+ //mg_par->GetYaxis()->SetLimits(0, 2.0);
+}
+mg_chi2->GetYaxis()->SetRangeUser(chi2_min*0.6, chi2_max*1.4);
+mg_chi2->Add(gr_chi2);
+mg_chi2->Draw("ap");
 
-	 const char* pathc_chi2 =Form("./Graphs/chi2_%s_%s.png",tree.Data(),varExp.Data()); 
-	 c_chi2.SaveAs(pathc_chi2);
+const char* pathc_chi2 =Form("./results/Graphs/chi2_%s_%s.png",tree.Data(),varExp.Data()); 
+c_chi2.SaveAs(pathc_chi2);
 
 //chi2 plot part ends
+
 }
