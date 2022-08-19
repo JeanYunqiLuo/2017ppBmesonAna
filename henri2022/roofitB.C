@@ -10,7 +10,7 @@
 #include "TGraphErrors.h"
 
 
-int syst=0;
+int syst=1;
 
 TTree* makeTTree(TTree* intree, TString treeTitle) 
 {
@@ -384,14 +384,14 @@ if(doubly==0) {if(varExp == "Bpt"){
 											       var_mean_av[i] = ds_cut->mean(*y);
 											     }
 										else if(varExp == "nMult"){
-														 cout<<"passed if 0"<<endl;
+													
 											       ds_cut = new RooDataSet(Form("ds_cut%d", _count),"", ds, RooArgSet(*mass, *pt, *y, *trackSelection,*nMult), Form("nMult>%f && nMult< %f", _ptBins[i], _ptBins[i+1]));
 											       cout<<"passed "<<endl;
 											       var_mean_av[i] = ds_cut->mean(*nMult);
 											     }
   }
 		if(doubly==1){
-			cout<<"passed if 1"<<endl;
+		
 			ds_cut = new RooDataSet(Form("ds_cut%d",_count),"",ds, RooArgSet(*mass, *pt, *y, *nMult), Form("%s>=%f&&%s<=%f&&Bmass>%f&&Bmass<%f",varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],minhisto, maxhisto));
 			if(varExp == "nMult"){var_mean_av[i] = ds_cut->mean(*nMult);}
 			if(varExp == "By"){var_mean_av[i] = ds_cut->mean(*y);}
@@ -546,8 +546,7 @@ if(doubly==0) {if(varExp == "Bpt"){
 		resol_vec_err_low[i] = resol_err;
 		resol_vec_err_high[i] = resol_err;*/
 //Resolution MC
-
-//Resolution 
+		//Resolution 
 		//TString nominal = "";
 		std::cout << "sec1sec1sec1" << endl;
 		RooRealVar* sigma1 = static_cast<RooRealVar*>(f->constPars().at(f->constPars().index(Form("sigma1%d", _count))));
@@ -568,8 +567,7 @@ if(doubly==0) {if(varExp == "Bpt"){
 		double scale_err_rel = Myscale_err / Myscale;
 		double resol = sqrt(Myweight * pow(Mysigma1, 2) + (1 - Myweight) * pow(Mysigma2, 2)) * Myscale ;
 		double resol_err = scale_err_rel * resol;
-		//double resol_err = (Myweight * Mysigma1 * Mysigma2_err + (1 - Myweight) * Mysigma2 * Mysigma2_err) / resol;
-		
+
 		resol_vec[i] = resol;
 		resol_vec_err_low[i] = resol_err;
 		resol_vec_err_high[i] = resol_err;
@@ -578,13 +576,14 @@ if(doubly==0) {if(varExp == "Bpt"){
 //chi2 test
 		RooRealVar* mean = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("mean%d",_count))));
 		RooRealVar* lambda = static_cast<RooRealVar*>(f->floatParsFinal().at(f->floatParsFinal().index(Form("lambda%d",_count))));
-
 		RooProduct scaled_sigma1("scaled_sigma1","scaled_sigma1", RooArgList(*width_scale,*sigma1));
 		RooProduct scaled_sigma2("scaled_sigma2","scaled_sigma2", RooArgList(*width_scale,*sigma2));
 		RooGaussian sig1(Form("sig1%d",_count),"",*mass,*mean,scaled_sigma1);  
 		RooGaussian sig2(Form("sig2%d",_count),"",*mass,*mean,scaled_sigma2); 
 		RooExponential bkg(Form("bkg%d",_count), "", *mass, *lambda);
+
 		RooAddPdf* sig = new RooAddPdf(Form("sig%d",_count),"",RooArgList(sig1,sig2),*weight);
+
 		RooAddPdf* model = new RooAddPdf(Form("model%d",_count),"",RooArgList(*sig,bkg), RooArgList(*fitYield,*BackGround));
 		RooChi2Var chi2("chi2","chi2",*model,*dh);
 		double Mychi2 = chi2.getVal()/(nbinsmasshisto-5); //normalised chi square
@@ -640,49 +639,61 @@ if(doubly==0) {if(varExp == "Bpt"){
 		TLatex* tex_y1;
 		TLatex* tex_y11;
 		TLatex* tex_y2;
-		TLatex* chi_square;	
+		TLatex* chi_square;
 
 	if(varExp=="Bpt"){
       //for the paper run these
       if (drawLegend) {
-        tex_pt = new TLatex(0.55,0.4,Form("%d < p_{T} < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
-        tex_y = new TLatex(0.55,0.34,"p_{T} > 10 GeV/c : |y| < 2.4");
-        tex_y2 = new TLatex(0.55,0.28,"p_{T} < 10 GeV/c : 1.5 < |y| < 2.4");
-        tex_y1 = new TLatex(0.55,0.34,"1.5 < |y| < 2.4");
-        tex_y11 =new TLatex(0.55,0.34,"|y| < 2.4");
+        tex_pt = new TLatex(0.7,0.4,Form("%d < p_{T} < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
+        tex_y = new TLatex(0.7,0.34,"p_{T} > 10 GeV/c : |y| < 2.4");
+        tex_y2 = new TLatex(0.7,0.28,"p_{T} < 10 GeV/c : 1.5 < |y| < 2.4");
+        tex_y1 = new TLatex(0.7,0.34,"1.5 < |y| < 2.4");
+        tex_y11 =new TLatex(0.7,0.34,"|y| < 2.4");
+        chi_square=new TLatex(0.7,0.29,Form("#chi^{2} value : %.2f",Mychi2));
       } else {
         //fr the AN run these
-        tex_pt = new TLatex(0.55,0.8,Form("%d < p_{T} < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
-        tex_y = new TLatex(0.55,0.74,"p_{T} > 10 GeV/c : |y| < 2.4");
-        tex_y2 = new TLatex(0.55,0.68,"p_{T} < 10 GeV/c : 1.5 < |y| < 2.4");
-        tex_y1 = new TLatex(0.55,0.74,"1.5 < |y| < 2.4");
-        tex_y11 =new TLatex(0.55,0.74,"|y| < 2.4");
+        tex_pt = new TLatex(0.7,0.8,Form("%d < p_{T} < %d GeV/c",(int)_ptBins[i],(int)_ptBins[i+1]));
+        tex_y = new TLatex(0.7,0.74,"p_{T} > 10 GeV/c : |y| < 2.4");
+        tex_y2 = new TLatex(0.7,0.68,"p_{T} < 10 GeV/c : 1.5 < |y| < 2.4");
+        tex_y1 = new TLatex(0.7,0.74,"1.5 < |y| < 2.4");
+        tex_y11 =new TLatex(0.7,0.74,"|y| < 2.4");
+        chi_square=new TLatex(0.7,0.69,Form("#chi^{2} value : %.1f",Mychi2));
       }
 		}
 
 if(varExp=="By"){
       //for the paper run these
       if (drawLegend) {    
-        tex_y = new TLatex(0.55,0.4,Form("%.1f < y < %.1f ",_ptBins[i],_ptBins[i+1]));
+        tex_y = new TLatex(0.7,0.4,Form("%.1f < y < %.1f ",_ptBins[i],_ptBins[i+1]));
+        chi_square=new TLatex(0.7,0.35,Form("#chi^{2} value : %.2f",Mychi2));
       } else {
         //fr the AN run these
-        tex_y = new TLatex(0.55,0.8,Form("%.1f < y < %.1f ",_ptBins[i],_ptBins[i+1]));
+        tex_y = new TLatex(0.7,0.8,Form("%.1f < y < %.1f ",_ptBins[i],_ptBins[i+1]));
+        chi_square=new TLatex(0.7,0.75,Form("#chi^{2} value : %.2f",Mychi2));
       }
 		}
 if(varExp=="nMult"){ 
 	//for the paper run these
       if (drawLegend) {
-      	tex_nMult = new TLatex(0.55,0.4,Form("%d < nTrks < %d",(int)_ptBins[i],(int)_ptBins[i+1]));
+      	tex_nMult = new TLatex(0.7,0.4,Form("%d < nTrks < %d",(int)_ptBins[i],(int)_ptBins[i+1]));
+      	chi_square=new TLatex(0.7,0.35,Form("#chi^{2} value : %.2f",Mychi2));
       } else {
         //fr the AN run these
-        tex_nMult = new TLatex(0.55,0.8,Form("%d < nTrks < %d",(int)_ptBins[i],(int)_ptBins[i+1]));
+        tex_nMult = new TLatex(0.7,0.8,Form("%d < nTrks < %d",(int)_ptBins[i],(int)_ptBins[i+1]));
+        chi_square=new TLatex(0.7,0.75,Form("#chi^{2} value : %.2f",Mychi2));
       }
 	}
 /*	if(varExp=="By"){
 	tex_pt = new TLatex(0.21,0.75,"5 < p_{T} < 50 GeV/c");
 	tex_y = new TLatex(0.21,0.69,Form("%.1f < |y| < %.1f",_ptBins[i],_ptBins[i+1]));
 		}*/
-		
+chi_square->SetNDC();
+chi_square->SetTextFont(42);
+chi_square->SetTextSize(0.045);
+chi_square->SetLineWidth(2);
+
+chi_square->Draw();
+
 if (varExp=="Bpt"){
 	
 
@@ -812,7 +823,7 @@ if (varExp=="Bpt"){
 				RooFitResult* f_back = fit("background", background[j], tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit,varExp);
 				
 				texB->Draw();
-				
+				chi_square->Draw();
 				if (varExp=="Bpt"){
 					tex_pt->Draw();
 					if(_ptBins[i] >= 10){tex_y11->Draw();}
@@ -840,7 +851,7 @@ if (varExp=="Bpt"){
 			for(int j=0; j<signal.size(); j++){
 				RooFitResult* f_signal = fit("signal", signal[j], tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit,varExp);
 				texB->Draw();
-
+				chi_square->Draw();
 				if (varExp=="Bpt"){
 					tex_pt->Draw();
 					if(_ptBins[i] >= 10){tex_y11->Draw();}
@@ -988,7 +999,7 @@ if(syst==1){
 //	cout<<stat_error.size()<<general_syst.size()<<endl;
 	//stat_error.push_back(aa);
 	if(syst==1 && full==0){
-		gSystem->mkdir("./results/tabels",true); 
+		gSystem->mkdir("./results/tables",true); 
 		latex_table(Path + "background_systematics_table_"+std::string (varExp.Data())+"_"+std::string (tree.Data()), _nBins+1,  (int)(1+background.size()),  col_name_back,labels_back,back_syst_rel_values, "Background PDF Systematic Errors");
 		latex_table(Path + "signal_systematics_table_"+std::string (varExp.Data())+"_"+std::string (tree.Data()), _nBins+1, (int)(1+signal.size()),    col_name_signal, labels_signal,sig_syst_rel_values, "Signal PDF Systematic Errors");
 		latex_table(Path + "general_systematics_table_"+std::string (varExp.Data())+"_"+std::string (tree.Data()),  _nBins+1, 4 , col_name_general, labels_general, general_syst, "Overall PDF Variation Systematic Errors");	
@@ -1018,7 +1029,7 @@ if(syst==1){
 		m_back->GetYaxis()->SetTitle("Systematic Uncertainty(%)");
 		m_back->Draw("A*");
 		legback->Draw();
-		c_back->SaveAs(Form("./results/tabels/background_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
+		c_back->SaveAs(Form("./results/tables/background_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
 
 	TCanvas* c_sig= new TCanvas();
 	TLegend* legsig=new TLegend(0.7,0.7,0.9,0.9);
@@ -1040,7 +1051,7 @@ if(syst==1){
 	m_sig->GetYaxis()->SetTitle("Systematic Uncertainty(%)");
 	m_sig->Draw("A*");
 	legsig->Draw();
-	c_sig->SaveAs(Form("./results/tabels/signal_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
+	c_sig->SaveAs(Form("./results/tables/signal_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
 
 	
 
@@ -1077,7 +1088,7 @@ if(syst==1){
 	m_gen->GetYaxis()->SetTitle("Total Uncertainty(%)");
 	m_gen->Draw("A*");
 	legen->Draw();
-	c_gen->SaveAs(Form("./results/tabels/general_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
+	c_gen->SaveAs(Form("./results/tables/general_systematics_plot_%s_%s.png",tree.Data(),varExp.Data())); 
 
 	}
 
@@ -1226,19 +1237,19 @@ if(syst==1){
 	
 	 if(varExp == "By"){
 		 mg_resol->GetXaxis()->SetTitle("Rapidity (y)");
-		 mg_resol->GetYaxis()->SetTitle("Resolution (in GeV/c^{2})");
+		 mg_resol->GetYaxis()->SetTitle("Resolution");
 		 mg_resol->GetXaxis()->SetLimits(-2.4 ,2.4);
 
 	 }
 	 if(varExp == "Bpt"){
 		 mg_resol->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
-		 mg_resol->GetYaxis()->SetTitle("Resolution (in GeV/c^{2})");
+		 mg_resol->GetYaxis()->SetTitle("Resolution");
 		 if (tree == "ntKp"){ mg_resol->GetXaxis()->SetLimits(0 ,80); }
 		 if (tree == "ntphi"){ mg_resol->GetXaxis()->SetLimits(0 ,60); }
 	 }
 	 if(varExp == "nMult"){
 		 mg_resol->GetXaxis()->SetTitle("Multiplicity (Mult)");
-		 mg_resol->GetYaxis()->SetTitle("Resolution (in GeV/c^{2})");
+		 mg_resol->GetYaxis()->SetTitle("Resolution");
 		 mg_resol->GetXaxis()->SetLimits(0, 110);
 		 
 	 }
@@ -1296,5 +1307,4 @@ const char* pathc_chi2 =Form("./results/Graphs/chi2_%s_%s.png",tree.Data(),varEx
 c_chi2.SaveAs(pathc_chi2);
 
 //chi2 plot part ends
-
 }
