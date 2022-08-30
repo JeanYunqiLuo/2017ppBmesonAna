@@ -16,30 +16,30 @@ TRGPbPb=(Bpt>0)
 Processing roofitB.C+(0,"ntphi",0,1,0,"~/data/BsData.root","~/data/BsMC.root","By","(Bpt>0)","1","TMath::Abs(Gy)<2.4&&TMath::Abs(GpdgId)==531&&GisSignal>0",0,1,1,"ROOTfiles/yields_Bs_binned_y.root","results/Bs/By","1",0)...
 Info in <TUnixSystem::ACLiC>: creating shared library /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB_C.so
 In file included from input_line_9:6:
-././roofitB.C:467:193: warning: data argument not used by format string [-Wformat-extra-args]
-                skimtreeMC_new->Project(Form("hMC%d",_count),"Bmass",Form("%s*(%s&&%s>%f&&%s<%f)",weightmc.Data(),Form("%s&&BgenNew==23333",selmc.Data()),varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],weightmc.Data()));
-                                                                          ~~~~~~~~~~~~~~~~~~~~~~~                                                                                                             ^
+././roofitB.C:469:166: warning: data argument not used by format string [-Wformat-extra-args]
+                skimtreeMC_new->Project(Form("hMC%d",_count),"Bmass",Form("%s*(%s&&%s>%f&&%s<%f)",weightmc.Data(),selmc.Data(),varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],weightmc.Data()));
+                                                                          ~~~~~~~~~~~~~~~~~~~~~~~                                                                                  ^
 In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:0:
 /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C: In function ‘void roofitB(int, TString, int, int, int, TString, TString, TString, TString, TString, TString, int, Double_t, int, TString, TString, TString, int)’:
 /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:93:13: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
  for(int t; t< sizeof(_ptBins)/sizeof(_ptBins[0]);t++){cout <<"__"<<  _ptBins[t]<<"__";}
             ~^~~~~~~~~~~~~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:879:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:882:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int j=0; j<background.size(); j++){
                   ~^~~~~~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:939:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:942:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
     for(int j=0; j<signal.size(); j++){
                  ~^~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1035:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1038:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
     for(int j=0; j<background.size(); j++){
                  ~^~~~~~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1041:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1044:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
     for(int j=0; j<signal.size(); j++){
                  ~^~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1435:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1438:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int j=0; j<background.size(); j++){
                ~^~~~~~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1495:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1498:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int j=0; j<signal.size(); j++){
                ~^~~~~~~~~~~~~~
 In file included from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsPdf.h:19:0,
@@ -84,34 +84,34 @@ In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roof
 /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:60:30: warning: ‘_nBins’ may be used uninitialized in this function [-Wmaybe-uninitialized]
   cout << "number of bins" << _nBins << endl;
                               ^~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:810:23: warning: ‘texB’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:813:23: warning: ‘texB’ may be used uninitialized in this function [-Wmaybe-uninitialized]
   texB->SetTextFont(62);
                        ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:973:25: warning: ‘chi_sig’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:976:25: warning: ‘chi_sig’ may be used uninitialized in this function [-Wmaybe-uninitialized]
  chi_sig->SetTextFont(42);
                          ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:918:26: warning: ‘chi_back’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:921:26: warning: ‘chi_back’ may be used uninitialized in this function [-Wmaybe-uninitialized]
  chi_back->SetTextFont(42);
                           ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:749:28: warning: ‘chi_square’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:752:28: warning: ‘chi_square’ may be used uninitialized in this function [-Wmaybe-uninitialized]
  chi_square->SetTextFont(42);
                             ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:780:26: warning: ‘tex_y2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:783:26: warning: ‘tex_y2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_y2->SetTextFont(42);
                           ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:775:27: warning: ‘tex_y11’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:778:27: warning: ‘tex_y11’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_y11->SetTextFont(42);
                            ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:771:26: warning: ‘tex_y1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:774:26: warning: ‘tex_y1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_y1->SetTextFont(42);
                           ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:793:25: warning: ‘tex_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:796:25: warning: ‘tex_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_y->SetTextFont(42);
                          ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:799:29: warning: ‘tex_nMult’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:802:29: warning: ‘tex_nMult’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_nMult->SetTextFont(42);
                              ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:759:26: warning: ‘tex_pt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:762:26: warning: ‘tex_pt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_pt->SetTextFont(42);
                           ^
 /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:445:57: warning: ‘dsMC_cut’ may be used uninitialized in this function [-Wmaybe-uninitialized]
@@ -125,22 +125,22 @@ In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roof
 /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:93:13: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
  for(int t; t< sizeof(_ptBins)/sizeof(_ptBins[0]);t++){cout <<"__"<<  _ptBins[t]<<"__";}
             ~^~~~~~~~~~~~~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:879:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:882:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int j=0; j<background.size(); j++){
                   ~^~~~~~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:939:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:942:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
     for(int j=0; j<signal.size(); j++){
                  ~^~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1035:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1038:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
     for(int j=0; j<background.size(); j++){
                  ~^~~~~~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1041:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1044:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
     for(int j=0; j<signal.size(); j++){
                  ~^~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1435:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1438:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int j=0; j<background.size(); j++){
                ~^~~~~~~~~~~~~~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1495:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1498:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int j=0; j<signal.size(); j++){
                ~^~~~~~~~~~~~~~
 In file included from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsPdf.h:19:0,
@@ -185,34 +185,34 @@ In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roof
 /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:60:30: warning: ‘_nBins’ may be used uninitialized in this function [-Wmaybe-uninitialized]
   cout << "number of bins" << _nBins << endl;
                               ^~~~~~
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:810:23: warning: ‘texB’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:813:23: warning: ‘texB’ may be used uninitialized in this function [-Wmaybe-uninitialized]
   texB->SetTextFont(62);
                        ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:973:25: warning: ‘chi_sig’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:976:25: warning: ‘chi_sig’ may be used uninitialized in this function [-Wmaybe-uninitialized]
  chi_sig->SetTextFont(42);
                          ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:918:26: warning: ‘chi_back’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:921:26: warning: ‘chi_back’ may be used uninitialized in this function [-Wmaybe-uninitialized]
  chi_back->SetTextFont(42);
                           ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:749:28: warning: ‘chi_square’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:752:28: warning: ‘chi_square’ may be used uninitialized in this function [-Wmaybe-uninitialized]
  chi_square->SetTextFont(42);
                             ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:780:26: warning: ‘tex_y2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:783:26: warning: ‘tex_y2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_y2->SetTextFont(42);
                           ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:775:27: warning: ‘tex_y11’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:778:27: warning: ‘tex_y11’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_y11->SetTextFont(42);
                            ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:771:26: warning: ‘tex_y1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:774:26: warning: ‘tex_y1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_y1->SetTextFont(42);
                           ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:793:25: warning: ‘tex_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:796:25: warning: ‘tex_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_y->SetTextFont(42);
                          ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:799:29: warning: ‘tex_nMult’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:802:29: warning: ‘tex_nMult’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_nMult->SetTextFont(42);
                              ^
-/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:759:26: warning: ‘tex_pt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:762:26: warning: ‘tex_pt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
    tex_pt->SetTextFont(42);
                           ^
 /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:445:57: warning: ‘dsMC_cut’ may be used uninitialized in this function [-Wmaybe-uninitialized]
@@ -227,7 +227,7 @@ In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roof
                 All rights reserved, please read http://roofit.sourceforge.net/license.txt
 
 number of bins1
-@@@@@@@@@@@@@@@@@@@@@@@@0x7fff50187ce0
+@@@@@@@@@@@@@@@@@@@@@@@@0x7ffd7bb768f0
 
 
 Variable By
@@ -1088,8 +1088,6 @@ Really created datasets
 The content of dhMC&dh is (p1) 
 RooDataHist::[] = 0 bins (0 weights)
 RooDataHist::[] = 0 bins (0 weights)
-Error in <TTreeFormula::Compile>:  Bad numerical expression : "BgenNew"
-Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {Bmass,1*(1&&BgenNew==23333&&By>0.500000&&By<1.000000)}
 The content of dhMC&dh is (p2) 
 RooDataHist::[] = 0 bins (0 weights)
 RooDataHist::[] = 0 bins (0 weights)
@@ -1097,7 +1095,7 @@ The content of dhMC&dh is (p3)
 RooDataHist::[] = 0 bins (0 weights)
 RooDataHist::dh1[Bmass] = 100 bins (563 weights)
 The content of dhMC&dh is (p4) 
-RooDataHist::dhMC1[Bmass] = 100 bins (0 weights)
+RooDataHist::dhMC1[Bmass] = 100 bins (9164 weights)
 RooDataHist::dh1[Bmass] = 100 bins (563 weights)
 RooDataHist 
 [#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing dataset ds0
@@ -1513,8 +1511,8 @@ pull done
 pull done (MC)
 frame->chiSquare: 0.520968
 pars= 5
-[#0] ERROR:InputArguments -- RooPlot::findObject(frame_Bmass_123c51a0) cannot find object ds1
-[#0] ERROR:InputArguments -- RooPlot::chiSquare(frame_Bmass_123c51a0) cannot find histogram
+[#0] ERROR:InputArguments -- RooPlot::findObject(frame_Bmass_115ab240) cannot find object ds1
+[#0] ERROR:InputArguments -- RooPlot::chiSquare(frame_Bmass_115ab240) cannot find histogram
 chi2: -1
 chi2 Standard: 126.799125
 chi2 Neyman: 106.767236
@@ -1693,7 +1691,7 @@ RooProduct::scaled_sigma2MC[ scale * sigma2MC1 ] = 0.014643
 RooAddPdf::model1[ nsig1 * sig1 + nbkg1 * bkg1 ] = 0.000267427
 RooAddPdf::modelMC1[ nsigMC1 * sigMC1_ ] = 7.22253e-19
 The content of dhMC&dh is (p5) 
-RooDataHist::dhMC1[Bmass] = 100 bins (0 weights)
+RooDataHist::dhMC1[Bmass] = 100 bins (9164 weights)
 RooDataHist::dh1[Bmass] = 100 bins (563 weights)
 The fit results are(lambda1,mean1,nbkg1,nsig1,scale)
 yield: 164.597586, yieldErr: 14.198703
@@ -1702,7 +1700,7 @@ sec2sec2sec2
 sec3sec3sec3
 sec4sec4sec4
 chi square value is 1.12309
-chi square value(MC) is 0
+chi square value(MC) is 42.8098
 yield bkg sideband: 0
 
 0
