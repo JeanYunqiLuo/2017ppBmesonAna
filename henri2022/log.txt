@@ -1,0 +1,1716 @@
+TRGPbPb=(Bpt>0)
+-bash: [: -eq: unary operator expected
+-bash: [: -eq: unary operator expected
+-bash: [: -eq: unary operator expected
+-bash: [: -eq: unary operator expected
+   ------------------------------------------------------------------
+  | Welcome to ROOT 6.24/06                        https://root.cern |
+  | (c) 1995-2021, The ROOT Team; conception: R. Brun, F. Rademakers |
+  | Built for linuxx8664gcc on Jan 14 2022, 22:18:00                 |
+  | From heads/latest-stable@v6-24-06-4-g7c26799                     |
+  | With g++ (GCC) 6.3.1 20170523                                    |
+  | Try '.help', '.demo', '.license', '.credits', '.quit'/'.q'       |
+   ------------------------------------------------------------------
+
+
+Processing roofitB.C+(0,"ntphi",0,1,0,"~/data/BsData.root","~/data/BsMC.root","By","(Bpt>0)","1","TMath::Abs(Gy)<2.4&&TMath::Abs(GpdgId)==531&&GisSignal>0",0,1,1,"ROOTfiles/yields_Bs_binned_y.root","results/Bs/By","1",0)...
+Info in <TUnixSystem::ACLiC>: creating shared library /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB_C.so
+In file included from input_line_9:6:
+././roofitB.C:467:193: warning: data argument not used by format string [-Wformat-extra-args]
+                skimtreeMC_new->Project(Form("hMC%d",_count),"Bmass",Form("%s*(%s&&%s>%f&&%s<%f)",weightmc.Data(),Form("%s&&BgenNew==23333",selmc.Data()),varExp.Data(),_ptBins[i],varExp.Data(),_ptBins[i+1],weightmc.Data()));
+                                                                          ~~~~~~~~~~~~~~~~~~~~~~~                                                                                                             ^
+In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:0:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C: In function ‘void roofitB(int, TString, int, int, int, TString, TString, TString, TString, TString, TString, int, Double_t, int, TString, TString, TString, int)’:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:93:13: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+ for(int t; t< sizeof(_ptBins)/sizeof(_ptBins[0]);t++){cout <<"__"<<  _ptBins[t]<<"__";}
+            ~^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:879:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for(int j=0; j<background.size(); j++){
+                  ~^~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:939:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0; j<signal.size(); j++){
+                 ~^~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1035:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0; j<background.size(); j++){
+                 ~^~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1041:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0; j<signal.size(); j++){
+                 ~^~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1435:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int j=0; j<background.size(); j++){
+               ~^~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1495:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int j=0; j<signal.size(); j++){
+               ~^~~~~~~~~~~~~~
+In file included from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsPdf.h:19:0,
+                 from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooCBShape.h:19,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:4,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:
+/cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsReal.h: In function ‘RooFitResult* fit(TString, TString, TString, TCanvas*, TCanvas*, RooDataSet*, RooDataSet*, RooDataHist*, RooDataHist*, RooRealVar*, RooPlot*&, RooPlot*&, Double_t, Double_t, int, TString, TString, RooWorkspace*)’:
+/cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsReal.h:119:18: warning: ‘model’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     return _fast ? _value : getValV(normalisationSet.empty() ? nullptr : &normalisationSet) ;
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1:0,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:363:13: note: ‘model’ was declared here
+  RooAddPdf* model;
+             ^~~~~
+In file included from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsReal.h:23:0,
+                 from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsPdf.h:19,
+                 from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooCBShape.h:19,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:4,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:
+/cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooArgList.h:40:47: warning: ‘sig’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     int dummy[] = { 0, (processArg(argsOrName), 0) ... };
+                        ~~~~~~~~~~~~~~~~~~~~~~~^~~~
+In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1:0,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:336:13: note: ‘sig’ was declared here
+  RooAddPdf* sig;
+             ^~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:254:254: warning: ‘modelMC’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   modelMC->plotOn(frameMC,Name(Form("sigFMC%d_%s",_count, pdf.Data())),Components(sig1MC),Normalization(1.0,RooAbsReal::RelativeExpected),Precision(1e-6),DrawOption("F"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(4));
+                                                                                                                                                                                                                                                              ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:250:81: warning: ‘sigMC’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   modelMC->plotOn(frameMC,Name(Form("sigMC%d_%s",_count, pdf.Data())),Components(*sigMC),Normalization(1.0,RooAbsReal::RelativeExpected),Precision(1e-6),DrawOption("L"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(4));
+                                                                       ~~~~~~~~~~^~~~~~~~
+In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:0:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C: In function ‘void roofitB(int, TString, int, int, int, TString, TString, TString, TString, TString, TString, int, Double_t, int, TString, TString, TString, int)’:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:93:13: warning: ‘t’ is used uninitialized in this function [-Wuninitialized]
+ for(int t; t< sizeof(_ptBins)/sizeof(_ptBins[0]);t++){cout <<"__"<<  _ptBins[t]<<"__";}
+            ~^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:60:30: warning: ‘_nBins’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  cout << "number of bins" << _nBins << endl;
+                              ^~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:810:23: warning: ‘texB’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  texB->SetTextFont(62);
+                       ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:973:25: warning: ‘chi_sig’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ chi_sig->SetTextFont(42);
+                         ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:918:26: warning: ‘chi_back’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ chi_back->SetTextFont(42);
+                          ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:749:28: warning: ‘chi_square’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ chi_square->SetTextFont(42);
+                            ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:780:26: warning: ‘tex_y2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_y2->SetTextFont(42);
+                          ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:775:27: warning: ‘tex_y11’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_y11->SetTextFont(42);
+                           ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:771:26: warning: ‘tex_y1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_y1->SetTextFont(42);
+                          ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:793:25: warning: ‘tex_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_y->SetTextFont(42);
+                         ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:799:29: warning: ‘tex_nMult’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_nMult->SetTextFont(42);
+                             ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:759:26: warning: ‘tex_pt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_pt->SetTextFont(42);
+                          ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:445:57: warning: ‘dsMC_cut’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     std::cout << "MC entries: " << dsMC_cut->sumEntries() << "\n";
+                                                         ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:446:42: warning: ‘ds_cut’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     ds_cut = (RooDataSet*) ds_cut->reduce(seldata);
+                            ~~~~~~~~~~~~~~^~~~~~~~~
+In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:0:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C: In function ‘void roofitB(int, TString, int, int, int, TString, TString, TString, TString, TString, TString, int, Double_t, int, TString, TString, TString, int)’:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:93:13: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+ for(int t; t< sizeof(_ptBins)/sizeof(_ptBins[0]);t++){cout <<"__"<<  _ptBins[t]<<"__";}
+            ~^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:879:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for(int j=0; j<background.size(); j++){
+                  ~^~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:939:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0; j<signal.size(); j++){
+                 ~^~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1035:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0; j<background.size(); j++){
+                 ~^~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1041:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    for(int j=0; j<signal.size(); j++){
+                 ~^~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1435:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int j=0; j<background.size(); j++){
+               ~^~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1495:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int j=0; j<signal.size(); j++){
+               ~^~~~~~~~~~~~~~
+In file included from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsPdf.h:19:0,
+                 from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooCBShape.h:19,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:4,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:
+/cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsReal.h: In function ‘RooFitResult* fit(TString, TString, TString, TCanvas*, TCanvas*, RooDataSet*, RooDataSet*, RooDataHist*, RooDataHist*, RooRealVar*, RooPlot*&, RooPlot*&, Double_t, Double_t, int, TString, TString, RooWorkspace*)’:
+/cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsReal.h:119:18: warning: ‘model’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     return _fast ? _value : getValV(normalisationSet.empty() ? nullptr : &normalisationSet) ;
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1:0,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:363:13: note: ‘model’ was declared here
+  RooAddPdf* model;
+             ^~~~~
+In file included from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsReal.h:23:0,
+                 from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooAbsPdf.h:19,
+                 from /cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooCBShape.h:19,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:4,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:
+/cvmfs/sw.el7/gcc63/root/6.24.06/b01/include/RooArgList.h:40:47: warning: ‘sig’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     int dummy[] = { 0, (processArg(argsOrName), 0) ... };
+                        ~~~~~~~~~~~~~~~~~~~~~~~^~~~
+In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:1:0,
+                 from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:336:13: note: ‘sig’ was declared here
+  RooAddPdf* sig;
+             ^~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:254:254: warning: ‘modelMC’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   modelMC->plotOn(frameMC,Name(Form("sigFMC%d_%s",_count, pdf.Data())),Components(sig1MC),Normalization(1.0,RooAbsReal::RelativeExpected),Precision(1e-6),DrawOption("F"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(4));
+                                                                                                                                                                                                                                                              ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.h:250:81: warning: ‘sigMC’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   modelMC->plotOn(frameMC,Name(Form("sigMC%d_%s",_count, pdf.Data())),Components(*sigMC),Normalization(1.0,RooAbsReal::RelativeExpected),Precision(1e-6),DrawOption("L"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(4));
+                                                                       ~~~~~~~~~~^~~~~~~~
+In file included from /home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/roofitB_C_ACLiC_dict.cxx:41:0:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C: In function ‘void roofitB(int, TString, int, int, int, TString, TString, TString, TString, TString, TString, int, Double_t, int, TString, TString, TString, int)’:
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:93:13: warning: ‘t’ is used uninitialized in this function [-Wuninitialized]
+ for(int t; t< sizeof(_ptBins)/sizeof(_ptBins[0]);t++){cout <<"__"<<  _ptBins[t]<<"__";}
+            ~^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:60:30: warning: ‘_nBins’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  cout << "number of bins" << _nBins << endl;
+                              ^~~~~~
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:810:23: warning: ‘texB’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  texB->SetTextFont(62);
+                       ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:973:25: warning: ‘chi_sig’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ chi_sig->SetTextFont(42);
+                         ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:918:26: warning: ‘chi_back’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ chi_back->SetTextFont(42);
+                          ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:749:28: warning: ‘chi_square’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ chi_square->SetTextFont(42);
+                            ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:780:26: warning: ‘tex_y2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_y2->SetTextFont(42);
+                          ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:775:27: warning: ‘tex_y11’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_y11->SetTextFont(42);
+                           ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:771:26: warning: ‘tex_y1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_y1->SetTextFont(42);
+                          ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:793:25: warning: ‘tex_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_y->SetTextFont(42);
+                         ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:799:29: warning: ‘tex_nMult’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_nMult->SetTextFont(42);
+                             ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:759:26: warning: ‘tex_pt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   tex_pt->SetTextFont(42);
+                          ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:445:57: warning: ‘dsMC_cut’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     std::cout << "MC entries: " << dsMC_cut->sumEntries() << "\n";
+                                                         ^
+/home/t3cms/u22jeanluo/work/2017ppBmesonAna/henri2022/./roofitB.C:446:42: warning: ‘ds_cut’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     ds_cut = (RooDataSet*) ds_cut->reduce(seldata);
+                            ~~~~~~~~~~~~~~^~~~~~~~~
+
+[1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+number of bins1
+@@@@@@@@@@@@@@@@@@@@@@@@0x7fff50187ce0
+
+
+Variable By
+ntphi BINS: __0.5____1__
+
+DEBUG 3
+DEBUG 4 else
+DEBUG 5
+DEBUG 6
+DEBUG 7
+cut = 1
+seldata= (Bpt>0)&&1
+selmc= 1
+cBottomMargin = 0.145
+MC file: ~/data/BsMC.root
+cd
+depois do get
+clonou
+The content of trees are 
+******************************************************************************
+*Tree    :ntphi     : ntphi                                                  *
+*Entries :    15116 : Total =         6052057 bytes  File  Size =    3347272 *
+*        :          : Tree compression factor =   1.80                       *
+******************************************************************************
+*Br    0 :PVx       : PVx/F                                                  *
+*Entries :    15116 : Total  Size=      61083 bytes  File Size  =      48800 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.24     *
+*............................................................................*
+*Br    1 :PVy       : PVy/F                                                  *
+*Entries :    15116 : Total  Size=      61083 bytes  File Size  =      51436 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.18     *
+*............................................................................*
+*Br    2 :PVz       : PVz/F                                                  *
+*Entries :    15116 : Total  Size=      61083 bytes  File Size  =      55093 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br    3 :PVxE      : PVxE/F                                                 *
+*Entries :    15116 : Total  Size=      61089 bytes  File Size  =      51950 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.17     *
+*............................................................................*
+*Br    4 :PVyE      : PVyE/F                                                 *
+*Entries :    15116 : Total  Size=      61089 bytes  File Size  =      51936 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.17     *
+*............................................................................*
+*Br    5 :PVzE      : PVzE/F                                                 *
+*Entries :    15116 : Total  Size=      61089 bytes  File Size  =      52627 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br    6 :BvtxX     : BvtxX/F                                                *
+*Entries :    15116 : Total  Size=      61095 bytes  File Size  =      56587 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br    7 :BvtxY     : BvtxY/F                                                *
+*Entries :    15116 : Total  Size=      61095 bytes  File Size  =      56981 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br    8 :BvtxZtoPVZ : BvtxZtoPVZ/F                                          *
+*Entries :    15116 : Total  Size=      61125 bytes  File Size  =      37075 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.64     *
+*............................................................................*
+*Br    9 :BSx       : BSx/F                                                  *
+*Entries :    15116 : Total  Size=      61083 bytes  File Size  =      19258 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.15     *
+*............................................................................*
+*Br   10 :BSy       : BSy/F                                                  *
+*Entries :    15116 : Total  Size=      61083 bytes  File Size  =      20677 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   2.93     *
+*............................................................................*
+*Br   11 :BSz       : BSz/F                                                  *
+*Entries :    15116 : Total  Size=      61083 bytes  File Size  =      19669 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.08     *
+*............................................................................*
+*Br   12 :BSxErr    : BSxErr/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      18650 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.25     *
+*............................................................................*
+*Br   13 :BSyErr    : BSyErr/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      18619 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.26     *
+*............................................................................*
+*Br   14 :BSzErr    : BSzErr/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      17974 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.37     *
+*............................................................................*
+*Br   15 :BSdxdz    : BSdxdz/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      19442 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.12     *
+*............................................................................*
+*Br   16 :BSdydz    : BSdydz/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      19305 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.14     *
+*............................................................................*
+*Br   17 :BSdxdzErr : BSdxdzErr/F                                            *
+*Entries :    15116 : Total  Size=      61119 bytes  File Size  =      18206 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.33     *
+*............................................................................*
+*Br   18 :BSdydzErr : BSdydzErr/F                                            *
+*Entries :    15116 : Total  Size=      61119 bytes  File Size  =      18320 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.31     *
+*............................................................................*
+*Br   19 :BSWidthX  : BSWidthX/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      17966 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.37     *
+*............................................................................*
+*Br   20 :BSWidthXErr : BSWidthXErr/F                                        *
+*Entries :    15116 : Total  Size=      61131 bytes  File Size  =      19783 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.06     *
+*............................................................................*
+*Br   21 :BSWidthY  : BSWidthY/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      17924 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.38     *
+*............................................................................*
+*Br   22 :BSWidthYErr : BSWidthYErr/F                                        *
+*Entries :    15116 : Total  Size=      61131 bytes  File Size  =      19783 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.06     *
+*............................................................................*
+*Br   23 :Bsize     : Bsize/I                                                *
+*Entries :    15116 : Total  Size=      61095 bytes  File Size  =       2141 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=  28.31     *
+*............................................................................*
+*Br   24 :HLT_HIL1DoubleMu0_v1 : HLT_HIL1DoubleMu0_v1/I                      *
+*Entries :    15116 : Total  Size=      61185 bytes  File Size  =        541 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 112.09     *
+*............................................................................*
+*Br   25 :Bmass     : Bmass/F                                                *
+*Entries :    15116 : Total  Size=      61095 bytes  File Size  =      50720 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.19     *
+*............................................................................*
+*Br   26 :By        : By/F                                                   *
+*Entries :    15116 : Total  Size=      61077 bytes  File Size  =      55767 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   27 :Bpt       : Bpt/F                                                  *
+*Entries :    15116 : Total  Size=      61083 bytes  File Size  =      53104 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   28 :Bgen      : Bgen/F                                                 *
+*Entries :    15116 : Total  Size=      61089 bytes  File Size  =        473 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 128.14     *
+*............................................................................*
+*Br   29 :Btrk1Pt   : Btrk1Pt/F                                              *
+*Entries :    15116 : Total  Size=      61107 bytes  File Size  =      53266 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   30 :Btrk1Eta  : Btrk1Eta/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      55604 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   31 :Btrk1PtErr : Btrk1PtErr/F                                          *
+*Entries :    15116 : Total  Size=      61125 bytes  File Size  =      53739 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   32 :Btrk2Pt   : Btrk2Pt/F                                              *
+*Entries :    15116 : Total  Size=      61107 bytes  File Size  =      53312 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   33 :Btrk2Eta  : Btrk2Eta/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      55591 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   34 :Btrk2PtErr : Btrk2PtErr/F                                          *
+*Entries :    15116 : Total  Size=      61125 bytes  File Size  =      53779 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   35 :Bchi2cl   : Bchi2cl/F                                              *
+*Entries :    15116 : Total  Size=      61107 bytes  File Size  =      54512 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   36 :BsvpvDistance : BsvpvDistance/F                                    *
+*Entries :    15116 : Total  Size=      61143 bytes  File Size  =      55825 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   37 :BsvpvDisErr : BsvpvDisErr/F                                        *
+*Entries :    15116 : Total  Size=      61131 bytes  File Size  =      54041 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   38 :BsvpvDistance_2D : BsvpvDistance_2D/F                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =      55383 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   39 :BsvpvDisErr_2D : BsvpvDisErr_2D/F                                  *
+*Entries :    15116 : Total  Size=      61149 bytes  File Size  =      53615 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   40 :Bmumumass : Bmumumass/F                                            *
+*Entries :    15116 : Total  Size=      61119 bytes  File Size  =      46500 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.30     *
+*............................................................................*
+*Br   41 :Bmu1eta   : Bmu1eta/F                                              *
+*Entries :    15116 : Total  Size=      61107 bytes  File Size  =      54760 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   42 :Bmu2eta   : Bmu2eta/F                                              *
+*Entries :    15116 : Total  Size=      61107 bytes  File Size  =      54773 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   43 :Bmu1pt    : Bmu1pt/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      52638 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   44 :Bmu2pt    : Bmu2pt/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      52645 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   45 :Bmu1dxyPV : Bmu1dxyPV/F                                            *
+*Entries :    15116 : Total  Size=      61119 bytes  File Size  =      55814 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   46 :Bmu2dxyPV : Bmu2dxyPV/F                                            *
+*Entries :    15116 : Total  Size=      61119 bytes  File Size  =      55785 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   47 :Bmu1dzPV  : Bmu1dzPV/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      56421 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   48 :Bmu2dzPV  : Bmu2dzPV/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      56418 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   49 :Bd0       : Bd0/F                                                  *
+*Entries :    15116 : Total  Size=      61083 bytes  File Size  =      55356 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   50 :Bd0Err    : Bd0Err/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      54077 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   51 :Bdtheta   : Bdtheta/F                                              *
+*Entries :    15116 : Total  Size=      61107 bytes  File Size  =      55992 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   52 :Balpha    : Balpha/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =      55798 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   53 :Btrk1Dz1  : Btrk1Dz1/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      57243 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br   54 :Btrk1DzError1 : Btrk1DzError1/F                                    *
+*Entries :    15116 : Total  Size=      61143 bytes  File Size  =      54338 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   55 :Btrk1Dxy1 : Btrk1Dxy1/F                                            *
+*Entries :    15116 : Total  Size=      61119 bytes  File Size  =      56524 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   56 :Btrk1DxyError1 : Btrk1DxyError1/F                                  *
+*Entries :    15116 : Total  Size=      61149 bytes  File Size  =      53806 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   57 :Bmumueta  : Bmumueta/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      54678 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   58 :Bmumuphi  : Bmumuphi/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      54941 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   59 :Bmumupt   : Bmumupt/F                                              *
+*Entries :    15116 : Total  Size=      61107 bytes  File Size  =      52640 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   60 :pthat     : pthat/F                                                *
+*Entries :    15116 : Total  Size=      61095 bytes  File Size  =        475 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 127.60     *
+*............................................................................*
+*Br   61 :weight    : weight/F                                               *
+*Entries :    15116 : Total  Size=      61101 bytes  File Size  =        477 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 127.07     *
+*............................................................................*
+*Br   62 :nMult     : nMult/I                                                *
+*Entries :    15116 : Total  Size=      61095 bytes  File Size  =      19620 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   3.09     *
+*............................................................................*
+*Br   63 :Btrk2Dz1  : Btrk2Dz1/F                                             *
+*Entries :    15116 : Total  Size=      61113 bytes  File Size  =      57260 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br   64 :Btrk2DzError1 : Btrk2DzError1/F                                    *
+*Entries :    15116 : Total  Size=      61143 bytes  File Size  =      54335 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   65 :Btrk2Dxy1 : Btrk2Dxy1/F                                            *
+*Entries :    15116 : Total  Size=      61119 bytes  File Size  =      56603 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   66 :Btrk2DxyError1 : Btrk2DxyError1/F                                  *
+*Entries :    15116 : Total  Size=      61149 bytes  File Size  =      53868 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   67 :BDT_pt_7_10 : BDT_pt_7_10/F                                        *
+*Entries :    15116 : Total  Size=      61131 bytes  File Size  =      55360 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   68 :BDT_pt_10_15 : BDT_pt_10_15/F                                      *
+*Entries :    15116 : Total  Size=      61137 bytes  File Size  =      56057 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   69 :BDT_pt_15_20 : BDT_pt_15_20/F                                      *
+*Entries :    15116 : Total  Size=      61137 bytes  File Size  =      56254 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   70 :BDT_pt_20_50 : BDT_pt_20_50/F                                      *
+*Entries :    15116 : Total  Size=      61137 bytes  File Size  =      56040 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   71 :Bmu1isTriggered : Bmu1isTriggered/I                                *
+*Entries :    15116 : Total  Size=      61155 bytes  File Size  =        495 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 122.48     *
+*............................................................................*
+*Br   72 :Bmu2isTriggered : Bmu2isTriggered/I                                *
+*Entries :    15116 : Total  Size=      61155 bytes  File Size  =        495 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 122.48     *
+*............................................................................*
+*Br   73 :Bmu1InPixelLayer : Bmu1InPixelLayer/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =       8523 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   7.11     *
+*............................................................................*
+*Br   74 :Bmu2InPixelLayer : Bmu2InPixelLayer/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =       8440 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   7.18     *
+*............................................................................*
+*Br   75 :Bmu1InStripLayer : Bmu1InStripLayer/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =      10994 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   5.52     *
+*............................................................................*
+*Br   76 :Bmu2InStripLayer : Bmu2InStripLayer/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =      11059 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   5.48     *
+*............................................................................*
+*Br   77 :Bmu1isTrackerMuon : Bmu1isTrackerMuon/I                            *
+*Entries :    15116 : Total  Size=      61167 bytes  File Size  =        535 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 113.33     *
+*............................................................................*
+*Br   78 :Bmu2isTrackerMuon : Bmu2isTrackerMuon/I                            *
+*Entries :    15116 : Total  Size=      61167 bytes  File Size  =        535 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 113.33     *
+*............................................................................*
+*Br   79 :Bmu1isGlobalMuon : Bmu1isGlobalMuon/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =        533 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 113.76     *
+*............................................................................*
+*Br   80 :Bmu2isGlobalMuon : Bmu2isGlobalMuon/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =        533 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 113.76     *
+*............................................................................*
+*Br   81 :Btrk1highPurity : Btrk1highPurity/I                                *
+*Entries :    15116 : Total  Size=      61155 bytes  File Size  =        531 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 114.18     *
+*............................................................................*
+*Br   82 :Btrk2highPurity : Btrk2highPurity/I                                *
+*Entries :    15116 : Total  Size=      61155 bytes  File Size  =        531 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 114.18     *
+*............................................................................*
+*Br   83 :HBHENoiseFilterResult : HBHENoiseFilterResult/I                    *
+*Entries :    15116 : Total  Size=      61191 bytes  File Size  =        543 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 111.68     *
+*............................................................................*
+*Br   84 :pPAprimaryVertexFilter : pPAprimaryVertexFilter/I                  *
+*Entries :    15116 : Total  Size=      61197 bytes  File Size  =        545 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 111.27     *
+*............................................................................*
+*Br   85 :pBeamScrapingFilter : pBeamScrapingFilter/I                        *
+*Entries :    15116 : Total  Size=      61179 bytes  File Size  =        539 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression= 112.50     *
+*............................................................................*
+*Br   86 :Btrk1PixelHit : Btrk1PixelHit/I                                    *
+*Entries :    15116 : Total  Size=      61143 bytes  File Size  =      10271 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   5.90     *
+*............................................................................*
+*Br   87 :Btrk2PixelHit : Btrk2PixelHit/I                                    *
+*Entries :    15116 : Total  Size=      61143 bytes  File Size  =      10252 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   5.91     *
+*............................................................................*
+*Br   88 :Btrk1StripHit : Btrk1StripHit/I                                    *
+*Entries :    15116 : Total  Size=      61143 bytes  File Size  =      14312 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   4.24     *
+*............................................................................*
+*Br   89 :Btrk2StripHit : Btrk2StripHit/I                                    *
+*Entries :    15116 : Total  Size=      61143 bytes  File Size  =      14316 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   4.23     *
+*............................................................................*
+*Br   90 :Btrk1Chi2ndf : Btrk1Chi2ndf/F                                      *
+*Entries :    15116 : Total  Size=      61137 bytes  File Size  =      52534 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   91 :Btrk2Chi2ndf : Btrk2Chi2ndf/F                                      *
+*Entries :    15116 : Total  Size=      61137 bytes  File Size  =      52593 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   92 :Btrk1nStripLayer : Btrk1nStripLayer/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =      12221 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   4.96     *
+*............................................................................*
+*Br   93 :Btrk2nStripLayer : Btrk2nStripLayer/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =      12188 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   4.97     *
+*............................................................................*
+*Br   94 :Btrk1nPixelLayer : Btrk1nPixelLayer/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =       8775 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   6.91     *
+*............................................................................*
+*Br   95 :Btrk2nPixelLayer : Btrk2nPixelLayer/I                              *
+*Entries :    15116 : Total  Size=      61161 bytes  File Size  =       8838 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   6.86     *
+*............................................................................*
+*Br   96 :Btktkmass : Btktkmass/F                                            *
+*Entries :    15116 : Total  Size=      61119 bytes  File Size  =      44945 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=   1.35     *
+*............................................................................*
+*Br   97 :MuonAcc   : MuonAcc/I                                              *
+*Entries :    15116 : Total  Size=      61107 bytes  File Size  =       4055 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=  14.95     *
+*............................................................................*
+*Br   98 :track     : track/I                                                *
+*Entries :    15116 : Total  Size=      61095 bytes  File Size  =       3130 *
+*Baskets :        2 : Basket Size=      32000 bytes  Compression=  19.36     *
+*............................................................................*
+******************************************************************************
+*Tree    :ntphi     : ntphi                                                  *
+*Entries :    93703 : Total =        37255409 bytes  File  Size =   19463380 *
+*        :          : Tree compression factor =   1.91                       *
+******************************************************************************
+*Br    0 :PVx       : PVx/F                                                  *
+*Entries :    93703 : Total  Size=     376201 bytes  File Size  =     317249 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.18     *
+*............................................................................*
+*Br    1 :PVy       : PVy/F                                                  *
+*Entries :    93703 : Total  Size=     376201 bytes  File Size  =     304732 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.23     *
+*............................................................................*
+*Br    2 :PVz       : PVz/F                                                  *
+*Entries :    93703 : Total  Size=     376201 bytes  File Size  =     349469 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br    3 :PVxE      : PVxE/F                                                 *
+*Entries :    93703 : Total  Size=     376217 bytes  File Size  =     324799 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br    4 :PVyE      : PVyE/F                                                 *
+*Entries :    93703 : Total  Size=     376217 bytes  File Size  =     324976 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br    5 :PVzE      : PVzE/F                                                 *
+*Entries :    93703 : Total  Size=     376217 bytes  File Size  =     333803 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br    6 :BvtxX     : BvtxX/F                                                *
+*Entries :    93703 : Total  Size=     376233 bytes  File Size  =     351957 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br    7 :BvtxY     : BvtxY/F                                                *
+*Entries :    93703 : Total  Size=     376233 bytes  File Size  =     350815 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br    8 :BvtxZtoPVZ : BvtxZtoPVZ/F                                          *
+*Entries :    93703 : Total  Size=     376313 bytes  File Size  =     272675 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.38     *
+*............................................................................*
+*Br    9 :BSx       : BSx/F                                                  *
+*Entries :    93703 : Total  Size=     376201 bytes  File Size  =       3140 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 119.64     *
+*............................................................................*
+*Br   10 :BSy       : BSy/F                                                  *
+*Entries :    93703 : Total  Size=     376201 bytes  File Size  =       3152 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 119.18     *
+*............................................................................*
+*Br   11 :BSz       : BSz/F                                                  *
+*Entries :    93703 : Total  Size=     376201 bytes  File Size  =       3164 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 118.73     *
+*............................................................................*
+*Br   12 :BSxErr    : BSxErr/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =       3188 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 117.85     *
+*............................................................................*
+*Br   13 :BSyErr    : BSyErr/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =       3188 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 117.85     *
+*............................................................................*
+*Br   14 :BSzErr    : BSzErr/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =       3188 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 117.85     *
+*............................................................................*
+*Br   15 :BSdxdz    : BSdxdz/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =       3200 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 117.41     *
+*............................................................................*
+*Br   16 :BSdydz    : BSdydz/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =       3188 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 117.85     *
+*............................................................................*
+*Br   17 :BSdxdzErr : BSdxdzErr/F                                            *
+*Entries :    93703 : Total  Size=     376297 bytes  File Size  =       3223 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 116.58     *
+*............................................................................*
+*Br   18 :BSdydzErr : BSdydzErr/F                                            *
+*Entries :    93703 : Total  Size=     376297 bytes  File Size  =       3224 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 116.54     *
+*............................................................................*
+*Br   19 :BSWidthX  : BSWidthX/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =       3212 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 116.98     *
+*............................................................................*
+*Br   20 :BSWidthXErr : BSWidthXErr/F                                        *
+*Entries :    93703 : Total  Size=     376329 bytes  File Size  =       3248 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 115.69     *
+*............................................................................*
+*Br   21 :BSWidthY  : BSWidthY/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =       3212 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 116.98     *
+*............................................................................*
+*Br   22 :BSWidthYErr : BSWidthYErr/F                                        *
+*Entries :    93703 : Total  Size=     376329 bytes  File Size  =       3248 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 115.69     *
+*............................................................................*
+*Br   23 :Bsize     : Bsize/I                                                *
+*Entries :    93703 : Total  Size=     376233 bytes  File Size  =       3128 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 120.10     *
+*............................................................................*
+*Br   24 :HLT_HIL1DoubleMu0_v1 : HLT_HIL1DoubleMu0_v1/I                      *
+*Entries :    93703 : Total  Size=     376473 bytes  File Size  =       3309 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 113.59     *
+*............................................................................*
+*Br   25 :Bmass     : Bmass/F                                                *
+*Entries :    93703 : Total  Size=     376233 bytes  File Size  =     271064 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.39     *
+*............................................................................*
+*Br   26 :By        : By/F                                                   *
+*Entries :    93703 : Total  Size=     376185 bytes  File Size  =     345796 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   27 :Bpt       : Bpt/F                                                  *
+*Entries :    93703 : Total  Size=     376201 bytes  File Size  =     328303 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   28 :Bgen      : Bgen/F                                                 *
+*Entries :    93703 : Total  Size=     376217 bytes  File Size  =       3152 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 119.19     *
+*............................................................................*
+*Br   29 :Btrk1Pt   : Btrk1Pt/F                                              *
+*Entries :    93703 : Total  Size=     376265 bytes  File Size  =     335152 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   30 :Btrk1Eta  : Btrk1Eta/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =     346935 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   31 :Btrk1PtErr : Btrk1PtErr/F                                          *
+*Entries :    93703 : Total  Size=     376313 bytes  File Size  =     336392 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   32 :Btrk2Pt   : Btrk2Pt/F                                              *
+*Entries :    93703 : Total  Size=     376265 bytes  File Size  =     335138 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   33 :Btrk2Eta  : Btrk2Eta/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =     346997 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   34 :Btrk2PtErr : Btrk2PtErr/F                                          *
+*Entries :    93703 : Total  Size=     376313 bytes  File Size  =     336532 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   35 :Bchi2cl   : Bchi2cl/F                                              *
+*Entries :    93703 : Total  Size=     376265 bytes  File Size  =     336361 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   36 :BsvpvDistance : BsvpvDistance/F                                    *
+*Entries :    93703 : Total  Size=     376361 bytes  File Size  =     345061 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   37 :BsvpvDisErr : BsvpvDisErr/F                                        *
+*Entries :    93703 : Total  Size=     376329 bytes  File Size  =     334597 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   38 :BsvpvDistance_2D : BsvpvDistance_2D/F                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =     340957 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   39 :BsvpvDisErr_2D : BsvpvDisErr_2D/F                                  *
+*Entries :    93703 : Total  Size=     376377 bytes  File Size  =     323846 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br   40 :Bmumumass : Bmumumass/F                                            *
+*Entries :    93703 : Total  Size=     376297 bytes  File Size  =     292200 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.29     *
+*............................................................................*
+*Br   41 :Bmu1eta   : Bmu1eta/F                                              *
+*Entries :    93703 : Total  Size=     376265 bytes  File Size  =     347295 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   42 :Bmu2eta   : Bmu2eta/F                                              *
+*Entries :    93703 : Total  Size=     376265 bytes  File Size  =     347273 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   43 :Bmu1pt    : Bmu1pt/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =     332582 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   44 :Bmu2pt    : Bmu2pt/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =     332588 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   45 :Bmu1dxyPV : Bmu1dxyPV/F                                            *
+*Entries :    93703 : Total  Size=     376297 bytes  File Size  =     353284 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br   46 :Bmu2dxyPV : Bmu2dxyPV/F                                            *
+*Entries :    93703 : Total  Size=     376297 bytes  File Size  =     353232 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br   47 :Bmu1dzPV  : Bmu1dzPV/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =     357504 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br   48 :Bmu2dzPV  : Bmu2dzPV/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =     357590 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br   49 :Bd0       : Bd0/F                                                  *
+*Entries :    93703 : Total  Size=     376201 bytes  File Size  =     340804 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   50 :Bd0Err    : Bd0Err/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =     332208 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   51 :Bdtheta   : Bdtheta/F                                              *
+*Entries :    93703 : Total  Size=     376265 bytes  File Size  =     345706 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br   52 :Balpha    : Balpha/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =     347365 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   53 :Btrk1Dz1  : Btrk1Dz1/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =     357399 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br   54 :Btrk1DzError1 : Btrk1DzError1/F                                    *
+*Entries :    93703 : Total  Size=     376361 bytes  File Size  =     338035 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   55 :Btrk1Dxy1 : Btrk1Dxy1/F                                            *
+*Entries :    93703 : Total  Size=     376297 bytes  File Size  =     353097 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br   56 :Btrk1DxyError1 : Btrk1DxyError1/F                                  *
+*Entries :    93703 : Total  Size=     376377 bytes  File Size  =     333662 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   57 :Bmumueta  : Bmumueta/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =     346999 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   58 :Bmumuphi  : Bmumuphi/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =     348349 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   59 :Bmumupt   : Bmumupt/F                                              *
+*Entries :    93703 : Total  Size=     376265 bytes  File Size  =     332773 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   60 :pthat     : pthat/F                                                *
+*Entries :    93703 : Total  Size=     376233 bytes  File Size  =     332938 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   61 :weight    : weight/F                                               *
+*Entries :    93703 : Total  Size=     376249 bytes  File Size  =       3164 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 118.74     *
+*............................................................................*
+*Br   62 :nMult     : nMult/I                                                *
+*Entries :    93703 : Total  Size=     376233 bytes  File Size  =     122472 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   3.07     *
+*............................................................................*
+*Br   63 :Btrk2Dz1  : Btrk2Dz1/F                                             *
+*Entries :    93703 : Total  Size=     376281 bytes  File Size  =     357427 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.05     *
+*............................................................................*
+*Br   64 :Btrk2DzError1 : Btrk2DzError1/F                                    *
+*Entries :    93703 : Total  Size=     376361 bytes  File Size  =     337947 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   65 :Btrk2Dxy1 : Btrk2Dxy1/F                                            *
+*Entries :    93703 : Total  Size=     376297 bytes  File Size  =     353131 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.06     *
+*............................................................................*
+*Br   66 :Btrk2DxyError1 : Btrk2DxyError1/F                                  *
+*Entries :    93703 : Total  Size=     376377 bytes  File Size  =     333723 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   67 :BDT_pt_7_10 : BDT_pt_7_10/F                                        *
+*Entries :    93703 : Total  Size=     376329 bytes  File Size  =     324476 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br   68 :BDT_pt_10_15 : BDT_pt_10_15/F                                      *
+*Entries :    93703 : Total  Size=     376345 bytes  File Size  =     334135 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   69 :BDT_pt_15_20 : BDT_pt_15_20/F                                      *
+*Entries :    93703 : Total  Size=     376345 bytes  File Size  =     334920 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   70 :BDT_pt_20_50 : BDT_pt_20_50/F                                      *
+*Entries :    93703 : Total  Size=     376345 bytes  File Size  =     337186 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   71 :Bmu1isTriggered : Bmu1isTriggered/I                                *
+*Entries :    93703 : Total  Size=     376393 bytes  File Size  =       3023 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 124.32     *
+*............................................................................*
+*Br   72 :Bmu2isTriggered : Bmu2isTriggered/I                                *
+*Entries :    93703 : Total  Size=     376393 bytes  File Size  =       3023 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 124.32     *
+*............................................................................*
+*Br   73 :Bmu1InPixelLayer : Bmu1InPixelLayer/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =      48227 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   7.79     *
+*............................................................................*
+*Br   74 :Bmu2InPixelLayer : Bmu2InPixelLayer/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =      47943 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   7.84     *
+*............................................................................*
+*Br   75 :Bmu1InStripLayer : Bmu1InStripLayer/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =      68182 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   5.51     *
+*............................................................................*
+*Br   76 :Bmu2InStripLayer : Bmu2InStripLayer/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =      68122 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   5.52     *
+*............................................................................*
+*Br   77 :Bmu1isTrackerMuon : Bmu1isTrackerMuon/I                            *
+*Entries :    93703 : Total  Size=     376425 bytes  File Size  =       3273 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 114.83     *
+*............................................................................*
+*Br   78 :Bmu2isTrackerMuon : Bmu2isTrackerMuon/I                            *
+*Entries :    93703 : Total  Size=     376425 bytes  File Size  =       3273 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 114.83     *
+*............................................................................*
+*Br   79 :Bmu1isGlobalMuon : Bmu1isGlobalMuon/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =       3261 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 115.25     *
+*............................................................................*
+*Br   80 :Bmu2isGlobalMuon : Bmu2isGlobalMuon/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =       3261 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 115.25     *
+*............................................................................*
+*Br   81 :Btrk1highPurity : Btrk1highPurity/I                                *
+*Entries :    93703 : Total  Size=     376393 bytes  File Size  =       3247 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 115.74     *
+*............................................................................*
+*Br   82 :Btrk2highPurity : Btrk2highPurity/I                                *
+*Entries :    93703 : Total  Size=     376393 bytes  File Size  =       3247 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 115.74     *
+*............................................................................*
+*Br   83 :HBHENoiseFilterResult : HBHENoiseFilterResult/I                    *
+*Entries :    93703 : Total  Size=     376489 bytes  File Size  =       3321 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 113.18     *
+*............................................................................*
+*Br   84 :pPAprimaryVertexFilter : pPAprimaryVertexFilter/I                  *
+*Entries :    93703 : Total  Size=     376505 bytes  File Size  =       3333 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 112.78     *
+*............................................................................*
+*Br   85 :pBeamScrapingFilter : pBeamScrapingFilter/I                        *
+*Entries :    93703 : Total  Size=     376457 bytes  File Size  =       3297 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression= 114.00     *
+*............................................................................*
+*Br   86 :Btrk1PixelHit : Btrk1PixelHit/I                                    *
+*Entries :    93703 : Total  Size=     376361 bytes  File Size  =      60611 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   6.20     *
+*............................................................................*
+*Br   87 :Btrk2PixelHit : Btrk2PixelHit/I                                    *
+*Entries :    93703 : Total  Size=     376361 bytes  File Size  =      60596 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   6.20     *
+*............................................................................*
+*Br   88 :Btrk1StripHit : Btrk1StripHit/I                                    *
+*Entries :    93703 : Total  Size=     376361 bytes  File Size  =      87837 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   4.28     *
+*............................................................................*
+*Br   89 :Btrk2StripHit : Btrk2StripHit/I                                    *
+*Entries :    93703 : Total  Size=     376361 bytes  File Size  =      87895 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   4.28     *
+*............................................................................*
+*Br   90 :Btrk1Chi2ndf : Btrk1Chi2ndf/F                                      *
+*Entries :    93703 : Total  Size=     376345 bytes  File Size  =     327666 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   91 :Btrk2Chi2ndf : Btrk2Chi2ndf/F                                      *
+*Entries :    93703 : Total  Size=     376345 bytes  File Size  =     327588 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   92 :Btrk1nStripLayer : Btrk1nStripLayer/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =      74127 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   5.07     *
+*............................................................................*
+*Br   93 :Btrk2nStripLayer : Btrk2nStripLayer/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =      74713 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   5.03     *
+*............................................................................*
+*Br   94 :Btrk1nPixelLayer : Btrk1nPixelLayer/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =      48471 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   7.75     *
+*............................................................................*
+*Br   95 :Btrk2nPixelLayer : Btrk2nPixelLayer/I                              *
+*Entries :    93703 : Total  Size=     376409 bytes  File Size  =      48284 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   7.78     *
+*............................................................................*
+*Br   96 :Btktkmass : Btktkmass/F                                            *
+*Entries :    93703 : Total  Size=     376297 bytes  File Size  =     272029 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=   1.38     *
+*............................................................................*
+*Br   97 :MuonAcc   : MuonAcc/I                                              *
+*Entries :    93703 : Total  Size=     376265 bytes  File Size  =      25573 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=  14.69     *
+*............................................................................*
+*Br   98 :track     : track/I                                                *
+*Entries :    93703 : Total  Size=     376233 bytes  File Size  =      16631 *
+*Baskets :       12 : Basket Size=      32000 bytes  Compression=  22.59     *
+*............................................................................*
+Histograms
+Created dataset
+Created roodatahists
+Created d
+Created roocurve
+weights defined
+Passed AddFriends
+Formed outputf ROOTfiles/yields_Bs_binned_y.root
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(Bmass) TTree Float_t branch Bmass will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(Bpt) TTree Float_t branch Bpt will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(By) TTree Float_t branch By will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(nMult) TTree Int_t branch nMult will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(track) TTree Int_t branch track will be converted to double precision.
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(ds0) Skipping event #1 because Bmass cannot accommodate the value 6.53528
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(ds0) Skipping event #2 because Bmass cannot accommodate the value 4.97824
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(ds0) Skipping event #3 because Bmass cannot accommodate the value 4.65684
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(ds0) Skipping event #4 because Bmass cannot accommodate the value 4.78659
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(ds0) Skipping ...
+[#0] WARNING:DataHandling -- RooTreeDataStore::loadValues(ds0) Ignored 8944 out-of-range events
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(Bmass) TTree Float_t branch Bmass will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(Bpt) TTree Float_t branch Bpt will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(By) TTree Float_t branch By will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(nMult) TTree Int_t branch nMult will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(track) TTree Int_t branch track will be converted to double precision.
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(dsMC0) Skipping event #16151 because Bmass cannot accommodate the value 4.86887
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(dsMC0) Skipping event #47594 because Bmass cannot accommodate the value 4.95945
+[#0] WARNING:DataHandling -- RooTreeDataStore::loadValues(dsMC0) Ignored 2 out-of-range events
+data entries: 563
+MC entries: 9164
+[#1] INFO:InputArguments -- The formula (Bpt>0)&&1 claims to use the variables (Bmass,Bpt,By,track) but only (Bpt) seem to be in use.
+  inputs:         (Bpt>0)&&1
+[#1] INFO:InputArguments -- The formula 1 claims to use the variables (Bmass,Bpt,By,nMult,track) but only () seem to be in use.
+  inputs:         1
+data entries: 563
+MC entries: 9164
+Really created datasets
+The content of dhMC&dh is (p1) 
+RooDataHist::[] = 0 bins (0 weights)
+RooDataHist::[] = 0 bins (0 weights)
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "BgenNew"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {Bmass,1*(1&&BgenNew==23333&&By>0.500000&&By<1.000000)}
+The content of dhMC&dh is (p2) 
+RooDataHist::[] = 0 bins (0 weights)
+RooDataHist::[] = 0 bins (0 weights)
+The content of dhMC&dh is (p3) 
+RooDataHist::[] = 0 bins (0 weights)
+RooDataHist::dh1[Bmass] = 100 bins (563 weights)
+The content of dhMC&dh is (p4) 
+RooDataHist::dhMC1[Bmass] = 100 bins (0 weights)
+RooDataHist::dh1[Bmass] = 100 bins (563 weights)
+RooDataHist 
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing dataset ds0
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::Bmass
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::Bpt
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::By
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::nMult
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::track
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing dataset dsMC0
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing dataset dh1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing dataset dhMC1
+total data: 563
+[#1] INFO:Eval -- RooRealVar::setRange(Bmass) new range named 'signal' created with bounds [5.31315,5.47416]
+sum Entries: 9164
+MC fit for bin 0.5to1 starts
+[#1] INFO:Minization -- p.d.f. provides expected number of events, including extended term in likelihood.
+[#1] INFO:Fitting -- RooAbsOptTestStatistic::ctor(nll_modelMC1_dsMC_cut1) constructing test statistic for sub-range named signal
+[#1] INFO:Eval -- RooRealVar::setRange(Bmass) new range named 'NormalizationRangeForsignal' created with bounds [5,6]
+[#1] INFO:Eval -- RooRealVar::setRange(Bmass) new range named 'fit_nll_modelMC1_dsMC_cut1' created with bounds [5.31315,5.47416]
+[#1] INFO:Fitting -- RooAbsOptTestStatistic::ctor(nll_modelMC1_dsMC_cut1) fixing interpretation of coefficients of any RooAddPdf to full domain of observables 
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: activating const optimization
+[#1] INFO:Minization --  The following expressions will be evaluated in cache-and-track mode: (sig1MC1_,sig2MC1_)
+ **********
+ **    1 **SET PRINT           1
+ **********
+ **********
+ **    2 **SET NOGRAD
+ **********
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 meanMC1_     5.36682e+00  2.68341e-04    5.36145e+00  5.36736e+00
+     2 nsigMC1      1.00000e+00  5.00000e-01    0.00000e+00  1.09968e+04
+     3 sig1fracMC1_   2.00000e-01  9.95000e-02    1.00000e-03  9.99000e-01
+     4 sigma1MC1    5.00000e-02  1.45000e-02    5.00000e-03  1.50000e-01
+     5 sigma2MC1    3.00000e-02  5.50000e-03    5.00000e-03  6.00000e-02
+ **********
+ **    3 **SET ERR         0.5
+ **********
+ **********
+ **    4 **SET PRINT           1
+ **********
+ **********
+ **    5 **SET STR           1
+ **********
+ NOW USING STRATEGY  1: TRY TO BALANCE SPEED AGAINST RELIABILITY
+ **********
+ **    6 **MIGRAD        2500           1
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-03
+ FCN=-28065.6 FROM MIGRAD    STATUS=INITIATE       66 CALLS          67 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  meanMC1_     5.36682e+00   2.68341e-04   0.00000e+00  -6.98358e+01
+   2  nsigMC1      1.00000e+00   5.00000e-01   0.00000e+00  -9.60631e+05
+   3  sig1fracMC1_   2.00000e-01   9.95000e-02   0.00000e+00  -1.57263e+02
+   4  sigma1MC1    5.04249e-03   1.45000e-02   0.00000e+00   6.54898e+00
+   5  sigma2MC1    1.27535e-02   5.50000e-03  -7.09967e-01   2.13294e+02
+                               ERR DEF= 0.5
+ MIGRAD FAILS TO FIND IMPROVEMENT
+ MACHINE ACCURACY LIMITS FURTHER IMPROVEMENT.
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=-102537 FROM MIGRAD    STATUS=CONVERGED     474 CALLS         475 TOTAL
+                     EDM=0.00040247    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  meanMC1_     5.36733e+00   1.09221e-04   5.89273e-02   3.27020e-02
+   2  nsigMC1      9.16359e+03   9.57376e+01   5.16627e-03   4.98508e-01
+   3  sig1fracMC1_   5.16647e-01   4.50270e-02   5.77660e-03  -2.02573e-01
+   4  sigma1MC1    7.36299e-03   3.30889e-04   1.66451e-03  -5.16602e-01
+   5  sigma2MC1    1.46430e-02   3.86461e-04   1.78181e-03   1.38151e+00
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  5    ERR DEF=0.5
+  1.216e-08 -1.393e-06 -7.201e-08 -5.795e-10 -5.008e-10 
+ -1.393e-06  9.167e+03  5.511e-03  3.371e-05  5.672e-05 
+ -7.201e-08  5.511e-03  2.033e-03  1.347e-05  1.557e-05 
+ -5.795e-10  3.371e-05  1.347e-05  1.095e-07  9.734e-08 
+ -5.008e-10  5.672e-05  1.557e-05  9.734e-08  1.494e-07 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4      5
+        1  0.01592   1.000 -0.000 -0.014 -0.016 -0.012
+        2  0.00155  -0.000  1.000  0.001  0.001  0.002
+        3  0.95734  -0.014  0.001  1.000  0.903  0.894
+        4  0.90863  -0.016  0.001  0.903  1.000  0.761
+        5  0.89993  -0.012  0.002  0.894  0.761  1.000
+ **********
+ **    7 **SET ERR         0.5
+ **********
+ **********
+ **    8 **SET PRINT           1
+ **********
+ **********
+ **    9 **HESSE        2500
+ **********
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=-102537 FROM HESSE     STATUS=OK             31 CALLS         506 TOTAL
+                     EDM=0.000407814    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  meanMC1_     5.36733e+00   1.14176e-04   2.35709e-03   1.40005e+01
+   2  nsigMC1      9.16359e+03   9.57380e+01   2.06651e-04   7.29628e-01
+   3  sig1fracMC1_   5.16647e-01   4.51013e-02   1.15532e-03   1.25997e+01
+   4  sigma1MC1    7.36299e-03   3.30981e-04   6.65803e-05  -1.31478e+00
+   5  sigma2MC1    1.46430e-02   3.87727e-04   3.56363e-04  -7.06722e-01
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  5    ERR DEF=0.5
+  1.272e-08 -1.850e-06 -9.569e-08 -7.843e-10 -6.749e-10 
+ -1.850e-06  9.167e+03  5.470e-03  3.344e-05  5.635e-05 
+ -9.569e-08  5.470e-03  2.040e-03  1.350e-05  1.566e-05 
+ -7.843e-10  3.344e-05  1.350e-05  1.096e-07  9.783e-08 
+ -6.749e-10  5.635e-05  1.566e-05  9.783e-08  1.503e-07 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4      5
+        1  0.02103   1.000 -0.000 -0.019 -0.021 -0.015
+        2  0.00154  -0.000  1.000  0.001  0.001  0.002
+        3  0.95748  -0.019  0.001  1.000  0.903  0.894
+        4  0.90868  -0.021  0.001  0.903  1.000  0.762
+        5  0.90062  -0.015  0.002  0.894  0.762  1.000
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: deactivating const optimization
+sigma1MC is 0.00736299
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooAddPdf::modelMC1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooAddPdf::sigMC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooGaussian::sig1MC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::Bmass
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::meanMC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooProduct::scaled_sigma1MC
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::scale
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::sigma1MC1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::sig1fracMC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooGaussian::sig2MC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooProduct::scaled_sigma2MC
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::sigma2MC1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::nsigMC1
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(modelMC1) p.d.f was fitted in a subrange and no explicit Range() and NormRange() was specified. Plotting / normalising in fit range. To override, do one of the following
+	- Clear the automatic fit range attribute: <pdf>.setStringAttribute("fitrange", nullptr);
+	- Explicitly specify the plotting range: Range("<rangeName>").
+	- Explicitly specify where to compute the normalisation: NormRange("<rangeName>").
+	The default (full) range can be denoted with Range("") / NormRange("").
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(modelMC1) directly selected PDF components: (sigMC1_)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(modelMC1) indirectly selected PDF components: (sig1MC1_,scaled_sigma1MC,sig2MC1_,scaled_sigma2MC)
+[#0] WARNING:Plotting -- Fill color or style was set for plotting "modelMC1", but these only have an effect when 'DrawOption("F")' for fill is used at the same time.
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(modelMC1) p.d.f was fitted in a subrange and no explicit Range() and NormRange() was specified. Plotting / normalising in fit range. To override, do one of the following
+	- Clear the automatic fit range attribute: <pdf>.setStringAttribute("fitrange", nullptr);
+	- Explicitly specify the plotting range: Range("<rangeName>").
+	- Explicitly specify where to compute the normalisation: NormRange("<rangeName>").
+	The default (full) range can be denoted with Range("") / NormRange("").
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(modelMC1) directly selected PDF components: (sigMC1_)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(modelMC1) indirectly selected PDF components: (sig1MC1_,scaled_sigma1MC,sig2MC1_,scaled_sigma2MC)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(modelMC1) p.d.f was fitted in a subrange and no explicit Range() and NormRange() was specified. Plotting / normalising in fit range. To override, do one of the following
+	- Clear the automatic fit range attribute: <pdf>.setStringAttribute("fitrange", nullptr);
+	- Explicitly specify the plotting range: Range("<rangeName>").
+	- Explicitly specify where to compute the normalisation: NormRange("<rangeName>").
+	The default (full) range can be denoted with Range("") / NormRange("").
+Y AXIS RANGE 1282.96
+Info in <TCanvas::Print>: pdf file mc_afterfit_test.pdf has been created
+[#1] INFO:InputArguments -- The formula select claims to use the variables (Bmass,Bpt,By,track) but only (Bmass) seem to be in use.
+  inputs:         abs(Bmass-5.36682)<0.05
+[#1] INFO:InputArguments -- The formula select claims to use the variables (Bmass,Bpt,By,track) but only (Bmass) seem to be in use.
+  inputs:         abs(Bmass-5.36682)<0.10&&abs(Bmass-5.36682)>0.05
+[#1] INFO:InputArguments -- The formula peakbg1 claims to use the variables (Bmass) but only () seem to be in use.
+  inputs:         (1)
+Data fit for bin 0.5to1 starts
+[#1] INFO:Eval -- RooRealVar::setRange(Bmass) new range named 'm_range' created with bounds [5.19,6]
+[#1] INFO:Eval -- RooRealVar::setRange(Bmass) new range named 'all' created with bounds [5,6]
+[#1] INFO:Fitting -- RooAbsOptTestStatistic::ctor(nll_model1_ds_cut1) constructing test statistic for sub-range named all
+[#1] INFO:Eval -- RooRealVar::setRange(Bmass) new range named 'NormalizationRangeForall' created with bounds [5,6]
+[#1] INFO:Eval -- RooRealVar::setRange(Bmass) new range named 'fit_nll_model1_ds_cut1' created with bounds [5,6]
+[#1] INFO:Fitting -- RooAbsOptTestStatistic::ctor(nll_model1_ds_cut1) fixing interpretation of coefficients of any RooAddPdf to full domain of observables 
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: activating const optimization
+[#1] INFO:Minization --  The following expressions will be evaluated in cache-and-track mode: (sig11,sig21,bkg1)
+ **********
+ **   10 **SET PRINT           1
+ **********
+ **********
+ **   11 **SET NOGRAD
+ **********
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 lambda1     -5.00000e-01  4.00000e-01   -3.00000e+00  1.00000e+00
+     2 mean1        5.36733e+00  1.00000e-01    5.00000e+00  6.00000e+00
+     3 nbkg1        4.07000e+02  5.63000e+01    0.00000e+00  5.63000e+02
+     4 nsig1        1.56000e+02  7.85000e+01   -1.00000e+00  1.68900e+03
+     5 scale        1.00000e+00  1.00000e-01    8.00000e-01  2.00000e+00
+ **********
+ **   12 **SET ERR         0.5
+ **********
+ **********
+ **   13 **SET PRINT           1
+ **********
+ **********
+ **   14 **SET STR           1
+ **********
+ NOW USING STRATEGY  1: TRY TO BALANCE SPEED AGAINST RELIABILITY
+ **********
+ **   15 **MIGRAD        2500           1
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-03
+ FCN=-3243.18 FROM MIGRAD    STATUS=INITIATE       18 CALLS          19 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  lambda1     -5.00000e-01   4.00000e-01   2.08372e-01   5.73485e+01
+   2  mean1        5.36733e+00   1.00000e-01   2.09316e-01  -9.22394e+01
+   3  nbkg1        4.07000e+02   5.63000e+01   2.26866e-01   4.35077e+00
+   4  nsig1        1.56000e+02   7.85000e+01   1.65332e-01  -2.21272e+01
+   5  scale        1.00000e+00   1.00000e-01   2.30756e-01  -2.44619e+00
+                               ERR DEF= 0.5
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=-3257.16 FROM MIGRAD    STATUS=CONVERGED      85 CALLS          86 TOTAL
+                     EDM=4.72591e-06    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  lambda1     -1.43288e+00   1.82231e-01   3.68251e-03   5.70176e-03
+   2  mean1        5.36762e+00   1.17149e-03   9.55958e-05   4.48764e-01
+   3  nbkg1        3.98427e+02   2.08451e+01   3.16768e-03   1.90396e-02
+   4  nsig1        1.64598e+02   1.41977e+01   1.08801e-03  -1.59425e-02
+   5  scale        1.03941e+00   8.65031e-02   6.97948e-03   5.84424e-03
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  5    ERR DEF=0.5
+  3.331e-02 -2.425e-06 -2.309e-02  2.309e-02  1.633e-04 
+ -2.425e-06  1.372e-06  2.897e-04 -2.902e-04 -4.328e-06 
+ -2.309e-02  2.897e-04  4.355e+02 -3.695e+01 -2.314e-01 
+  2.309e-02 -2.902e-04 -3.695e+01  2.016e+02  2.318e-01 
+  1.633e-04 -4.328e-06 -2.314e-01  2.318e-01  7.565e-03 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4      5
+        1  0.01703   1.000 -0.011 -0.006  0.009  0.010
+        2  0.04522  -0.011  1.000  0.012 -0.017 -0.042
+        3  0.16379  -0.006  0.012  1.000 -0.125 -0.128
+        4  0.21368   0.009 -0.017 -0.125  1.000  0.188
+        5  0.21851   0.010 -0.042 -0.128  0.188  1.000
+ **********
+ **   16 **SET ERR         0.5
+ **********
+ **********
+ **   17 **SET PRINT           1
+ **********
+ **********
+ **   18 **HESSE        2500
+ **********
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=-3257.16 FROM HESSE     STATUS=OK             31 CALLS         117 TOTAL
+                     EDM=4.72582e-06    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  lambda1     -1.43288e+00   1.82230e-01   7.36501e-04  -2.18169e-01
+   2  mean1        5.36762e+00   1.17158e-03   1.91192e-05  -2.67961e-01
+   3  nbkg1        3.98427e+02   2.08466e+01   6.33537e-04   4.28350e-01
+   4  nsig1        1.64598e+02   1.41987e+01   2.17602e-04  -9.34036e-01
+   5  scale        1.03941e+00   8.65146e-02   1.39590e-03  -6.44732e-01
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  5    ERR DEF=0.5
+  3.330e-02 -2.423e-06 -2.285e-02  2.285e-02  1.620e-04 
+ -2.423e-06  1.373e-06  2.908e-04 -2.909e-04 -4.509e-06 
+ -2.285e-02  2.908e-04  4.355e+02 -3.705e+01 -2.321e-01 
+  2.285e-02 -2.909e-04 -3.705e+01  2.017e+02  2.321e-01 
+  1.620e-04 -4.509e-06 -2.321e-01  2.321e-01  7.567e-03 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4      5
+        1  0.01693   1.000 -0.011 -0.006  0.009  0.010
+        2  0.04679  -0.011  1.000  0.012 -0.017 -0.044
+        3  0.16419  -0.006  0.012  1.000 -0.125 -0.128
+        4  0.21400   0.009 -0.017 -0.125  1.000  0.188
+        5  0.21915   0.010 -0.044 -0.128  0.188  1.000
+ **********
+ **   19 **MINOS        2500           1
+ **********
+ FCN=-3257.16 FROM MINOS     STATUS=SUCCESSFUL     56 CALLS         173 TOTAL
+                     EDM=4.72582e-06    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  lambda1     -1.43288e+00   1.82230e-01  -1.83344e-01   1.81710e-01
+   2  mean1        5.36762e+00   1.17158e-03                            
+   3  nbkg1        3.98427e+02   2.08466e+01                            
+   4  nsig1        1.64598e+02   1.41987e+01                            
+   5  scale        1.03941e+00   8.65146e-02                            
+                               ERR DEF= 0.5
+ **********
+ **   20 **MINOS        2500           2
+ **********
+ FCN=-3257.16 FROM MINOS     STATUS=SUCCESSFUL     56 CALLS         229 TOTAL
+                     EDM=4.72582e-06    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  lambda1     -1.43288e+00   1.82230e-01  -1.83344e-01   1.81710e-01
+   2  mean1        5.36762e+00   1.17158e-03  -1.17823e-03   1.16938e-03
+   3  nbkg1        3.98427e+02   2.08466e+01                            
+   4  nsig1        1.64598e+02   1.41987e+01                            
+   5  scale        1.03941e+00   8.65146e-02                            
+                               ERR DEF= 0.5
+ **********
+ **   21 **MINOS        2500           3
+ **********
+ FCN=-3257.16 FROM MINOS     STATUS=SUCCESSFUL     72 CALLS         301 TOTAL
+                     EDM=4.72582e-06    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  lambda1     -1.43288e+00   1.82230e-01  -1.83344e-01   1.81710e-01
+   2  mean1        5.36762e+00   1.17158e-03  -1.17823e-03   1.16938e-03
+   3  nbkg1        3.98427e+02   2.08466e+01  -2.05442e+01   2.11944e+01
+   4  nsig1        1.64598e+02   1.41987e+01                            
+   5  scale        1.03941e+00   8.65146e-02                            
+                               ERR DEF= 0.5
+ **********
+ **   22 **MINOS        2500           4
+ **********
+ FCN=-3257.16 FROM MINOS     STATUS=SUCCESSFUL     72 CALLS         373 TOTAL
+                     EDM=4.72582e-06    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  lambda1     -1.43288e+00   1.82230e-01  -1.83344e-01   1.81710e-01
+   2  mean1        5.36762e+00   1.17158e-03  -1.17823e-03   1.16938e-03
+   3  nbkg1        3.98427e+02   2.08466e+01  -2.05442e+01   2.11944e+01
+   4  nsig1        1.64598e+02   1.41987e+01  -1.38510e+01   1.45554e+01
+   5  scale        1.03941e+00   8.65146e-02                            
+                               ERR DEF= 0.5
+ **********
+ **   23 **MINOS        2500           5
+ **********
+ FCN=-3257.16 FROM MINOS     STATUS=SUCCESSFUL     72 CALLS         445 TOTAL
+                     EDM=4.72582e-06    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  lambda1     -1.43288e+00   1.82230e-01  -1.83344e-01   1.81710e-01
+   2  mean1        5.36762e+00   1.17158e-03  -1.17823e-03   1.16938e-03
+   3  nbkg1        3.98427e+02   2.08466e+01  -2.05442e+01   2.11944e+01
+   4  nsig1        1.64598e+02   1.41987e+01  -1.38510e+01   1.45554e+01
+   5  scale        1.03941e+00   8.65146e-02  -8.26353e-02   9.19611e-02
+                               ERR DEF= 0.5
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: deactivating const optimization
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooAddPdf::model1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooAddPdf::sig1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooGaussian::sig11
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::mean1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooProduct::scaled_sigma1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::scale
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::sigma11
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::sig1frac1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooGaussian::sig21
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooProduct::scaled_sigma2
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::sigma21
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::nsig1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooExponential::bkg1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::lambda1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::nbkg1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooAddPdf::modelMC1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooAddPdf::sigMC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooGaussian::sig1MC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::meanMC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooProduct::scaled_sigma1MC
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::sigma1MC1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::sig1fracMC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooGaussian::sig2MC1_
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooProduct::scaled_sigma2MC
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::sigma2MC1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w) importing RooRealVar::nsigMC1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooAddPdf::model1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooAddPdf::sig1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooGaussian::sig11
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::mean1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooProduct::scaled_sigma1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::sigma11
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::sig1frac1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooGaussian::sig21
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooProduct::scaled_sigma2
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::sigma21
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::nsig1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooExponential::bkg1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::lambda1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_pdf) importing RooRealVar::nbkg1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooAddPdf::model1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooAddPdf::sig1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooGaussian::sig11
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::Bmass
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::mean1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooProduct::scaled_sigma1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::scale
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::sigma11
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::sig1frac1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooGaussian::sig21
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooProduct::scaled_sigma2
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::sigma21
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::nsig1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooExponential::bkg1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::lambda1
+[#1] INFO:ObjectHandling -- RooWorkspace::import(w_vl) importing RooRealVar::nbkg1
+[#0] ERROR:ObjectHandling -- RooWorkSpace::import(w_vl) ERROR importing object named nsig1: another instance with same name already in the workspace and no conflict resolution protocol specified
+nbkg->getVal() = 398.427
+npeakbg->getVal() = 1
+[#1] INFO:Minization -- p.d.f. provides expected number of events, including extended term in likelihood.
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model1) only plotting range 'all', curve is normalized to data in given range
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model1) directly selected PDF components: (bkg1)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model1) indirectly selected PDF components: ()
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model1) only plotting range 'all', curve is normalized to data in given range
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model1) only plotting range 'all', curve is normalized to data in given range
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model1) directly selected PDF components: (sig1)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model1) indirectly selected PDF components: (sig11,scaled_sigma1,sig21,scaled_sigma2)
+[#0] ERROR:Plotting -- RooGenericPdf::ref_0:plotOn: WARNING: variable is not an explicit dependent: Bmass
+[#0] ERROR:Plotting -- RooGenericPdf::ref_0:plotOn: WARNING: variable is not an explicit dependent: Bmass
+[#0] ERROR:Plotting -- RooGenericPdf::ref_0:createPlotProjection: "Bmass" is not a dependent and will be ignored.
+[#0] WARNING:InputArguments -- RooRealBinding: The function ref_0_Norm[Bmass] does not depend on the parameter Bmass. Note that passing copies of the parameters is not supported.
+pull done
+[#0] ERROR:Plotting -- RooGenericPdf::ref_0:plotOn: WARNING: variable is not an explicit dependent: Bmass
+[#0] ERROR:Plotting -- RooGenericPdf::ref_0:plotOn: WARNING: variable is not an explicit dependent: Bmass
+[#0] ERROR:Plotting -- RooGenericPdf::ref_0:createPlotProjection: "Bmass" is not a dependent and will be ignored.
+[#0] WARNING:InputArguments -- RooRealBinding: The function ref_0_Norm[Bmass] does not depend on the parameter Bmass. Note that passing copies of the parameters is not supported.
+pull done (MC)
+frame->chiSquare: 0.520968
+pars= 5
+[#0] ERROR:InputArguments -- RooPlot::findObject(frame_Bmass_123c51a0) cannot find object ds1
+[#0] ERROR:InputArguments -- RooPlot::chiSquare(frame_Bmass_123c51a0) cannot find histogram
+chi2: -1
+chi2 Standard: 126.799125
+chi2 Neyman: 106.767236
+chi2 Peason: 85.885141
+chi2 Baker & Cousins: 92.300148
+[#1] INFO:Minization -- p.d.f. provides expected number of events, including extended term in likelihood.
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: activating const optimization
+[#1] INFO:Minization --  The following expressions will be evaluated in cache-and-track mode: (sig11,sig21,bkg1)
+ **********
+ **    1 **SET PRINT           1
+ **********
+ **********
+ **    2 **SET NOGRAD
+ **********
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 lambda1     -1.43288e+00  1.82230e-01   -3.00000e+00  1.00000e+00
+     2 mean1        5.36762e+00  1.17158e-03    5.00000e+00  6.00000e+00
+     3 nbkg1        3.98427e+02  2.08466e+01    0.00000e+00  5.63000e+02
+     4 scale        1.03941e+00  8.65146e-02    8.00000e-01  2.00000e+00
+ **********
+ **    3 **SET ERR         0.5
+ **********
+ **********
+ **    4 **SET PRINT           1
+ **********
+ **********
+ **    5 **SET STR           1
+ **********
+ NOW USING STRATEGY  1: TRY TO BALANCE SPEED AGAINST RELIABILITY
+ **********
+ **    6 **MIGRAD        2000           1
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-03
+ FCN=-3022.36 FROM MIGRAD    STATUS=INITIATE      145 CALLS         146 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  lambda1     -1.43288e+00   1.82230e-01   0.00000e+00   5.43839e+00
+   2  mean1        5.36762e+00   1.17158e-03   0.00000e+00   0.00000e+00
+   3  nbkg1        3.98427e+02   2.08466e+01   0.00000e+00  -1.05771e+02
+   4  scale        1.03941e+00   8.65146e-02   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ MINUIT WARNING IN HESSE
+ ============== Second derivative enters zero, param 2
+ MINUIT WARNING IN HESSE
+ ============== Second derivative zero for parameter2
+  MNHESS FAILS AND WILL RETURN DIAGONAL MATRIX. 
+ FCN=-3052.54 FROM MIGRAD    STATUS=CONVERGED     219 CALLS         220 TOTAL
+                     EDM=5.20773e-05    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  lambda1     -1.49962e+00   1.54007e-01   3.03562e-03  -6.91335e-02
+   2  mean1        5.36762e+00   1.65685e-03  -0.00000e+00   0.00000e+00
+   3  nbkg1        5.62837e+02   4.19303e+02   6.43860e-02  -1.57169e-02
+   4  scale        1.03941e+00   4.03533e-01  -0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  4    ERR DEF=0.5
+  2.377e-02  0.000e+00  0.000e+00  0.000e+00 
+  0.000e+00  2.745e-06  0.000e+00  0.000e+00 
+  0.000e+00  0.000e+00  2.115e+02  0.000e+00 
+  0.000e+00  0.000e+00  0.000e+00  2.300e-01 
+ERR MATRIX APPROXIMATE
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4
+        1  0.00000   1.000  0.000  0.000  0.000
+        2  0.00000   0.000  1.000  0.000  0.000
+        3  0.00000   0.000  0.000  1.000  0.000
+        4  0.00000   0.000  0.000  0.000  1.000
+ ERR MATRIX APPROXIMATE
+ **********
+ **    7 **HESSE        2000
+ **********
+ MINUIT WARNING IN HESSE
+ ============== Second derivative zero for parameter2
+  MNHESS FAILS AND WILL RETURN DIAGONAL MATRIX. 
+ FCN=-3052.54 FROM HESSE     STATUS=FAILED          5 CALLS         225 TOTAL
+                     EDM=5.20773e-05    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE     INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  lambda1     -1.49962e+00   1.54007e-01   3.03562e-03  -2.52482e-01
+   2  mean1        5.15266e+00   2.14953e-01  -0.00000e+00  -2.67961e-01
+   3  nbkg1        5.62837e+02   4.19303e+02   6.43860e-02   1.53672e+00
+   4  scale        1.03941e+00   4.03533e-01  -0.00000e+00  -6.44732e-01
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  4    ERR DEF=0.5
+  2.377e-02  0.000e+00  0.000e+00  0.000e+00 
+  0.000e+00  2.745e-06  0.000e+00  0.000e+00 
+  0.000e+00  0.000e+00  2.115e+02  0.000e+00 
+  0.000e+00  0.000e+00  0.000e+00  2.300e-01 
+ERR MATRIX APPROXIMATE
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4
+        1  0.00000   1.000  0.000  0.000  0.000
+        2  0.00000   0.000  1.000  0.000  0.000
+        3  0.00000   0.000  0.000  1.000  0.000
+        4  0.00000   0.000  0.000  0.000  1.000
+ ERR MATRIX APPROXIMATE
+ **********
+ **    8 **SET ERR         0.5
+ **********
+ **********
+ **    9 **SET PRINT           1
+ **********
+ **********
+ **   10 **HESSE        2000
+ **********
+ MINUIT WARNING IN HESSE
+ ============== Second derivative zero for parameter2
+  MNHESS FAILS AND WILL RETURN DIAGONAL MATRIX. 
+ FCN=-3052.54 FROM HESSE     STATUS=FAILED          5 CALLS         230 TOTAL
+                     EDM=5.20773e-05    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE     INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  lambda1     -1.49962e+00   1.54007e-01   3.03562e-03  -2.52482e-01
+   2  mean1        5.15266e+00   2.14953e-01  -0.00000e+00  -2.67961e-01
+   3  nbkg1        5.62837e+02   4.19303e+02   6.43860e-02   1.53672e+00
+   4  scale        1.03941e+00   4.03533e-01  -0.00000e+00  -6.44732e-01
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  4    ERR DEF=0.5
+  2.377e-02  0.000e+00  0.000e+00  0.000e+00 
+  0.000e+00  2.745e-06  0.000e+00  0.000e+00 
+  0.000e+00  0.000e+00  2.115e+02  0.000e+00 
+  0.000e+00  0.000e+00  0.000e+00  2.300e-01 
+ERR MATRIX APPROXIMATE
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4
+        1  0.00000   1.000  0.000  0.000  0.000
+        2  0.00000   0.000  1.000  0.000  0.000
+        3  0.00000   0.000  0.000  1.000  0.000
+        4  0.00000   0.000  0.000  0.000  1.000
+ ERR MATRIX APPROXIMATE
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: deactivating const optimization
+[#1] INFO:Minization -- p.d.f. provides expected number of events, including extended term in likelihood.
+REAL SIGNIFICANCE= 20.23
+***********************************************************************
+sigma1_MC error hi= 0.000330981
+sigma1_MC error = 0.000330981
+sigma2_MC error hi= 0.000387727
+sigma2_MC error = 0.000387727
+bkg integral: 0.172661
+Significance = 20
+------------------------------------------------------------------------------------------------
+yield Error = 14.1987     yield Error Up = 14.5554    yieldPrintErrDown = 13.851
+------------------------------------------------------------------------------------------------
+The count number is 1
+
+RooWorkspace(w_pdf) w_pdf contents
+
+variables
+---------
+(Bmass,lambda1,mean1,meanMC1_,nbkg1,nsig1,nsigMC1,scale,sig1frac1,sig1fracMC1_,sigma11,sigma1MC1,sigma21,sigma2MC1)
+
+p.d.f.s
+-------
+RooExponential::bkg1[ x=Bmass c=lambda1 ] = 0.000377906
+RooAddPdf::model1[ nsig1 * sig1 + nbkg1 * bkg1 ] = 0.000267427
+RooAddPdf::modelMC1[ nsigMC1 * sigMC1_ ] = 7.22253e-19
+RooAddPdf::sig1[ sig1frac1 * sig11 + [%] * sig21 ] = 8.62925e-19
+RooGaussian::sig11[ x=Bmass mean=mean1 sigma=scaled_sigma1 ] = 8.79869e-39
+RooGaussian::sig1MC1_[ x=Bmass mean=meanMC1_ sigma=scaled_sigma1MC ] = 3.15336e-71
+RooGaussian::sig21[ x=Bmass mean=mean1 sigma=scaled_sigma2 ] = 1.78529e-18
+RooGaussian::sig2MC1_[ x=Bmass mean=meanMC1_ sigma=scaled_sigma2MC ] = 1.49426e-18
+RooAddPdf::sigMC1_[ sig1fracMC1_ * sig1MC1_ + [%] * sig2MC1_ ] = 7.22253e-19
+
+functions
+--------
+RooProduct::scaled_sigma1[ scale * sigma11 ] = 0.01
+RooProduct::scaled_sigma1MC[ scale * sigma1MC1 ] = 0.00736299
+RooProduct::scaled_sigma2[ scale * sigma21 ] = 0.014643
+RooProduct::scaled_sigma2MC[ scale * sigma2MC1 ] = 0.014643
+
+RooAddPdf::model1[ nsig1 * sig1 + nbkg1 * bkg1 ] = 0.000267427
+RooAddPdf::modelMC1[ nsigMC1 * sigMC1_ ] = 7.22253e-19
+The content of dhMC&dh is (p5) 
+RooDataHist::dhMC1[Bmass] = 100 bins (0 weights)
+RooDataHist::dh1[Bmass] = 100 bins (563 weights)
+The fit results are(lambda1,mean1,nbkg1,nsig1,scale)
+yield: 164.597586, yieldErr: 14.198703
+sec1sec1sec1
+sec2sec2sec2
+sec3sec3sec3
+sec4sec4sec4
+chi square value is 1.12309
+chi square value(MC) is 0
+yield bkg sideband: 0
+
+0
+Info in <TCanvas::Print>: png file results/Bs/By/data_pp_By_0.5_1.0_Nominal_cutY0_ntphi.png has been created
+Info in <TCanvas::Print>: png file results/Bs/By/mc_pp_By_0.5_1.0_Nominal_cutY0_ntphi.png has been created
+Final Background = 398.427
+Final Yield = 164.598
+Info in <TCanvas::Print>: png file ./results/Graphs/raw_yield_ntphi_By.png has been created
+Info in <TCanvas::Print>: png file ./results/Graphs/parameters_variation_ntphi_By.png has been created
+Info in <TCanvas::Print>: png file ./results/Graphs/resolution_ntphi_By.png has been created
+Info in <TCanvas::Print>: png file ./results/Graphs/chi2_ntphi_By.png has been created
