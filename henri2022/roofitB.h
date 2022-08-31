@@ -75,10 +75,31 @@ RooFitResult *fit(TString variation, TString pdf,TString tree, TCanvas* c, TCanv
 	h->SetMarkerStyle(20);
 	h->SetLineColor(1);
 	h->SetLineWidth(2);
+
+	cMC->cd();
 	RooPlot* frameMC = mass->frame();
 	frameMC->SetTitle("");
-	if(tree=="ntKp")frameMC->SetXTitle("m_{J/#psiK^{#pm}} (GeV/c^{2})");
-	if(tree=="ntphi")frameMC->SetXTitle("m_{J/#psiK^{+}K^{-}} (GeV/c^{2})");
+
+	TPad *pMC1 = new TPad("pMC1","pMC1",0.,0.215,1.,0.99);
+	// TPad *p1 = new TPad("p1","p1",0.05,0.05,0.99,0.99);
+	pMC1->SetBorderMode(1); 
+	pMC1->SetFrameBorderMode(0); 
+	pMC1->SetBorderSize(2);
+	pMC1->SetBottomMargin(0.10);
+	pMC1->Draw(); 
+
+	TPad *pMC2 = new TPad("pMC2","pMC2",0.,0.02,1.,0.24);// 0.26 
+	pMC2->SetTopMargin(0.);    
+	pMC2->SetBorderMode(0);
+	pMC2->SetBorderSize(2); 
+	pMC2->SetFrameBorderMode(0); 
+	pMC2->SetTicks(1,1); 
+	//  p2->SetBottomMargin(0.2);
+	pMC2->Draw();
+
+
+	//if(tree=="ntKp")frameMC->SetXTitle("m_{J/#psiK^{#pm}} (GeV/c^{2})");
+	//if(tree=="ntphi")frameMC->SetXTitle("m_{J/#psiK^{+}K^{-}} (GeV/c^{2})");
 
 	
 	frameMC->GetYaxis()->SetTitle(TString::Format("Events / (%g MeV/c^{2})",(mass->getMax()-mass->getMin())/nbinsmasshisto*1000));
@@ -96,7 +117,7 @@ RooFitResult *fit(TString variation, TString pdf,TString tree, TCanvas* c, TCanv
 	frameMC->SetStats(0);
 	frameMC->GetXaxis()->SetNdivisions(-50205);
 
-	cMC->cd();
+//	cMC->cd();
 	double init_mean;
 	if(tree=="ntphi") init_mean = BS_MASS;
 	if(tree=="ntKp") init_mean = BP_MASS;
@@ -172,6 +193,7 @@ if(tree=="ntphi"){
 	}
 }
 
+		pMC1->cd();
 		RooRealVar meanMC(Form("meanMC%d_%s",_count,pdf.Data()),"",init[0],lolimit[0],hilimit[0]) ;
 		RooRealVar sigma1MC(Form("sigma1MC%d",_count),"",init[1],lolimit[1],hilimit[1]) ;
 		RooRealVar sigma2MC(Form("sigma2MC%d",_count),"",init[2],lolimit[2],hilimit[2]) ;
@@ -754,6 +776,15 @@ else if (ptmin == 20) { (frame->GetYaxis())->SetRangeUser(0,340);}}
 	p1->cd();
 	outframe = frame;
 	//outputw->import(*model);
+
+	pMC2->cd();
+	pull_plotMC->GetYaxis()->SetTitleOffset(0.4);
+	pull_plotMC->SetYTitle("Pull");
+	pull_plotMC->Draw();
+/*
+	pMC1->cd();
+	outframeMC = frame;
+*/
 
 	cout << "------------------------------------------------------------------------------------------------" << endl;
 
