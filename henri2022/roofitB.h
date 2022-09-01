@@ -239,8 +239,8 @@ if(tree=="ntphi"){
 	RooAddPdf* modelMC;
 	//if(variation =="signal" && pdf=="1gauss") modelMC = new RooAddPdf(Form("modelMC%d_%s",_count, pdf.Data()),"",RooArgList(sig1MC),RooArgList(nsigMC));
 
-	if((variation=="signal" && (pdf=="gauss_cb"|| pdf=="3gauss"|| pdf=="fixed"|| pdf=="2cb"))||variation=="background") modelMC = new RooAddPdf(Form("modelMC%d",_count),"",RooArgList(*sigMC),RooArgList(nsigMC));
-	if(variation =="" && pdf=="") modelMC = new RooAddPdf(Form("modelMC%d",_count),"",RooArgList(*sigMC),RooArgList(nsigMC));
+	if((variation=="signal" && (pdf=="gauss_cb"|| pdf=="3gauss"|| pdf=="fixed"|| pdf=="2cb"))||variation=="background") modelMC = new RooAddPdf(Form("modelMC%d%s",_count, pdf.Data()),"",RooArgList(*sigMC),RooArgList(nsigMC));
+	if(variation =="" && pdf=="") modelMC = new RooAddPdf(Form("modelMC%d%s",_count, pdf.Data()),"",RooArgList(*sigMC),RooArgList(nsigMC));
 
 //////////ROOFIT ROOFIT ROOFIT  MC MC MC MC 
 
@@ -276,7 +276,7 @@ w_pdf->import(*modelMC);
 		modelMC->plotOn(frameMC,Name(Form("sigFMC%d_%s",_count, pdf.Data())),Components(sig1MC),Normalization(1.0,RooAbsReal::RelativeExpected),Precision(1e-6),DrawOption("F"),FillStyle(3002),FillColor(kOrange-3),LineStyle(7),LineColor(kOrange-3),LineWidth(4));
 	}
 
-	modelMC->plotOn(frameMC,Name(Form("modelMC%d",_count)),Normalization(1.0,RooAbsReal::RelativeExpected),Precision(1e-6),DrawOption("L"),LineColor(2),LineWidth(4));
+	modelMC->plotOn(frameMC,Name(Form("modelMC%d%s",_count, pdf.Data())),Normalization(1.0,RooAbsReal::RelativeExpected),Precision(1e-6),DrawOption("L"),LineColor(2),LineWidth(4));
 	double x_1 = 0.58;
 	double x_2 = 0.95;
 	double y_2 = 0.92;
@@ -600,7 +600,7 @@ else if (ptmin == 20) { (frame->GetYaxis())->SetRangeUser(0,340);}}
 
 	std::cout<<"pull done"<<std::endl;
 
-	RooHist* pull_histMC = frameMC->pullHist(Form("dsMC_cut%d",_count),Form("modelMC%d",_count));
+	RooHist* pull_histMC = frameMC->pullHist(Form("dsMC_cut%d",_count),Form("modelMC%d%s",_count, pdf.Data()));
 	//  RooHist* pull_hist = frame->pullHist("Data","Fit");
 
 	RooPlot* pull_plotMC = mass->frame();

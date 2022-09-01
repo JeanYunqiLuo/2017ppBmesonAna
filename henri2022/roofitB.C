@@ -10,7 +10,7 @@
 #include "TGraphErrors.h"
 
 
-int syst=0;
+int syst=1;
 
 TTree* makeTTree(TTree* intree, TString treeTitle) 
 {
@@ -505,8 +505,15 @@ if(doubly==0) {if(varExp == "Bpt"){
 		//RooFitResult* f_MC = fitMC("", "", tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, _ptBins[i], _ptBins[i+1], isMC, npfit);
 		std::cout << "The count number is " << _count << std::endl;
 		RooAbsPdf* model = (RooAbsPdf*)w_pdf->pdf(Form("model%d%s",_count,""));
-		RooAbsPdf* modelMC = (RooAbsPdf*)w_pdf->pdf(Form("modelMC%d",_count));
+		RooAbsPdf* modelMC = (RooAbsPdf*)w_pdf->pdf(Form("modelMC%d%s",_count,""));
 
+		//RooPlot* frameMC_chi2 = new RooPlot(Form("frameMC_chi2%d",_count),"",*mass,nbinsmasshisto,minhisto,maxhisto);
+		RooPlot* frameMC_chi2 = mass->frame(Title(Form("frameMC_chi2%d",_count)), Bins(nbinsmasshisto));
+		dsMC_cut->plotOn(frameMC_chi2);
+		modelMC->plotOn(frameMC_chi2);
+		//frameMC_chi2->Draw();
+
+		std::cout << "chi^2 = " << frameMC_chi2->chiSquare() << std::endl;
 		//outputw->Print();
 		w_pdf->Print();
 		//RooAbsPdf* modelMC = (RooAddPdf*)outputw->pdf(Form("modelMC%d",_count));
@@ -644,12 +651,9 @@ if(doubly==0) {if(varExp == "Bpt"){
 		std::cout << "chi square value is " << Mychi2 << endl;
 		chi2_vec[i] = Mychi2;
 
-		RooChi2Var chi2MC("chi2MC","chi2MC",*modelMC,*dhMC);
-		double Mychi2MC = chi2MC.getVal()/(nbinsmasshisto - f->floatParsFinal().getSize()); //normalised chi square
-		std::cout << "chi square value(MC) is " << chi2MC.getVal() << endl;
-		chi2MC_vec[i] = Mychi2MC;
+		chi2MC_vec[i] = frameMC_chi2->chiSquare();
 
-//chi2 test 
+		//std::cout << "chi^2 = " << frameMC_chi2->chiSquare() << std::endl ;//chi2 test 
  
 		std::vector<double> aa;
 		double a=yield_vec_err_low[i]/yield_vec[i]*100;
@@ -887,14 +891,20 @@ if (varExp=="Bpt"){
 				back = new TString(background[j]);
 				std::cout << "The name of the background is " << back->Data() << std::endl;
 				RooAbsPdf* model_back = (RooAbsPdf*)w_pdf_back->pdf(Form("model%d%s",_count,back->Data()));
-				std::cout << "p1p1p1" << std::endl;
+				RooAbsPdf* modelMC_back = (RooAbsPdf*)w_pdf_back->pdf(Form("modelMC%d%s",_count,back->Data()));
+			//	std::cout << "p1p1p1" << std::endl;
 				model_back->Print();
-				std::cout << "p2p2p2" << std::endl;
+			//	std::cout << "p2p2p2" << std::endl;
 				RooChi2Var chi2_back("chi2_back","chi2_back",*model_back,*dh);
-				std::cout << "p3p3p3" << std::endl;
+			//	std::cout << "p3p3p3" << std::endl;
+				RooPlot* frameMC_back = mass->frame(Title(Form("frameMC_back%d%s",_count,back->Data())), Bins(nbinsmasshisto));
+				dsMC_cut->plotOn(frameMC_back);
+				modelMC_back->plotOn(frameMC_back);
+	
 				double Mychi2_back = chi2_back.getVal()/(nbinsmasshisto - f_back->floatParsFinal().getSize()); //normalised chi square
 				std::cout << "chi square value is " << Mychi2_back << " (" << background[j] << ")"<< endl;
 				chi2_vec_back[j][i] = Mychi2_back;
+				chi2MC_vec_back[j][i] = frameMC_back->chiSquare();
 
 	
 				texB->Draw();
@@ -943,11 +953,21 @@ chi_back->Draw();
 			for(int j=0; j<signal.size(); j++){
 				RooWorkspace* w_pdf_sig = new RooWorkspace("w_pdf_sig");
 				RooFitResult* f_signal = fit("signal", signal[j], tree, c, cMC, ds_cut, dsMC_cut, dh, dhMC, mass, frame, frameMC, _ptBins[i], _ptBins[i+1], isMC, npfit,varExp,w_pdf_sig);
-				RooAbsPdf* model_sig = (RooAbsPdf*)w_pdf_sig->pdf(Form("model%d%s",_count,signal[j].c_str()));
+				sig = new TString(signal[j]);
+
+				RooAbsPdf* model_sig = (RooAbsPdf*)w_pdf_sig->pdf(Form("model%d%s",_count,sig->Data()));
+				RooAbsPdf* modelMC_sig = (RooAbsPdf*)w_pdf_sig->pdf(Form("modelMC%d%s",_count,sig->Data()));
+
 				RooChi2Var chi2_sig("chi2_sig","chi2_sig",*model_sig,*dh);
+				RooPlot* frameMC_sig = mass->frame(Title(Form("frameMC_sig%d%s",_count,sig->Data())), Bins(nbinsmasshisto));
+				dsMC_cut->plotOn(frameMC_sig);
+				modelMC_sig->plotOn(frameMC_sig);
+	
+
 				double Mychi2_sig = chi2_sig.getVal()/(nbinsmasshisto - f_signal->floatParsFinal().getSize()); //normalised chi square
 				std::cout << "chi square value is " << Mychi2_sig << " (" << signal[j] << ")"<< endl;
 				chi2_vec_sig[j][i] = Mychi2_sig;
+				chi2MC_vec_sig[j][i] = frameMC_sig->chiSquare();
 
 
 				texB->Draw();
@@ -1384,11 +1404,17 @@ if(syst==1){
 	 double chi2_min = 10;
 	for(int i = 0; i < _nBins; i++){
 		if(chi2_vec[i] > chi2_max){
-		chi2_max = chi2_vec[i];
-	}
-	if(chi2_vec[i] < chi2_min){
-		chi2_min = chi2_vec[i];
-	}
+			chi2_max = chi2_vec[i];
+		}
+		else if(chi2MC_vec[i] > chi2_max){
+			chi2_max = chi2MC_vec[i];
+		}
+		if(chi2_vec[i] < chi2_min){
+			chi2_min = chi2_vec[i];
+		}
+		else if(chi2MC_vec[i] < chi2_min){
+			chi2_min = chi2MC_vec[i];
+		}
 }
 TCanvas c_chi2;
 TMultiGraph* mg_chi2 = new TMultiGraph();
@@ -1444,9 +1470,17 @@ if(syst==1){
 		if(chi2_vec_back[j][i] > chi2_max_back){
 			chi2_max_back = chi2_vec_back[j][i];
 		}
+		else if(chi2MC_vec_back[j][i] > chi2_max_back){
+			chi2_max_back = chi2MC_vec_back[j][i];
+		}
+
 		if(chi2_vec_back[j][i] < chi2_min_back){
 			chi2_min_back = chi2_vec_back[j][i];
 		}
+		else if(chi2MC_vec_back[j][i] < chi2_min_back){
+			chi2_min_back = chi2MC_vec_back[j][i];
+		}
+
 	}
 
 TCanvas c_chi2_back;
@@ -1504,8 +1538,15 @@ c_chi2_back.SaveAs(pathc_chi2_back);
 		if(chi2_vec_sig[j][i] > chi2_max_sig){
 			chi2_max_sig = chi2_vec_sig[j][i];
 		}
+		else if(chi2MC_vec_sig[j][i] > chi2_max_sig){
+			chi2_max_sig = chi2MC_vec_sig[j][i];
+		}
+
 		if(chi2_vec_sig[j][i] < chi2_min_sig){
 			chi2_min_sig = chi2_vec_sig[j][i];
+		}
+		else if(chi2MC_vec_sig[j][i] < chi2_min_sig){
+			chi2_min_sig = chi2MC_vec_sig[j][i];
 		}
 	}
 
