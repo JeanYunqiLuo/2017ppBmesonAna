@@ -123,36 +123,36 @@ RooFitResult *fit(TString variation, TString pdf,TString tree, TCanvas* c, TCanv
 	if(tree=="ntKp") init_mean = BP_MASS;
 
 
-double init[12];
-double lolimit[12];
-double hilimit[12];
+double init[13];
+double lolimit[13];
+double hilimit[13];
 if(tree=="ntphi"){
 	if (varExp=="Bpt"){
 		//(mean,sigma1,sigma2,sigma3,sigma4cb,sigma5cb,alpha,alpha1,n1,n2,sig1frac,sig2frac)	
-		double init2[12]={init_mean,0.05,0.03,0.01,0.0266,0.0266,4.,5.,100,100,0.2,0.7};
-		double lolimit2[12]={init_mean*0.999,0.01,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.001};
-		double hilimit2[12]={init_mean*1.0001,0.11,0.06,0.025,0.1,0.1,20,50,500,500,.999,.999};
-		for (int i=0;i<12;i++){
+		double init2[13]={init_mean,0.05,0.03,0.01,0.0266,0.0266,4.,5.,100,100,0.2,0.7,1.0};
+		double lolimit2[13]={init_mean*0.999,0.01,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.001,0.5};
+		double hilimit2[13]={init_mean*1.0001,0.11,0.06,0.025,0.1,0.1,20,50,500,500,.999,.999,2.0};
+		for (int i=0;i<13;i++){
 			init[i]=init2[i];
 			lolimit[i]=lolimit2[i];
 			hilimit[i]=hilimit2[i];
 		}
 	} else if (varExp=="By"){
 		
-		double init2[12]={init_mean,0.05,0.03,0.01,0.0266,0.0266,4.,5.,100,100,0.2,0.7};
-		double lolimit2[12]={init_mean*0.999,0.005,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.001};
-		double hilimit2[12]={init_mean*1.0001,0.15,0.06,0.025,0.1,0.1,30,50,300,500,.999,.999};
-		for (int i=0;i<12;i++){
+		double init2[13]={init_mean,0.05,0.03,0.01,0.0266,0.0266,4.,5.,100,100,0.2,0.7,1.0};
+		double lolimit2[13]={init_mean*0.999,0.005,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.001,0.5};
+		double hilimit2[13]={init_mean*1.0001,0.15,0.06,0.025,0.1,0.1,30,50,300,500,.999,.999,2.0};
+		for (int i=0;i<13;i++){
 			init[i]=init2[i];
 			lolimit[i]=lolimit2[i];
 			hilimit[i]=hilimit2[i];
 		}
 	}else if (varExp=="nMult"){
 		
-		double init2[12]={init_mean,0.05,0.03,0.01,0.0266,0.0266,4.,5.,50,100,0.2,0.7};
-		double lolimit2[12]={init_mean*0.99,0.008,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.0001};
-		double hilimit2[12]={init_mean*1.01,0.15,0.11,0.025,0.1,0.1,40,50,100,500,.999,.999};
-		for (int i=0;i<12;i++){
+		double init2[13]={init_mean,0.05,0.03,0.01,0.0266,0.0266,4.,5.,50,100,0.2,0.7,1.0};
+		double lolimit2[13]={init_mean*0.99,0.008,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.0001,0.5};
+		double hilimit2[13]={init_mean*1.01,0.15,0.11,0.025,0.1,0.1,40,50,100,500,.999,.999,2.0};
+		for (int i=0;i<13;i++){
 			init[i]=init2[i];
 			lolimit[i]=lolimit2[i];
 			hilimit[i]=hilimit2[i];
@@ -162,30 +162,30 @@ if(tree=="ntphi"){
 }else if (tree=="ntKp"){
 	if (varExp=="Bpt"){
 		//(mean,sigma1,sigma2,sigma3,sigma4cb,sigma5cb,alpha,alpha1,n1,n2,sig1frac,sig2frac)	
-		double init2[12]={init_mean,0.05,0.03,0.01,0.0266,0.0266,4.,5.,100,100,0.2,0.7};
-		double lolimit2[12]={init_mean*0.9999,0.01,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.001};
-		double hilimit2[12]={init_mean*1.00001,0.11,0.06,0.025,0.1,0.1,20,50,250,500,.999,.999};
-		for (int i=0;i<12;i++){
+		double init2[13]={init_mean,0.05,0.03,0.01,0.0266,0.0266,4.,5.,100,100,0.2,0.7,1.0};
+		double lolimit2[13]={init_mean*0.9999,0.01,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.001,0.8};
+		double hilimit2[13]={init_mean*1.00001,0.11,0.06,0.025,0.1,0.1,20,50,250,500,.999,.999,2.0};
+		for (int i=0;i<13;i++){
 			init[i]=init2[i];
 			lolimit[i]=lolimit2[i];
 			hilimit[i]=hilimit2[i];
 		}
 	} else if (varExp=="By"){
 		
-		double init2[12]={init_mean,0.05,0.03,0.01,0.0266,0.0266,15.,5.,100,100,0.2,0.7};
-		double lolimit2[12]={init_mean*0.9999,0.005,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.001};
-		double hilimit2[12]={init_mean*1.0001,0.15,0.06,0.025,0.05,0.05,30,50,300,500,.999,.999};
-		for (int i=0;i<12;i++){
+		double init2[13]={init_mean,0.05,0.03,0.01,0.0266,0.0266,15.,5.,100,100,0.2,0.7,1.0};
+		double lolimit2[13]={init_mean*0.9999,0.005,0.005,0.005,0.01,0.01,0,0,0,0,0.001,0.001,0.8};
+		double hilimit2[13]={init_mean*1.0001,0.15,0.06,0.025,0.05,0.05,30,50,300,500,.999,.999,2.0};
+		for (int i=0;i<13;i++){
 			init[i]=init2[i];
 			lolimit[i]=lolimit2[i];
 			hilimit[i]=hilimit2[i];
 		}
 	}else if (varExp=="nMult"){
 		
-		double init2[12]={init_mean,0.05,0.03,0.01,0.0266,0.0266,15.,5.,100,100,0.2,0.7};
-		double lolimit2[12]={init_mean*0.9999,0.008,0.008,0.005,0.005,0.005,0,0,0,0,0.05,0.05};
-		double hilimit2[12]={init_mean*1.0001,0.06,0.06,0.025,0.07,0.07,30,50,300,500,0.95,0.95};
-		for (int i=0;i<12;i++){
+		double init2[13]={init_mean,0.05,0.03,0.01,0.0266,0.0266,15.,5.,100,100,0.2,0.7,1.0};
+		double lolimit2[13]={init_mean*0.9999,0.008,0.008,0.005,0.005,0.005,0,0,0,0,0.05,0.05,0.8};
+		double hilimit2[13]={init_mean*1.0001,0.06,0.06,0.025,0.07,0.07,30,50,300,500,0.95,0.95,2.0};
+		for (int i=0;i<13;i++){
 			init[i]=init2[i];
 			lolimit[i]=lolimit2[i];
 			hilimit[i]=hilimit2[i];
@@ -206,7 +206,7 @@ if(tree=="ntphi"){
 		RooRealVar nMC1(Form("nMC1_%d_%s", _count, pdf.Data()),"",init[9],lolimit[9],hilimit[9]);
 
 		RooRealVar* scale;
-		scale = new RooRealVar("scale","scale",1,0.8,2);
+		scale = new RooRealVar("scale","scale",init[12],lolimit[12],hilimit[12]);
 
 		RooProduct scaled_sigma1MC("scaled_sigma1MC","scaled_sigma1MC", RooArgList(*scale,sigma1MC));
 		RooProduct scaled_sigma2MC("scaled_sigma2MC","scaled_sigma2MC", RooArgList(*scale,sigma2MC));
@@ -381,7 +381,7 @@ w_pdf->import(*modelMC);
 
 	RooRealVar nsig(Form("nsig%d",_count),"",n_signal_initial,-1,ds->sumEntries()*3);
 	RooRealVar nbkg(Form("nbkg%d",_count),"",n_combinatorial_initial,0.,ds->sumEntries());
-	RooRealVar npeakbg(Form("npeakbg%d",_count),"",1,0,1e5);
+	RooRealVar npeakbg(Form("npeakbg%d",_count),"",1,50,1e5);
 	RooAddPdf* model;
 
 /////////////////Bs Bs Bs Bs Bs Bs Bs Bs
@@ -773,8 +773,8 @@ else if (ptmin == 20) { (frame->GetYaxis())->SetRangeUser(0,340);}}
 	pull_plot->SetYTitle("Pull");
 	pull_plot->Draw();
 
-	p1->cd();
-	outframe = frame;
+	//p1->cd();
+	//outframe = frame;
 	//outputw->import(*model);
 
 	pMC2->cd();
@@ -785,7 +785,9 @@ else if (ptmin == 20) { (frame->GetYaxis())->SetRangeUser(0,340);}}
 	pMC1->cd();
 	outframeMC = frame;
 */
-
+	p1->cd();
+	outframe = frame;
+	
 	cout << "------------------------------------------------------------------------------------------------" << endl;
 
 	Double_t yieldPrintErr = nsig.getError();
