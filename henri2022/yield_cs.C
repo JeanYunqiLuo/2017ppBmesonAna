@@ -11,6 +11,7 @@ void yield_cs(int syst,TString varExp){
 	TString* var;
 	if(varExp == "By"){var = new TString("Y");}
 	if(varExp == "nMult"){var = new TString("Mult");}
+	if(varExp == "Bpt"){var = new TString("PT");}
 
 	TFile *diff_f = new TFile(Form("./results/ntKp_%s_ratio.root",varExp.Data()),"read");
 	TFile *eff_f = new TFile(Form("./FinalFiles/BPPPCorrYield%sNoTnP.root",var->Data()),"read");
@@ -33,9 +34,9 @@ void yield_cs(int syst,TString varExp){
 	double ey[_nBins];
 	
 	for (int i=0;i<_nBins;i++){
-		y[i]=TG_diff->GetY()[i] / (TH_eff->GetBinContent(i+1)*brafrac_ntKp*lumi);
+		y[i]=TG_diff->GetY()[i] * (TH_eff->GetBinContent(i+1) / (brafrac_ntKp*lumi));
 		x[i]=TG_diff->GetX()[i];
-		ey[i]=abs(y[i]) * sqrt(pow(TG_diff->GetErrorY(i)/TG_diff->GetY()[i],2) + pow(TH_eff->GetBinError(i+1)/TH_eff->GetBinContent(i+1),2) + pow(brafrac_ntKp_err/brafrac_ntKp,2) + pow(0.019,2));
+		ey[i]=abs(y[i]) * (TG_diff->GetErrorY(i)/TG_diff->GetY()[i]);
 		ex[i]=TG_diff->GetErrorX(i);
 	}
 /*
@@ -50,7 +51,7 @@ void yield_cs(int syst,TString varExp){
 		for (int i=0;i<_nBins;i++){
 			y_syst[i]=TG1_syst->GetY()[i]/TG2_syst->GetY()[i];
 			x_syst[i]=(TG1_syst->GetX()[i]+TG2_syst->GetX()[i])/2;
-			ey_syst[i]=abs(y_syst[i])*sqrt(pow(TG1_syst->GetErrorY(i)/TG1_syst->GetY()[i],2)+pow(TG2_syst->GetErrorY(i)/TG2_syst->GetY()[i],2));
+			ey_syst[i]=abs(y_syst[i])*sqrt(pow(TG1_syst->GetErrorY(i)/TG1_syst->GetY()[i],2)+pow(TH_eff->GetBinError(i+1)/TH_eff->GetBinContent(i+1),2) + pow(brafrac_ntKp_err/brafrac_ntKp,2) + pow(0.019,2));
 			ex_syst[i]=sqrt(pow(TG1_syst->GetErrorX(i),2)+pow(TG2_syst->GetErrorX(i),2))/2;
 		}
 		
@@ -74,7 +75,7 @@ void yield_cs(int syst,TString varExp){
 		yield_max = y[i];
 		}
 	}
-	m_diff->GetYaxis()->SetRangeUser(0, yield_max * 1.5);
+	m_diff->GetYaxis()->SetRangeUser(0.01, yield_max * 1.5);
 	m_diff->GetYaxis()->SetTitle(Form("d#sigma/d%s", varExp.Data()));
 	if(varExp == "By"){
 		 m_diff->GetXaxis()->SetTitle("Rapidity (y)");
@@ -83,6 +84,7 @@ void yield_cs(int syst,TString varExp){
 	 }
 	 if(varExp == "Bpt"){
 		 m_diff->GetXaxis()->SetTitle("Transverse Momentum (p_{T})");
+		 c->SetLogy();
 		 //m_diff->GetYaxis()->SetTitle("dN_{S}/dp_{T}");
 		//if (tree == "ntKp"){ m_diff->GetXaxis()->SetLimits(0 ,80); }
 		//if (tree == "ntphi"){ m_diff->GetXaxis()->SetLimits(0 ,60); }
