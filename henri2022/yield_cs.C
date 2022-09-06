@@ -30,39 +30,43 @@ void yield_cs(int syst,TString varExp){
 	TMultiGraph* m_diff=new TMultiGraph();
 	double x[_nBins];
 	double y[_nBins];
-	double ex[_nBins];
 	double ey[_nBins];
+	double ex_l[_nBins];
+	double ex_h[_nBins];
 	
 	for (int i=0;i<_nBins;i++){
 		y[i]=TG_diff->GetY()[i] * (TH_eff->GetBinContent(i+1) / (brafrac_ntKp*lumi));
 		x[i]=TG_diff->GetX()[i];
 		ey[i]=abs(y[i]) * (TG_diff->GetErrorY(i)/TG_diff->GetY()[i]);
-		ex[i]=TG_diff->GetErrorX(i);
+		ex_l[i]=TG_diff->GetErrorXlow(i);
+		ex_h[i]=TG_diff->GetErrorXhigh(i);
 	}
 /*
 	if (syst==1){
-		auto TG1_syst = (TGraphAsymmErrors *) tl1->At(1);
-  		auto TG2_syst = (TGraphAsymmErrors *) tl2->At(1);
+		auto TG_syst = (TGraphAsymmErrors *) tl1->At(1);
   		double x_syst[_nBins];
 		double y_syst[_nBins];
-		double ex_syst[_nBins];
+		double ex_syst_l[_nBins];
+		double ex_syst_h[_nBins];
 		double ey_syst[_nBins];
 	
 		for (int i=0;i<_nBins;i++){
-			y_syst[i]=TG1_syst->GetY()[i]/TG2_syst->GetY()[i];
-			x_syst[i]=(TG1_syst->GetX()[i]+TG2_syst->GetX()[i])/2;
-			ey_syst[i]=abs(y_syst[i])*sqrt(pow(TG1_syst->GetErrorY(i)/TG1_syst->GetY()[i],2)+pow(TH_eff->GetBinError(i+1)/TH_eff->GetBinContent(i+1),2) + pow(brafrac_ntKp_err/brafrac_ntKp,2) + pow(0.019,2));
-			ex_syst[i]=sqrt(pow(TG1_syst->GetErrorX(i),2)+pow(TG2_syst->GetErrorX(i),2))/2;
+			y_syst[i]=TG_syst->GetY()[i] * (TH_eff->GetBinContent(i+1) / (brafrac_ntKp*lumi));
+			x_syst[i]=TG_syst->GetX()[i];
+			ey_syst[i]=abs(y_syst[i])*sqrt(pow(TG_syst->GetErrorY(i)/TG_syst->GetY()[i],2)+pow(TH_eff->GetBinError(i+1)/TH_eff->GetBinContent(i+1),2) + pow(brafrac_ntKp_err/brafrac_ntKp,2) + pow(0.019,2));
+		ex_syst_l[i]=TG_syst->GetErrorXlow(i);
+		ex_syst_h[i]=TG_syst->GetErrorXhigh(i);
+
 		}
 		
-		TGraph *g_diff_syst= new TGraphErrors (_nBins,x_syst,y_syst,ex_syst,ey_syst);
+		TGraphAsymmErrors *g_diff_syst= new TGraphAsymmErrors (_nBins,x_syst,y_syst,ex_syst_l,ex_syst_h,ey_syst,ey_syst);
 		g_diff_syst->SetLineColor(2);
 		m_diff->Add(g_diff_syst);
 		leg_diff->AddEntry(g_diff_syst,"Systematic Uncertainty", "e");
 	}
 */
 	
-	TGraph *g_diff= new TGraphErrors (_nBins,x,y,ex,ey);
+	TGraphAsymmErrors *g_diff= new TGraphAsymmErrors (_nBins,x,y,ex_l,ex_h,ey,ey);
 	g_diff->SetMarkerColor(1);
 	g_diff->SetMarkerStyle(21);
 	
